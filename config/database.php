@@ -80,11 +80,11 @@ return [
 
         'mysql_production' => [
             'driver' => 'mysql',
-            'host' => env('MYSQL_HOST'),
-            'port' => env('MYSQL_PORT', '3306'),
-            'database' => env('MYSQL_DATABASE'),
-            'username' => env('MYSQL_USERNAME'),
-            'password' => env('MYSQL_PASSWORD'),
+            'host' => getenv('MYSQL_HOST') ?: env('MYSQL_HOST'),
+            'port' => getenv('MYSQL_PORT') ?: env('MYSQL_PORT', '3306'),
+            'database' => getenv('MYSQL_DATABASE') ?: env('MYSQL_DATABASE'),
+            'username' => getenv('MYSQL_USERNAME') ?: env('MYSQL_USERNAME'),
+            'password' => getenv('MYSQL_PASSWORD') ?: env('MYSQL_PASSWORD'),
             'unix_socket' => '',
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
@@ -99,11 +99,11 @@ return [
 
         'mysql_dev' => [
             'driver' => 'mysql',
-            'host' => env('MYSQL_DEV_HOST'),
-            'port' => env('MYSQL_DEV_PORT', '3306'),
-            'database' => env('MYSQL_DEV_DATABASE'),
-            'username' => env('MYSQL_DEV_USERNAME'),
-            'password' => env('MYSQL_DEV_PASSWORD'),
+            'host' => getenv('MYSQL_DEV_HOST') ?: env('MYSQL_DEV_HOST'),
+            'port' => getenv('MYSQL_DEV_PORT') ?: env('MYSQL_DEV_PORT', '3306'),
+            'database' => getenv('MYSQL_DEV_DATABASE') ?: env('MYSQL_DEV_DATABASE'),
+            'username' => getenv('MYSQL_DEV_USERNAME') ?: env('MYSQL_DEV_USERNAME'),
+            'password' => getenv('MYSQL_DEV_PASSWORD') ?: env('MYSQL_DEV_PASSWORD'),
             'unix_socket' => '',
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',

@@ -61,14 +61,14 @@ trait RegionTrait
     {
         if (Cache::missing('all_regions')) {
             Cache::rememberForever('regions', function () {
-                return Region::whereNot('id', 1)->get()->sortBy('name')
+                return Region::where('id', '!=', 1)->get()->sortBy('name')
                     ->groupBy(function ($item) {
                         return mb_substr($item->name, 0, 1);
                     });
             });
 
             Cache::rememberForever('countries', function () {
-                return Country::whereNot('id', 190)->get()->sortBy('name_ru')
+                return Country::where('id', '!=', 190)->get()->sortBy('name_ru')
                     ->groupBy(function ($item) {
                         return mb_substr($item->name_ru, 0, 1);
                     });

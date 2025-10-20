@@ -6,7 +6,6 @@ use App\Models\Region;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Stevebauman\Location\Facades\Location;
 
 class FromLocation
 {
@@ -14,16 +13,17 @@ class FromLocation
     {
         if (!$request->session()->has('regionTranslit')) {
 
-            // Упрощенная версия для Replit - определение локации отключено
-            $regionName = 'russia';
-
-            $region = Region::find(1); // Россия по умолчанию
+            // Временно отключено автоопределение геолокации
+            // Устанавливаем Россию по умолчанию
+            
+            $region = Region::find(1); // ID=1 обычно Россия
 
             if ($region) {
-                $request->session()->put('regionName', $region->name);
-                $request->session()->put('regionTranslit', $region->transcription);
+                $request->session()->put('regionName', $region->name ?? 'Россия');
+                $request->session()->put('regionTranslit', $region->transcription ?? 'russia');
             } else {
-                $request->session()->put('regionName', 'не выбрано');
+                // Фоллбэк если регион с ID=1 не найден
+                $request->session()->put('regionName', 'Россия');
                 $request->session()->put('regionTranslit', 'russia');
             }
         }

@@ -7,4 +7,5 @@ php artisan cache:clear
 echo "✅ Теперь используется PostgreSQL"
 echo "💡 Режим разработки - можно изменять данные"
 echo ""
-echo "Для просмотра Production данных используйте: ./artisan-use-mysql"
+echo "Для работы с копией MySQL: ./artisan-use-mysql"
+echo "Для просмотра production MySQL (read-only): ./artisan-use-mysql-prod"

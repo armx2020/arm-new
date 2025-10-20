@@ -1,5 +1,5 @@
 #!/bin/bash
-# Переключиться на копию MySQL armbase-2 (read-write) - это основной рабочий вариант
+# Переключиться на копию MySQL armbase-2 (read-write)
 echo "🔄 Переключаюсь на MySQL Dev (armbase-2 копия)..."
 sed -i 's/^DB_CONNECTION=.*/DB_CONNECTION=mysql_dev/' .env
 php artisan config:clear

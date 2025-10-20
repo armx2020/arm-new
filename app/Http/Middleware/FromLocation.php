@@ -25,8 +25,13 @@ class FromLocation
                 $region = Region::find(1);
             }
 
-            $request->session()->put('regionName', $region->name);
-            $request->session()->put('regionTranslit', $region->transcription);
+            if ($region) {
+                $request->session()->put('regionName', $region->name);
+                $request->session()->put('regionTranslit', $region->transcription);
+            } else {
+                $request->session()->put('regionName', 'не выбрано');
+                $request->session()->put('regionTranslit', 'russia');
+            }
         }
 
         return $next($request);

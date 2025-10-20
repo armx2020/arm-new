@@ -18,17 +18,15 @@
    - Собран frontend (Vite + Tailwind CSS + Alpine.js)
 
 2. **База данных**
-   - Создана PostgreSQL база данных на Replit
-   - Выполнены 26 миграций (адаптированы FULLTEXT индексы для PostgreSQL)
-   - Добавлены тестовые данные:
-     - 1 страна (Россия)
-     - 1 регион (Московская область)
-     - 1 город (Москва)
-     - 5 типов сущностей с транслитерацией (companies, groups, places, jobs, projects, resumes)
-     - 8 категорий (компании, IT, образование, медицина, строительство, группы, спорт, культура)
-     - 1 тестовый пользователь
-     - 6 тестовых сущностей (3 компании, 2 группы, 1 место)
-     - 2 предложения
+   - **PostgreSQL** (development) - создана на Replit
+     - Выполнены 26 миграций (адаптированы FULLTEXT индексы для PostgreSQL)
+     - Добавлены тестовые данные для разработки
+   - **MySQL** (production read-only) - подключена к Timeweb
+     - 30 таблиц
+     - 10,279 сущностей
+     - 251 категория
+     - Доступ только для чтения (безопасно)
+   - Созданы скрипты для переключения между базами
 
 3. **Маршруты**
    - Добавлены динамические маршруты для всех типов сущностей:
@@ -74,11 +72,35 @@
 - `regions`, `cities` - географические данные
 - `images` - изображения для сущностей
 
+## Работа с базами данных
+
+### Две базы данных:
+1. **PostgreSQL (dev)** - для разработки, можно изменять данные
+2. **MySQL (production)** - read-only доступ к production данным
+
+### Переключение между базами:
+
+**Использовать Production MySQL (просмотр реальных данных):**
+```bash
+./artisan-use-mysql
+```
+
+**Вернуться на PostgreSQL (разработка):**
+```bash
+./artisan-use-postgres
+```
+
+**Проверить текущее подключение:**
+```bash
+php artisan tinker --execute="echo DB::connection()->getDatabaseName();"
+```
+
 ## Известные особенности
 1. **PostgreSQL vs MySQL**: В dev используется PostgreSQL без поддержки FULLTEXT индексов (заменены на обычные индексы)
 2. **Динамические маршруты**: DinamicRouteController обрабатывает множественные формы URL (companies, groups) через inflector
 3. **Автоматическая настройка URL**: bootstrap/set-replit-url.php автоматически обновляет APP_URL при запуске сервера
 4. **HTTPS через прокси**: TrustProxies middleware настроен для корректной работы с Replit прокси
+5. **Read-only доступ к production**: Пользователь `replit_readonly` может только читать данные из MySQL
 
 ## Следующие шаги
 - [ ] Добавить больше тестовых данных для всех категорий
@@ -92,13 +114,23 @@
 - `app/Http/Middleware/FromLocation.php` - middleware для определения региона
 - `app/Http/Middleware/TrustProxies.php` - настройка работы с Replit прокси
 - `bootstrap/set-replit-url.php` - автоматическая настройка APP_URL для Replit
+- `config/database.php` - настройка подключений к БД (PostgreSQL + MySQL)
+- `artisan-use-mysql` - скрипт переключения на production MySQL
+- `artisan-use-postgres` - скрипт переключения на development PostgreSQL
 - `config/menu.php` - конфигурация меню
 - `database/migrations/` - миграции базы данных
 
 ## Переменные окружения
 Доступны следующие секреты:
-- `DATABASE_URL` - URL подключения к PostgreSQL
-- `PGDATABASE`, `PGHOST`, `PGPORT`, `PGUSER`, `PGPASSWORD` - параметры PostgreSQL
+- **PostgreSQL (development):**
+  - `DATABASE_URL` - URL подключения к PostgreSQL
+  - `PGDATABASE`, `PGHOST`, `PGPORT`, `PGUSER`, `PGPASSWORD` - параметры PostgreSQL
+- **MySQL (production read-only):**
+  - `MYSQL_HOST` - IP адрес сервера Timeweb
+  - `MYSQL_PORT` - порт (3306)
+  - `MYSQL_DATABASE` - имя базы данных
+  - `MYSQL_USERNAME` - пользователь (replit_readonly)
+  - `MYSQL_PASSWORD` - пароль (хранится в секретах)
 - `SESSION_SECRET` - секрет для сессий
 
 ## Дата последнего обновления

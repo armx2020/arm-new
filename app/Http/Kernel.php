@@ -36,9 +36,10 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            \App\Http\Middleware\TrackLastActiveAt::class,
+            // ВРЕМЕННО ОТКЛЮЧЕНО для READ-ONLY MySQL Production
+            // \App\Http\Middleware\TrackLastActiveAt::class,
             \App\Http\Middleware\FromLocation::class,
-            \App\Http\Middleware\UpdateUserActivity::class,
+            // \App\Http\Middleware\UpdateUserActivity::class,
         ],
 
         'api' => [

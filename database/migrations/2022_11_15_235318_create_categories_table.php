@@ -21,11 +21,8 @@ return new class extends Migration
             $table->string('image', 255)->nullable();
             $table->text('meta_1')->nullable();
             $table->text('meta_2')->nullable();
+            $table->index('name');
         });
-
-        DB::statement(
-            'ALTER TABLE categories ADD FULLTEXT fulltext_index(name)'
-        );
     }
 
     public function down(): void

@@ -49,11 +49,9 @@ return new class extends Migration
             $table->unsignedBigInteger('moderator_id')->nullable();
             $table->text('meta_1')->nullable();
             $table->text('meta_2')->nullable();
+            $table->index('name');
+            $table->index('phone');
         });
-
-        DB::statement(
-            'ALTER TABLE entities ADD FULLTEXT fulltext_index(name, description, phone)'
-        );
     }
 
     public function down(): void

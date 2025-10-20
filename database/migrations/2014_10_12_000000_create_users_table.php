@@ -31,11 +31,9 @@ return new class extends Migration
             $table->foreignId('city_id')->default(1)->constrained();
             $table->foreignId('region_id')->default(1)->constrained();
             $table->softDeletes('deleted_at', 0);
+            $table->index('firstname');
+            $table->index('phone');
         });
-
-        DB::statement(
-            'ALTER TABLE users ADD FULLTEXT fulltext_index(firstname, email, phone)'
-        );
     }
 
     public function down(): void

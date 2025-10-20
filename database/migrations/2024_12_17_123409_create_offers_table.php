@@ -23,11 +23,8 @@ return new class extends Migration
             $table->foreignId('category_id')->nullable()->constrained();
             $table->foreignId('entity_id')->nullable()->constrained();
             $table->text('comment')->nullable();
+            $table->index('name');
         });
-
-        DB::statement(
-            'ALTER TABLE offers ADD FULLTEXT fulltext_index(name, description)'
-        );
     }
 
     public function down(): void

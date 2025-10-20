@@ -14,16 +14,10 @@ class FromLocation
     {
         if (!$request->session()->has('regionTranslit')) {
 
-            $ip = $_SERVER['REMOTE_ADDR'];
-            $data = Location::get($ip);
+            // Упрощенная версия для Replit - определение локации отключено
+            $regionName = 'russia';
 
-            $regionName = $data ? $data->regionName : 'russia';
-
-            $region = Region::where('transcription', 'like', $regionName)->First();
-
-            if (empty($region)) {
-                $region = Region::find(1);
-            }
+            $region = Region::find(1); // Россия по умолчанию
 
             if ($region) {
                 $request->session()->put('regionName', $region->name);

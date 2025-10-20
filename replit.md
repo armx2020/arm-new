@@ -46,12 +46,16 @@
    - Обновлена транслитерация типов сущностей в базе данных
    - Восстановлен resources/js/app.js с импортом Alpine.js
    - Пересобран frontend - все стили Tailwind CSS работают корректно
+   - Настроен TrustProxies middleware для работы с Replit прокси
+   - Создан скрипт bootstrap/set-replit-url.php для автоматической настройки APP_URL
 
 5. **Сервер**
    - Laravel сервер успешно запущен на порту 5000
    - Главная страница работает без ошибок с правильным дизайном
    - Все разделы (компании, группы, места) загружаются корректно
    - Frontend соответствует оригинальному дизайну с production
+   - CSS и JavaScript файлы корректно загружаются через HTTPS
+   - Workflow автоматически настраивает APP_URL при запуске
 
 ## Технический стек
 - **Backend**: Laravel 10, PHP 8.2
@@ -73,6 +77,8 @@
 ## Известные особенности
 1. **PostgreSQL vs MySQL**: В dev используется PostgreSQL без поддержки FULLTEXT индексов (заменены на обычные индексы)
 2. **Динамические маршруты**: DinamicRouteController обрабатывает множественные формы URL (companies, groups) через inflector
+3. **Автоматическая настройка URL**: bootstrap/set-replit-url.php автоматически обновляет APP_URL при запуске сервера
+4. **HTTPS через прокси**: TrustProxies middleware настроен для корректной работы с Replit прокси
 
 ## Следующие шаги
 - [ ] Добавить больше тестовых данных для всех категорий
@@ -84,6 +90,8 @@
 - `routes/web.php` - основные маршруты приложения
 - `app/Http/Controllers/Pages/DinamicRouteController.php` - контроллер динамических маршрутов
 - `app/Http/Middleware/FromLocation.php` - middleware для определения региона
+- `app/Http/Middleware/TrustProxies.php` - настройка работы с Replit прокси
+- `bootstrap/set-replit-url.php` - автоматическая настройка APP_URL для Replit
 - `config/menu.php` - конфигурация меню
 - `database/migrations/` - миграции базы данных
 

@@ -1,0 +1,796 @@
+Логи деплоя
+
+
+
+17:37:31 | Preparing environment
+17:37:31 | Creating base layer
+17:37:31 | Using existing image php8.3:latest
+17:37:31 | Building keys layer
+17:37:31 | DEBUG | #0 building with "default" instance using docker driver
+17:37:31 | DEBUG | 
+17:37:31 | DEBUG | #1 [internal] load build definition from Dockerfile
+17:37:31 | DEBUG | #1 transferring dockerfile: 158B done
+17:37:31 | DEBUG | #1 DONE 0.0s
+17:37:31 | DEBUG | 
+17:37:32 | DEBUG | #2 [internal] load metadata for docker.io/library/php8.3:latest
+17:37:32 | DEBUG | #2 DONE 0.0s
+17:37:32 | DEBUG | 
+17:37:32 | DEBUG | #3 [internal] load .dockerignore
+17:37:32 | DEBUG | #3 transferring context:
+17:37:32 | DEBUG | #3 transferring context: 2B done
+17:37:32 | DEBUG | #3 DONE 0.0s
+17:37:32 | DEBUG | 
+17:37:32 | DEBUG | #4 [1/4] FROM docker.io/library/php8.3:latest
+17:37:32 | DEBUG | #4 DONE 0.0s
+17:37:32 | DEBUG | 
+17:37:32 | DEBUG | #5 [2/4] WORKDIR /opt/build
+17:37:32 | DEBUG | #5 CACHED
+17:37:32 | DEBUG | 
+17:37:32 | DEBUG | #6 [3/4] RUN mkdir -p /root/.ssh
+17:37:32 | DEBUG | #6 DONE 0.4s
+17:37:32 | DEBUG | 
+17:37:32 | DEBUG | #7 [4/4] RUN ssh-keyscan -t rsa github.com > /root/.ssh/known_hosts
+17:37:32 | DEBUG | #7 0.546 # github.com:22 SSH-2.0-85ba476
+17:37:33 | DEBUG | #7 DONE 0.9s
+17:37:33 | DEBUG | 
+17:37:33 | DEBUG | #8 exporting to image
+17:37:33 | DEBUG | #8 exporting layers 0.1s done
+17:37:33 | DEBUG | #8 writing image sha256:12e6a0447539ae4eaa4a8de8d79b65f2923081fc17caeba03f4c26b336ec9895 done
+17:37:33 | DEBUG | #8 naming to docker.io/library/final-image-cdea0509-64c3-4b91-a80e-312d650b580c-keys done
+17:37:33 | DEBUG | #8 DONE 0.1s
+17:37:33 | Layer final-image-cdea0509-64c3-4b91-a80e-312d650b580c-keys built successfully
+17:37:33 | Cloning code
+17:37:33 | Building code layer
+17:37:33 | DEBUG | #0 building with "default" instance using docker driver
+17:37:33 | DEBUG | 
+17:37:33 | DEBUG | #1 [internal] load build definition from Dockerfile
+17:37:33 | DEBUG | #1 transferring dockerfile: 339B done
+17:37:33 | DEBUG | #1 DONE 0.0s
+17:37:33 | DEBUG | 
+17:37:33 | DEBUG | #2 [internal] load metadata for docker.io/library/final-image-cdea0509-64c3-4b91-a80e-312d650b580c-keys:latest
+17:37:33 | DEBUG | #2 DONE 0.0s
+17:37:33 | DEBUG | 
+17:37:33 | DEBUG | #3 [internal] load .dockerignore
+17:37:33 | DEBUG | #3 transferring context: 2B done
+17:37:33 | DEBUG | #3 DONE 0.0s
+17:37:33 | DEBUG | 
+17:37:33 | DEBUG | #4 [1/6] FROM docker.io/library/final-image-cdea0509-64c3-4b91-a80e-312d650b580c-keys:latest
+17:37:33 | DEBUG | #4 DONE 0.0s
+17:37:33 | DEBUG | 
+17:37:33 | DEBUG | #5 [2/6] WORKDIR /opt/build
+17:37:33 | DEBUG | #5 DONE 0.0s
+17:37:33 | DEBUG | 
+17:37:33 | DEBUG | #6 [3/6] RUN git clone https://github.com/armx2020/arm-new.git -b main /opt/build
+17:37:34 | DEBUG | #6 0.315 Cloning into '/opt/build'...
+17:37:36 | DEBUG | #6 DONE 2.3s
+17:37:36 | DEBUG | 
+17:37:36 | DEBUG | #7 [4/6] RUN cd /opt/build
+17:37:36 | DEBUG | #7 DONE 0.3s
+17:37:36 | DEBUG | 
+17:37:36 | DEBUG | #8 [5/6] RUN git remote rm origin
+17:37:36 | DEBUG | #8 DONE 0.3s
+17:37:36 | DEBUG | 
+17:37:36 | DEBUG | #9 [6/6] RUN git checkout 78959f889a88776d44077a7e678c7d1b538f5674
+17:37:37 | DEBUG | #9 0.419 Note: switching to '78959f889a88776d44077a7e678c7d1b538f5674'.
+17:37:37 | DEBUG | #9 0.419 
+17:37:37 | DEBUG | #9 0.419 You are in 'detached HEAD' state. You can look around, make experimental
+17:37:37 | DEBUG | #9 0.419 changes and commit them, and you can discard any commits you make in this
+17:37:37 | DEBUG | #9 0.419 state without impacting any branches by switching back to a branch.
+17:37:37 | DEBUG | #9 0.419 
+17:37:37 | DEBUG | #9 0.419 If you want to create a new branch to retain commits you create, you may
+17:37:37 | DEBUG | #9 0.419 do so (now or later) by using -c with the switch command. Example:
+17:37:37 | DEBUG | #9 0.419 
+17:37:37 | DEBUG | #9 0.419   git switch -c <new-branch-name>
+17:37:37 | DEBUG | #9 0.419 
+17:37:37 | DEBUG | #9 0.419 Or undo this operation with:
+17:37:37 | DEBUG | #9 0.419 
+17:37:37 | DEBUG | #9 0.419   git switch -
+17:37:37 | DEBUG | #9 0.419 
+17:37:37 | DEBUG | #9 0.419 Turn off this advice by setting config variable advice.detachedHead to false
+17:37:37 | DEBUG | #9 0.419 
+17:37:37 | DEBUG | #9 0.426 HEAD is now at 78959f8 Add initial project setup for Replit migration
+17:37:37 | DEBUG | #9 DONE 0.5s
+17:37:37 | DEBUG | 
+17:37:37 | DEBUG | #10 exporting to image
+17:37:37 | DEBUG | #10 exporting layers
+17:37:37 | DEBUG | #10 exporting layers 0.4s done
+17:37:37 | DEBUG | #10 writing image sha256:15002b2f64398a54cfa668f66f6a65ce0caffc45ce78e07c48566a672dc4289e
+17:37:37 | DEBUG | #10 writing image sha256:15002b2f64398a54cfa668f66f6a65ce0caffc45ce78e07c48566a672dc4289e done
+17:37:37 | DEBUG | #10 naming to docker.io/library/final-image-cdea0509-64c3-4b91-a80e-312d650b580c-code done
+17:37:37 | DEBUG | #10 DONE 0.4s
+17:37:37 | Layer final-image-cdea0509-64c3-4b91-a80e-312d650b580c-code built successfully
+17:37:37 | Switching to commit 78959f889a88776d44077a7e678c7d1b538f5674
+17:37:37 | Checking if there any system dependencies
+17:37:37 | Installing system dependencies
+17:37:37 | Building system_dependencies layer
+17:37:38 | DEBUG | #0 building with "default" instance using docker driver
+17:37:38 | DEBUG | 
+17:37:38 | DEBUG | #1 [internal] load build definition from Dockerfile
+17:37:38 | DEBUG | #1 transferring dockerfile: 228B done
+17:37:38 | DEBUG | #1 DONE 0.0s
+17:37:38 | DEBUG | 
+17:37:38 | DEBUG | #2 [internal] load metadata for docker.io/library/final-image-cdea0509-64c3-4b91-a80e-312d650b580c-code:latest
+17:37:38 | DEBUG | #2 DONE 0.0s
+17:37:38 | DEBUG | 
+17:37:38 | DEBUG | #3 [internal] load .dockerignore
+17:37:38 | DEBUG | #3 transferring context: 2B done
+17:37:38 | DEBUG | #3 DONE 0.0s
+17:37:38 | DEBUG | 
+17:37:38 | DEBUG | #4 [1/3] FROM docker.io/library/final-image-cdea0509-64c3-4b91-a80e-312d650b580c-code:latest
+17:37:38 | DEBUG | #4 DONE 0.1s
+17:37:38 | DEBUG | 
+17:37:38 | DEBUG | #5 [2/3] WORKDIR /opt/build
+17:37:38 | DEBUG | #5 DONE 0.0s
+17:37:38 | DEBUG | 
+17:37:38 | DEBUG | #6 [3/3] RUN DEBIAN_FRONTEND=noninteractive apt install -y php8.3-gd php8.3-mysql php8.3-mbstring php8.3-xml php8.3-zip
+17:37:38 | DEBUG | #6 0.228 
+17:37:38 | DEBUG | #6 0.231 WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+17:37:38 | DEBUG | #6 0.232 
+17:37:40 | DEBUG | #6 0.312 Reading package lists...
+17:37:40 | DEBUG | #6 2.155 Building dependency tree...
+17:37:40 | DEBUG | #6 2.530 Reading state information...
+17:37:41 | DEBUG | #6 2.981 php8.3-xml is already the newest version (8.3.26-1+ubuntu22.04.1+deb.sury.org+1).
+17:37:41 | DEBUG | #6 2.981 The following additional packages will be installed:
+17:37:41 | DEBUG | #6 2.985   libabsl20210324 libaom3 libavif13 libdav1d5 libde265-0 libgav1-0 libgd3
+17:37:41 | DEBUG | #6 2.987   libheif1 libimagequant0 libnuma1 libonig5 libx265-199 libyuv0
+17:37:41 | DEBUG | #6 2.990 Suggested packages:
+17:37:41 | DEBUG | #6 2.990   libgd-tools
+17:37:41 | DEBUG | #6 3.175 The following NEW packages will be installed:
+17:37:41 | DEBUG | #6 3.177   libabsl20210324 libaom3 libavif13 libdav1d5 libde265-0 libgav1-0 libheif1
+17:37:41 | DEBUG | #6 3.179   libimagequant0 libnuma1 libonig5 libx265-199 libyuv0 php8.3-gd
+17:37:41 | DEBUG | #6 3.180   php8.3-mbstring php8.3-mysql php8.3-zip
+17:37:41 | DEBUG | #6 3.183 The following packages will be upgraded:
+17:37:41 | DEBUG | #6 3.184   libgd3
+17:37:41 | DEBUG | #6 3.477 1 upgraded, 16 newly installed, 0 to remove and 3 not upgraded.
+17:37:41 | DEBUG | #6 3.477 Need to get 5924 kB of archives.
+17:37:41 | DEBUG | #6 3.477 After this operation, 30.6 MB of additional disk space will be used.
+17:37:41 | DEBUG | #6 3.477 Get:1 http://archive.ubuntu.com/ubuntu jammy/main amd64 libnuma1 amd64 2.0.14-3ubuntu2 [22.5 kB]
+17:37:41 | DEBUG | #6 3.574 Get:2 https://ppa.launchpadcontent.net/ondrej/php/ubuntu jammy/main amd64 libgd3 amd64 2.3.3-13+ubuntu22.04.1+deb.sury.org+1 [148 kB]
+17:37:41 | DEBUG | #6 3.748 Get:3 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libabsl20210324 amd64 0~20210324.2-2ubuntu0.2 [386 kB]
+17:37:42 | DEBUG | #6 3.792 Get:4 https://ppa.launchpadcontent.net/ondrej/php/ubuntu jammy/main amd64 php8.3-gd amd64 8.3.26-1+ubuntu22.04.1+deb.sury.org+1 [33.4 kB]
+17:37:42 | DEBUG | #6 3.803 Get:5 https://ppa.launchpadcontent.net/ondrej/php/ubuntu jammy/main amd64 php8.3-mbstring amd64 8.3.26-1+ubuntu22.04.1+deb.sury.org+1 [539 kB]
+17:37:42 | DEBUG | #6 4.247 Get:6 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 libaom3 amd64 3.3.0-1ubuntu0.1 [1748 kB]
+17:37:42 | DEBUG | #6 4.554 Get:7 http://archive.ubuntu.com/ubuntu jammy/universe amd64 libdav1d5 amd64 0.9.2-1 [463 kB]
+17:37:42 | DEBUG | #6 4.589 Get:8 http://archive.ubuntu.com/ubuntu jammy/universe amd64 libgav1-0 amd64 0.17.0-1build1 [336 kB]
+17:37:42 | DEBUG | #6 4.610 Get:9 http://archive.ubuntu.com/ubuntu jammy/universe amd64 libyuv0 amd64 0.0~git20220104.b91df1a-2 [154 kB]
+17:37:42 | DEBUG | #6 4.619 Get:10 http://archive.ubuntu.com/ubuntu jammy/universe amd64 libavif13 amd64 0.9.3-3 [69.5 kB]
+17:37:42 | DEBUG | #6 4.624 Get:11 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 libde265-0 amd64 1.0.8-1ubuntu0.3 [290 kB]
+17:37:42 | DEBUG | #6 4.639 Get:12 http://archive.ubuntu.com/ubuntu jammy/universe amd64 libx265-199 amd64 3.5-2 [1170 kB]
+17:37:42 | DEBUG | #6 4.694 Get:13 http://archive.ubuntu.com/ubuntu jammy/universe amd64 libheif1 amd64 1.12.0-2build1 [196 kB]
+17:37:43 | DEBUG | #6 4.703 Get:14 https://ppa.launchpadcontent.net/ondrej/php/ubuntu jammy/main amd64 php8.3-mysql amd64 8.3.26-1+ubuntu22.04.1+deb.sury.org+1 [132 kB]
+17:37:43 | DEBUG | #6 4.712 Get:15 http://archive.ubuntu.com/ubuntu jammy/main amd64 libimagequant0 amd64 2.17.0-1 [34.6 kB]
+17:37:43 | DEBUG | #6 4.715 Get:16 http://archive.ubuntu.com/ubuntu jammy/main amd64 libonig5 amd64 6.9.7.1-2build1 [172 kB]
+17:37:43 | DEBUG | #6 4.863 Get:17 https://ppa.launchpadcontent.net/ondrej/php/ubuntu jammy/main amd64 php8.3-zip amd64 8.3.26-1+ubuntu22.04.1+deb.sury.org+1 [30.5 kB]
+17:37:43 | DEBUG | #6 5.130 debconf: delaying package configuration, since apt-utils is not installed
+17:37:43 | DEBUG | #6 5.187 Fetched 5924 kB in 2s (3552 kB/s)
+17:37:43 | DEBUG | #6 5.235 Selecting previously unselected package libnuma1:amd64.
+17:37:43 | DEBUG | #6 5.238 (Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 25840 files and directories currently installed.)
+17:37:43 | DEBUG | #6 5.283 Preparing to unpack .../00-libnuma1_2.0.14-3ubuntu2_amd64.deb ...
+17:37:43 | DEBUG | #6 5.299 Unpacking libnuma1:amd64 (2.0.14-3ubuntu2) ...
+17:37:43 | DEBUG | #6 5.364 Selecting previously unselected package libabsl20210324:amd64.
+17:37:43 | DEBUG | #6 5.375 Preparing to unpack .../01-libabsl20210324_0~20210324.2-2ubuntu0.2_amd64.deb ...
+17:37:43 | DEBUG | #6 5.383 Unpacking libabsl20210324:amd64 (0~20210324.2-2ubuntu0.2) ...
+17:37:43 | DEBUG | #6 5.459 Selecting previously unselected package libaom3:amd64.
+17:37:43 | DEBUG | #6 5.464 Preparing to unpack .../02-libaom3_3.3.0-1ubuntu0.1_amd64.deb ...
+17:37:43 | DEBUG | #6 5.469 Unpacking libaom3:amd64 (3.3.0-1ubuntu0.1) ...
+17:37:43 | DEBUG | #6 5.580 Selecting previously unselected package libdav1d5:amd64.
+17:37:43 | DEBUG | #6 5.585 Preparing to unpack .../03-libdav1d5_0.9.2-1_amd64.deb ...
+17:37:43 | DEBUG | #6 5.590 Unpacking libdav1d5:amd64 (0.9.2-1) ...
+17:37:43 | DEBUG | #6 5.634 Selecting previously unselected package libgav1-0:amd64.
+17:37:43 | DEBUG | #6 5.638 Preparing to unpack .../04-libgav1-0_0.17.0-1build1_amd64.deb ...
+17:37:43 | DEBUG | #6 5.642 Unpacking libgav1-0:amd64 (0.17.0-1build1) ...
+17:37:43 | DEBUG | #6 5.679 Selecting previously unselected package libyuv0:amd64.
+17:37:43 | DEBUG | #6 5.683 Preparing to unpack .../05-libyuv0_0.0~git20220104.b91df1a-2_amd64.deb ...
+17:37:43 | DEBUG | #6 5.693 Unpacking libyuv0:amd64 (0.0~git20220104.b91df1a-2) ...
+17:37:43 | DEBUG | #6 5.727 Selecting previously unselected package libavif13:amd64.
+17:37:43 | DEBUG | #6 5.732 Preparing to unpack .../06-libavif13_0.9.3-3_amd64.deb ...
+17:37:43 | DEBUG | #6 5.736 Unpacking libavif13:amd64 (0.9.3-3) ...
+17:37:43 | DEBUG | #6 5.775 Selecting previously unselected package libde265-0:amd64.
+17:37:44 | DEBUG | #6 5.786 Preparing to unpack .../07-libde265-0_1.0.8-1ubuntu0.3_amd64.deb ...
+17:37:44 | DEBUG | #6 5.797 Unpacking libde265-0:amd64 (1.0.8-1ubuntu0.3) ...
+17:37:44 | DEBUG | #6 5.858 Selecting previously unselected package libx265-199:amd64.
+17:37:44 | DEBUG | #6 5.862 Preparing to unpack .../08-libx265-199_3.5-2_amd64.deb ...
+17:37:44 | DEBUG | #6 5.867 Unpacking libx265-199:amd64 (3.5-2) ...
+17:37:44 | DEBUG | #6 6.036 Selecting previously unselected package libheif1:amd64.
+17:37:44 | DEBUG | #6 6.038 Preparing to unpack .../09-libheif1_1.12.0-2build1_amd64.deb ...
+17:37:44 | DEBUG | #6 6.043 Unpacking libheif1:amd64 (1.12.0-2build1) ...
+17:37:44 | DEBUG | #6 6.088 Selecting previously unselected package libimagequant0:amd64.
+17:37:44 | DEBUG | #6 6.092 Preparing to unpack .../10-libimagequant0_2.17.0-1_amd64.deb ...
+17:37:44 | DEBUG | #6 6.097 Unpacking libimagequant0:amd64 (2.17.0-1) ...
+17:37:44 | DEBUG | #6 6.143 Preparing to unpack .../11-libgd3_2.3.3-13+ubuntu22.04.1+deb.sury.org+1_amd64.deb ...
+17:37:44 | DEBUG | #6 6.156 Unpacking libgd3:amd64 (2.3.3-13+ubuntu22.04.1+deb.sury.org+1) over (2.3.0-2ubuntu2.3) ...
+17:37:44 | DEBUG | #6 6.216 Selecting previously unselected package libonig5:amd64.
+17:37:44 | DEBUG | #6 6.225 Preparing to unpack .../12-libonig5_6.9.7.1-2build1_amd64.deb ...
+17:37:44 | DEBUG | #6 6.237 Unpacking libonig5:amd64 (6.9.7.1-2build1) ...
+17:37:44 | DEBUG | #6 6.280 Selecting previously unselected package php8.3-gd.
+17:37:44 | DEBUG | #6 6.287 Preparing to unpack .../13-php8.3-gd_8.3.26-1+ubuntu22.04.1+deb.sury.org+1_amd64.deb ...
+17:37:44 | DEBUG | #6 6.299 Unpacking php8.3-gd (8.3.26-1+ubuntu22.04.1+deb.sury.org+1) ...
+17:37:44 | DEBUG | #6 6.351 Selecting previously unselected package php8.3-mbstring.
+17:37:44 | DEBUG | #6 6.356 Preparing to unpack .../14-php8.3-mbstring_8.3.26-1+ubuntu22.04.1+deb.sury.org+1_amd64.deb ...
+17:37:44 | DEBUG | #6 6.371 Unpacking php8.3-mbstring (8.3.26-1+ubuntu22.04.1+deb.sury.org+1) ...
+17:37:44 | DEBUG | #6 6.444 Selecting previously unselected package php8.3-mysql.
+17:37:44 | DEBUG | #6 6.455 Preparing to unpack .../15-php8.3-mysql_8.3.26-1+ubuntu22.04.1+deb.sury.org+1_amd64.deb ...
+17:37:44 | DEBUG | #6 6.469 Unpacking php8.3-mysql (8.3.26-1+ubuntu22.04.1+deb.sury.org+1) ...
+17:37:44 | DEBUG | #6 6.537 Selecting previously unselected package php8.3-zip.
+17:37:44 | DEBUG | #6 6.544 Preparing to unpack .../16-php8.3-zip_8.3.26-1+ubuntu22.04.1+deb.sury.org+1_amd64.deb ...
+17:37:44 | DEBUG | #6 6.558 Unpacking php8.3-zip (8.3.26-1+ubuntu22.04.1+deb.sury.org+1) ...
+17:37:44 | DEBUG | #6 6.633 Setting up libaom3:amd64 (3.3.0-1ubuntu0.1) ...
+17:37:44 | DEBUG | #6 6.655 Setting up php8.3-zip (8.3.26-1+ubuntu22.04.1+deb.sury.org+1) ...
+17:37:45 | DEBUG | #6 6.834 
+17:37:45 | DEBUG | #6 6.838 Creating config file /etc/php/8.3/mods-available/zip.ini with new version
+17:37:45 | DEBUG | #6 7.005 Setting up php8.3-mysql (8.3.26-1+ubuntu22.04.1+deb.sury.org+1) ...
+17:37:45 | DEBUG | #6 7.202 
+17:37:45 | DEBUG | #6 7.205 Creating config file /etc/php/8.3/mods-available/mysqlnd.ini with new version
+17:37:45 | DEBUG | #6 7.493 
+17:37:45 | DEBUG | #6 7.498 Creating config file /etc/php/8.3/mods-available/mysqli.ini with new version
+17:37:45 | DEBUG | #6 7.794 
+17:37:46 | DEBUG | #6 7.796 Creating config file /etc/php/8.3/mods-available/pdo_mysql.ini with new version
+17:37:46 | DEBUG | #6 7.923 Setting up libimagequant0:amd64 (2.17.0-1) ...
+17:37:46 | DEBUG | #6 7.938 Setting up libabsl20210324:amd64 (0~20210324.2-2ubuntu0.2) ...
+17:37:46 | DEBUG | #6 7.950 Setting up libnuma1:amd64 (2.0.14-3ubuntu2) ...
+17:37:46 | DEBUG | #6 7.970 Setting up libdav1d5:amd64 (0.9.2-1) ...
+17:37:46 | DEBUG | #6 7.982 Setting up libde265-0:amd64 (1.0.8-1ubuntu0.3) ...
+17:37:46 | DEBUG | #6 7.993 Setting up libyuv0:amd64 (0.0~git20220104.b91df1a-2) ...
+17:37:46 | DEBUG | #6 8.009 Setting up libonig5:amd64 (6.9.7.1-2build1) ...
+17:37:46 | DEBUG | #6 8.023 Setting up php8.3-mbstring (8.3.26-1+ubuntu22.04.1+deb.sury.org+1) ...
+17:37:46 | DEBUG | #6 8.199 
+17:37:46 | DEBUG | #6 8.202 Creating config file /etc/php/8.3/mods-available/mbstring.ini with new version
+17:37:46 | DEBUG | #6 8.344 Setting up libgav1-0:amd64 (0.17.0-1build1) ...
+17:37:46 | DEBUG | #6 8.365 Setting up libx265-199:amd64 (3.5-2) ...
+17:37:46 | DEBUG | #6 8.376 Setting up libavif13:amd64 (0.9.3-3) ...
+17:37:46 | DEBUG | #6 8.387 Setting up libheif1:amd64 (1.12.0-2build1) ...
+17:37:46 | DEBUG | #6 8.402 Setting up libgd3:amd64 (2.3.3-13+ubuntu22.04.1+deb.sury.org+1) ...
+17:37:46 | DEBUG | #6 8.413 Setting up php8.3-gd (8.3.26-1+ubuntu22.04.1+deb.sury.org+1) ...
+17:37:46 | DEBUG | #6 8.555 
+17:37:46 | DEBUG | #6 8.561 Creating config file /etc/php/8.3/mods-available/gd.ini with new version
+17:37:47 | DEBUG | #6 8.702 Processing triggers for libapache2-mod-php8.3 (8.3.26-1+ubuntu22.04.1+deb.sury.org+1) ...
+17:37:47 | DEBUG | #6 8.779 invoke-rc.d: could not determine current runlevel
+17:37:47 | DEBUG | #6 8.784 invoke-rc.d: policy-rc.d denied execution of restart.
+17:37:47 | DEBUG | #6 8.792 Processing triggers for libc-bin (2.35-0ubuntu3.11) ...
+17:37:47 | DEBUG | #6 8.835 Processing triggers for php8.3-cli (8.3.26-1+ubuntu22.04.1+deb.sury.org+1) ...
+17:37:47 | DEBUG | #6 DONE 9.1s
+17:37:47 | DEBUG | 
+17:37:47 | DEBUG | #7 exporting to image
+17:37:47 | DEBUG | #7 exporting layers
+17:37:47 | DEBUG | #7 exporting layers 0.5s done
+17:37:47 | DEBUG | #7 writing image sha256:06721897174e293704ea981d748520f33d978b06f73ef45823131320cfbad501
+17:37:47 | DEBUG | #7 writing image sha256:06721897174e293704ea981d748520f33d978b06f73ef45823131320cfbad501 done
+17:37:47 | DEBUG | #7 naming to docker.io/library/final-image-cdea0509-64c3-4b91-a80e-312d650b580c-system_dependencies done
+17:37:47 | DEBUG | #7 DONE 0.5s
+17:37:47 | Layer final-image-cdea0509-64c3-4b91-a80e-312d650b580c-system_dependencies built successfully
+17:37:48 | DEBUG | [".", "..", ".editorconfig", ".env.example", ".git", ".gitattributes", ".gitignore", ".replit", "IMAGES_SETUP.md", "README.md", "app", "artisan", "artisan-use-mysql", "artisan-use-mysql-dev", "artisan-use-mysql-prod", "artisan-use-postgres", "attached_assets", "bootstrap", "composer.json", "composer.lock", "config", "database", "deploy.sh", "git-push.sh", "lang", "package-lock.json", "package.json", "phpunit.xml", "postcss.config.js", "public", "replit.md", "resources", "routes", "storage", "tailwind.config.js", "tests", "vite.config.js"]
+17:37:48 | Installing dependencies
+17:37:48 | Building dependencies layer
+17:37:48 | DEBUG | #0 building with "default" instance using docker driver
+17:37:48 | DEBUG | 
+17:37:48 | DEBUG | #1 [internal] load build definition from Dockerfile
+17:37:48 | DEBUG | #1 transferring dockerfile: 239B done
+17:37:48 | DEBUG | #1 DONE 0.0s
+17:37:48 | DEBUG | 
+17:37:48 | DEBUG | #2 [internal] load metadata for docker.io/library/final-image-cdea0509-64c3-4b91-a80e-312d650b580c-system_dependencies:latest
+17:37:48 | DEBUG | #2 DONE 0.0s
+17:37:48 | DEBUG | 
+17:37:48 | DEBUG | #3 [internal] load .dockerignore
+17:37:48 | DEBUG | #3 transferring context: 2B done
+17:37:48 | DEBUG | #3 DONE 0.0s
+17:37:49 | DEBUG | 
+17:37:49 | DEBUG | #4 [1/6] FROM docker.io/library/final-image-cdea0509-64c3-4b91-a80e-312d650b580c-system_dependencies:latest
+17:37:49 | DEBUG | #4 DONE 0.1s
+17:37:49 | DEBUG | 
+17:37:49 | DEBUG | #5 [2/6] WORKDIR /opt/build
+17:37:49 | DEBUG | #5 DONE 0.0s
+17:37:49 | DEBUG | 
+17:37:49 | DEBUG | #6 [3/6] RUN composer install
+17:37:49 | DEBUG | #6 0.543 Installing dependencies from lock file (including require-dev)
+17:37:49 | DEBUG | #6 0.560 Verifying lock file contents can be installed on current platform.
+17:37:49 | DEBUG | #6 0.635 Package operations: 193 installs, 0 updates, 0 removals
+17:37:49 | DEBUG | #6 0.644   - Downloading amphp/hpack (v3.2.1)
+17:37:49 | DEBUG | #6 0.646   - Downloading revolt/event-loop (v1.0.7)
+17:37:49 | DEBUG | #6 0.651   - Downloading amphp/serialization (v1.0.0)
+17:37:49 | DEBUG | #6 0.652   - Downloading amphp/amp (v3.1.0)
+17:37:49 | DEBUG | #6 0.653   - Downloading amphp/pipeline (v1.2.3)
+17:37:49 | DEBUG | #6 0.653   - Downloading amphp/sync (v2.3.0)
+17:37:49 | DEBUG | #6 0.654   - Downloading psr/http-message (2.0)
+17:37:49 | DEBUG | #6 0.655   - Downloading psr/http-factory (1.1.0)
+17:37:49 | DEBUG | #6 0.656   - Downloading league/uri-interfaces (7.5.0)
+17:37:49 | DEBUG | #6 0.657   - Downloading league/uri (7.5.1)
+17:37:49 | DEBUG | #6 0.657   - Downloading kelunik/certificate (v1.1.3)
+17:37:49 | DEBUG | #6 0.658   - Downloading symfony/polyfill-ctype (v1.32.0)
+17:37:49 | DEBUG | #6 0.659   - Downloading daverandom/libdns (v2.1.0)
+17:37:49 | DEBUG | #6 0.660   - Downloading amphp/parser (v1.1.1)
+17:37:49 | DEBUG | #6 0.660   - Downloading amphp/byte-stream (v2.1.2)
+17:37:49 | DEBUG | #6 0.661   - Downloading amphp/process (v2.0.3)
+17:37:49 | DEBUG | #6 0.662   - Downloading amphp/cache (v2.0.1)
+17:37:49 | DEBUG | #6 0.662   - Downloading amphp/dns (v2.4.0)
+17:37:49 | DEBUG | #6 0.663   - Downloading amphp/socket (v2.3.1)
+17:37:49 | DEBUG | #6 0.663   - Downloading amphp/parallel (v2.3.1)
+17:37:49 | DEBUG | #6 0.664   - Downloading amphp/sql (v2.0.1)
+17:37:49 | DEBUG | #6 0.665   - Downloading amphp/sql-common (v2.0.2)
+17:37:49 | DEBUG | #6 0.665   - Downloading amphp/websocket (v2.0.4)
+17:37:49 | DEBUG | #6 0.666   - Downloading aws/aws-crt-php (v1.2.7)
+17:37:49 | DEBUG | #6 0.666   - Downloading symfony/finder (v6.4.17)
+17:37:49 | DEBUG | #6 0.667   - Downloading symfony/polyfill-mbstring (v1.33.0)
+17:37:49 | DEBUG | #6 0.667   - Downloading symfony/deprecation-contracts (v3.6.0)
+17:37:49 | DEBUG | #6 0.668   - Downloading symfony/var-dumper (v6.4.21)
+17:37:49 | DEBUG | #6 0.669   - Downloading psr/log (3.0.2)
+17:37:49 | DEBUG | #6 0.669   - Downloading php-debugbar/php-debugbar (v2.1.6)
+17:37:49 | DEBUG | #6 0.670   - Downloading voku/portable-ascii (2.0.3)
+17:37:49 | DEBUG | #6 0.670   - Downloading symfony/polyfill-php80 (v1.32.0)
+17:37:49 | DEBUG | #6 0.671   - Downloading phpoption/phpoption (1.9.3)
+17:37:49 | DEBUG | #6 0.672   - Downloading graham-campbell/result-type (v1.1.3)
+17:37:49 | DEBUG | #6 0.672   - Downloading vlucas/phpdotenv (v5.6.2)
+17:37:49 | DEBUG | #6 0.673   - Downloading symfony/css-selector (v7.2.0)
+17:37:49 | DEBUG | #6 0.674   - Downloading tijsverkoyen/css-to-inline-styles (v2.3.0)
+17:37:49 | DEBUG | #6 0.674   - Downloading symfony/polyfill-uuid (v1.32.0)
+17:37:49 | DEBUG | #6 0.675   - Downloading symfony/uid (v6.4.13)
+17:37:49 | DEBUG | #6 0.675   - Downloading symfony/routing (v6.4.18)
+17:37:49 | DEBUG | #6 0.676   - Downloading symfony/process (v6.4.20)
+17:37:49 | DEBUG | #6 0.676   - Downloading symfony/polyfill-intl-normalizer (v1.32.0)
+17:37:49 | DEBUG | #6 0.677   - Downloading symfony/polyfill-intl-idn (v1.32.0)
+17:37:49 | DEBUG | #6 0.677   - Downloading symfony/mime (v6.4.21)
+17:37:49 | DEBUG | #6 0.678   - Downloading psr/container (2.0.2)
+17:37:49 | DEBUG | #6 0.678   - Downloading symfony/service-contracts (v3.6.0)
+17:37:49 | DEBUG | #6 0.679   - Downloading psr/event-dispatcher (1.0.0)
+17:37:49 | DEBUG | #6 0.679   - Downloading symfony/event-dispatcher-contracts (v3.6.0)
+17:37:49 | DEBUG | #6 0.680   - Downloading symfony/event-dispatcher (v7.2.0)
+17:37:49 | DEBUG | #6 0.681   - Downloading doctrine/lexer (3.0.1)
+17:37:49 | DEBUG | #6 0.681   - Downloading egulias/email-validator (4.0.4)
+17:37:49 | DEBUG | #6 0.682   - Downloading symfony/mailer (v6.4.21)
+17:37:49 | DEBUG | #6 0.682   - Downloading symfony/polyfill-php83 (v1.32.0)
+17:37:49 | DEBUG | #6 0.682   - Downloading symfony/http-foundation (v6.4.21)
+17:37:49 | DEBUG | #6 0.683   - Downloading symfony/error-handler (v6.4.20)
+17:37:49 | DEBUG | #6 0.684   - Downloading symfony/http-kernel (v6.4.21)
+17:37:49 | DEBUG | #6 0.685   - Downloading symfony/polyfill-intl-grapheme (v1.32.0)
+17:37:49 | DEBUG | #6 0.685   - Downloading symfony/string (v7.2.6)
+17:37:49 | DEBUG | #6 0.686   - Downloading symfony/console (v6.4.21)
+17:37:49 | DEBUG | #6 0.687   - Downloading ramsey/collection (2.1.1)
+17:37:49 | DEBUG | #6 0.688   - Downloading brick/math (0.12.3)
+17:37:49 | DEBUG | #6 0.688   - Downloading ramsey/uuid (4.7.6)
+17:37:49 | DEBUG | #6 0.689   - Downloading psr/simple-cache (3.0.0)
+17:37:49 | DEBUG | #6 0.690   - Downloading nunomaduro/termwind (v1.17.0)
+17:37:49 | DEBUG | #6 0.691   - Downloading symfony/translation-contracts (v3.6.0)
+17:37:49 | DEBUG | #6 0.691   - Downloading symfony/translation (v6.4.21)
+17:37:49 | DEBUG | #6 0.692   - Downloading psr/clock (1.0.0)
+17:37:49 | DEBUG | #6 0.693   - Downloading carbonphp/carbon-doctrine-types (2.1.0)
+17:37:49 | DEBUG | #6 0.694   - Downloading nesbot/carbon (2.73.0)
+17:37:49 | DEBUG | #6 0.695   - Downloading monolog/monolog (3.9.0)
+17:37:49 | DEBUG | #6 0.696   - Downloading league/mime-type-detection (1.16.0)
+17:37:49 | DEBUG | #6 0.696   - Downloading league/flysystem (3.30.1)
+17:37:49 | DEBUG | #6 0.697   - Downloading league/flysystem-local (3.30.0)
+17:37:49 | DEBUG | #6 0.698   - Downloading nette/utils (v4.0.6)
+17:37:49 | DEBUG | #6 0.699   - Downloading nette/schema (v1.3.2)
+17:37:49 | DEBUG | #6 0.700   - Downloading dflydev/dot-access-data (v3.0.3)
+17:37:49 | DEBUG | #6 0.700   - Downloading league/config (v1.2.0)
+17:37:49 | DEBUG | #6 0.701   - Downloading league/commonmark (2.7.0)
+17:37:49 | DEBUG | #6 0.702   - Downloading laravel/serializable-closure (v1.3.7)
+17:37:49 | DEBUG | #6 0.703   - Downloading laravel/framework (v10.48.29)
+17:37:49 | DEBUG | #6 0.704   - Downloading laravel/prompts (v0.1.25)
+17:37:49 | DEBUG | #6 0.704   - Downloading guzzlehttp/uri-template (v1.0.4)
+17:37:49 | DEBUG | #6 0.705   - Downloading fruitcake/php-cors (v1.3.0)
+17:37:49 | DEBUG | #6 0.706   - Downloading webmozart/assert (1.11.0)
+17:37:49 | DEBUG | #6 0.707   - Downloading dragonmantank/cron-expression (v3.4.0)
+17:37:49 | DEBUG | #6 0.708   - Downloading doctrine/inflector (2.0.10)
+17:37:49 | DEBUG | #6 0.709   - Downloading barryvdh/laravel-debugbar (v3.15.4)
+17:37:49 | DEBUG | #6 0.710   - Downloading danog/libdns-json (0.2.1)
+17:37:49 | DEBUG | #6 0.710   - Downloading paragonie/random_compat (v9.99.100)
+17:37:49 | DEBUG | #6 0.711   - Downloading paragonie/constant_time_encoding (v3.0.0)
+17:37:49 | DEBUG | #6 0.712   - Downloading phpseclib/phpseclib (3.0.43)
+17:37:49 | DEBUG | #6 0.713   - Downloading nikic/php-parser (v5.4.0)
+17:37:49 | DEBUG | #6 0.713   - Downloading danog/tg-file-decoder (1.0.1)
+17:37:49 | DEBUG | #6 0.714   - Downloading danog/tg-dialog-id (1.1.0)
+17:37:49 | DEBUG | #6 0.714   - Downloading danog/telegram-entities (1.0.4)
+17:37:49 | DEBUG | #6 0.715   - Downloading danog/primemodule (1.0.13)
+17:37:49 | DEBUG | #6 0.715   - Downloading danog/loop (1.1.1)
+17:37:49 | DEBUG | #6 0.716   - Downloading danog/ipc (1.0.1)
+17:37:49 | DEBUG | #6 0.716   - Downloading league/uri-components (7.5.1)
+17:37:49 | DEBUG | #6 0.717   - Downloading amphp/http (v2.1.2)
+17:37:49 | DEBUG | #6 0.717   - Downloading amphp/http-client (v5.3.3)
+17:37:49 | DEBUG | #6 0.718   - Downloading danog/dns-over-https (1.0.1)
+17:37:49 | DEBUG | #6 0.719   - Downloading promphp/prometheus_client_php (v2.14.1)
+17:37:49 | DEBUG | #6 0.719   - Downloading danog/better-prometheus (0.1.1)
+17:37:49 | DEBUG | #6 0.720   - Downloading amphp/redis (v2.0.3)
+17:37:49 | DEBUG | #6 0.720   - Downloading amphp/postgres (v2.1.1)
+17:37:49 | DEBUG | #6 0.721   - Downloading amphp/mysql (v3.0.0)
+17:37:49 | DEBUG | #6 0.721   - Downloading danog/async-orm (1.1.3)
+17:37:49 | DEBUG | #6 0.722   - Downloading dasprid/enum (1.0.6)
+17:37:49 | DEBUG | #6 0.723   - Downloading bacon/bacon-qr-code (v3.0.1)
+17:37:49 | DEBUG | #6 0.723   - Downloading amphp/websocket-client (v2.0.1)
+17:37:49 | DEBUG | #6 0.724   - Downloading amphp/log (v2.0.0)
+17:37:49 | DEBUG | #6 0.724   - Downloading amphp/http-server (v3.4.3)
+17:37:49 | DEBUG | #6 0.725   - Downloading amphp/http-client-cookies (v2.0.0)
+17:37:49 | DEBUG | #6 0.725   - Downloading amphp/file (v3.2.0)
+17:37:49 | DEBUG | #6 0.726   - Downloading danog/madelineproto (8.4.4)
+17:37:49 | DEBUG | #6 0.727   - Downloading fakerphp/faker (v1.24.1)
+17:37:49 | DEBUG | #6 0.727   - Downloading guzzlehttp/promises (2.3.0)
+17:37:49 | DEBUG | #6 0.728   - Downloading ralouphie/getallheaders (3.0.3)
+17:37:49 | DEBUG | #6 0.728   - Downloading guzzlehttp/psr7 (2.8.0)
+17:37:49 | DEBUG | #6 0.729   - Downloading intervention/image (2.7.2)
+17:37:49 | DEBUG | #6 0.729   - Downloading laravel/breeze (v1.29.1)
+17:37:49 | DEBUG | #6 0.730   - Downloading laravel/pint (v1.22.1)
+17:37:49 | DEBUG | #6 0.731   - Downloading symfony/yaml (v7.2.6)
+17:37:49 | DEBUG | #6 0.732   - Downloading laravel/sail (v1.43.1)
+17:37:49 | DEBUG | #6 0.732   - Downloading laravel/sanctum (v3.3.3)
+17:37:49 | DEBUG | #6 0.733   - Downloading psy/psysh (v0.12.8)
+17:37:49 | DEBUG | #6 0.733   - Downloading laravel/tinker (v2.10.1)
+17:37:49 | DEBUG | #6 0.734   - Downloading mtdowling/jmespath.php (2.8.0)
+17:37:49 | DEBUG | #6 0.735   - Downloading psr/http-client (1.0.3)
+17:37:49 | DEBUG | #6 0.735   - Downloading guzzlehttp/guzzle (7.10.0)
+17:37:49 | DEBUG | #6 0.736   - Downloading aws/aws-sdk-php (3.356.42)
+17:37:49 | DEBUG | #6 0.736   - Downloading league/flysystem-aws-s3-v3 (3.30.1)
+17:37:49 | DEBUG | #6 0.737   - Downloading livewire/livewire (v3.6.3)
+17:37:49 | DEBUG | #6 0.738   - Downloading markbaker/matrix (3.0.1)
+17:37:49 | DEBUG | #6 0.738   - Downloading markbaker/complex (3.0.2)
+17:37:49 | DEBUG | #6 0.739   - Downloading maennchen/zipstream-php (3.1.2)
+17:37:49 | DEBUG | #6 0.740   - Downloading ezyang/htmlpurifier (v4.18.0)
+17:37:49 | DEBUG | #6 0.740   - Downloading composer/pcre (3.3.2)
+17:37:49 | DEBUG | #6 0.741   - Downloading phpoffice/phpspreadsheet (1.29.10)
+17:37:49 | DEBUG | #6 0.741   - Downloading composer/semver (3.4.3)
+17:37:49 | DEBUG | #6 0.742   - Downloading maatwebsite/excel (3.1.64)
+17:37:49 | DEBUG | #6 0.743   - Downloading maxmind-db/reader (v1.12.1)
+17:37:49 | DEBUG | #6 0.743   - Downloading composer/ca-bundle (1.5.7)
+17:37:49 | DEBUG | #6 0.744   - Downloading maxmind/web-service-common (v0.10.0)
+17:37:49 | DEBUG | #6 0.744   - Downloading hamcrest/hamcrest-php (v2.1.1)
+17:37:49 | DEBUG | #6 0.745   - Downloading mockery/mockery (1.6.12)
+17:37:49 | DEBUG | #6 0.746   - Downloading nicmart/tree (0.9.0)
+17:37:49 | DEBUG | #6 0.746   - Downloading filp/whoops (2.18.0)
+17:37:49 | DEBUG | #6 0.752   - Downloading nunomaduro/collision (v7.12.0)
+17:37:49 | DEBUG | #6 0.753   - Downloading sebastian/version (4.0.1)
+17:37:49 | DEBUG | #6 0.758   - Downloading sebastian/type (4.0.0)
+17:37:49 | DEBUG | #6 0.760   - Downloading sebastian/recursion-context (5.0.0)
+17:37:49 | DEBUG | #6 0.762   - Downloading sebastian/object-reflector (3.0.0)
+17:37:49 | DEBUG | #6 0.763   - Downloading sebastian/object-enumerator (5.0.0)
+17:37:49 | DEBUG | #6 0.764   - Downloading sebastian/global-state (6.0.2)
+17:37:49 | DEBUG | #6 0.765   - Downloading sebastian/exporter (5.1.2)
+17:37:49 | DEBUG | #6 0.765   - Downloading sebastian/environment (6.1.0)
+17:37:49 | DEBUG | #6 0.768   - Downloading sebastian/diff (5.1.1)
+17:37:49 | DEBUG | #6 0.769   - Downloading sebastian/comparator (5.0.3)
+17:37:49 | DEBUG | #6 0.771   - Downloading sebastian/code-unit (2.0.0)
+17:37:49 | DEBUG | #6 0.772   - Downloading sebastian/cli-parser (2.0.1)
+17:37:49 | DEBUG | #6 0.773   - Downloading phpunit/php-timer (6.0.0)
+17:37:49 | DEBUG | #6 0.774   - Downloading phpunit/php-text-template (3.0.1)
+17:37:49 | DEBUG | #6 0.775   - Downloading phpunit/php-invoker (4.0.0)
+17:37:49 | DEBUG | #6 0.776   - Downloading phpunit/php-file-iterator (4.1.0)
+17:37:49 | DEBUG | #6 0.777   - Downloading theseer/tokenizer (1.2.3)
+17:37:49 | DEBUG | #6 0.778   - Downloading sebastian/lines-of-code (2.0.2)
+17:37:49 | DEBUG | #6 0.779   - Downloading sebastian/complexity (3.2.0)
+17:37:49 | DEBUG | #6 0.781   - Downloading sebastian/code-unit-reverse-lookup (3.0.0)
+17:37:49 | DEBUG | #6 0.781   - Downloading phpunit/php-code-coverage (10.1.16)
+17:37:49 | DEBUG | #6 0.782   - Downloading phar-io/version (3.2.1)
+17:37:49 | DEBUG | #6 0.784   - Downloading phar-io/manifest (2.0.4)
+17:37:49 | DEBUG | #6 0.785   - Downloading myclabs/deep-copy (1.13.1)
+17:37:49 | DEBUG | #6 0.787   - Downloading phpunit/phpunit (10.5.46)
+17:37:49 | DEBUG | #6 0.787   - Downloading spatie/temporary-directory (2.3.0)
+17:37:49 | DEBUG | #6 0.789   - Downloading spatie/browsershot (5.0.10)
+17:37:49 | DEBUG | #6 0.790   - Downloading spatie/error-solutions (1.1.3)
+17:37:49 | DEBUG | #6 0.792   - Downloading spatie/backtrace (1.7.4)
+17:37:49 | DEBUG | #6 0.793   - Downloading spatie/flare-client-php (1.10.1)
+17:37:49 | DEBUG | #6 0.794   - Downloading spatie/ignition (1.15.1)
+17:37:49 | DEBUG | #6 0.797   - Downloading spatie/laravel-ignition (2.9.1)
+17:37:49 | DEBUG | #6 0.798   - Downloading spatie/laravel-permission (6.18.0)
+17:37:49 | DEBUG | #6 0.800   - Downloading masterminds/html5 (2.9.0)
+17:37:49 | DEBUG | #6 0.802   - Downloading symfony/dom-crawler (v7.2.4)
+17:37:49 | DEBUG | #6 0.804   - Downloading spatie/laravel-package-tools (1.92.4)
+17:37:49 | DEBUG | #6 0.805   - Downloading spatie/robots-txt (2.5.0)
+17:37:49 | DEBUG | #6 0.806   - Downloading spatie/crawler (8.4.3)
+17:37:49 | DEBUG | #6 0.818   - Downloading spatie/laravel-sitemap (7.3.4)
+17:37:49 | DEBUG | #6 0.820   - Downloading staudenmeir/belongs-to-through (v2.15.1)
+17:37:49 | DEBUG | #6 0.822   - Downloading geoip2/geoip2 (v2.13.0)
+17:37:49 | DEBUG | #6 0.825   - Downloading stevebauman/location (v6.6.2)
+17:37:49 | DEBUG | #6 0.826   - Downloading wapmorgan/morphos (3.2.29)
+17:37:51 | DEBUG | #6 0.870    0/193 [>---------------------------]   0%
+17:37:51 | DEBUG | #6 2.189    5/193 [>---------------------------]   2%
+17:37:51 | DEBUG | #6 2.520   20/193 [==>-------------------------]  10%
+17:37:52 | DEBUG | #6 2.961   40/193 [=====>----------------------]  20%
+17:37:52 | DEBUG | #6 3.392   64/193 [=========>------------------]  33%
+17:37:53 | DEBUG | #6 3.698   78/193 [===========>----------------]  40%
+17:37:53 | DEBUG | #6 4.326  100/193 [==============>-------------]  51%
+17:37:54 | DEBUG | #6 4.869  119/193 [=================>----------]  61%
+17:37:54 | DEBUG | #6 5.580  140/193 [====================>-------]  72%
+17:37:55 | DEBUG | #6 5.887  156/193 [======================>-----]  80%
+17:37:55 | DEBUG | #6 6.229  175/193 [=========================>--]  90%
+17:37:55 | DEBUG | #6 6.910  193/193 [============================] 100%
+17:37:55 | DEBUG | #6 6.918   - Installing amphp/hpack (v3.2.1): Extracting archive
+17:37:55 | DEBUG | #6 6.930   - Installing revolt/event-loop (v1.0.7): Extracting archive
+17:37:55 | DEBUG | #6 6.935   - Installing amphp/serialization (v1.0.0): Extracting archive
+17:37:55 | DEBUG | #6 6.941   - Installing amphp/amp (v3.1.0): Extracting archive
+17:37:55 | DEBUG | #6 6.945   - Installing amphp/pipeline (v1.2.3): Extracting archive
+17:37:55 | DEBUG | #6 6.958   - Installing amphp/sync (v2.3.0): Extracting archive
+17:37:55 | DEBUG | #6 6.967   - Installing psr/http-message (2.0): Extracting archive
+17:37:55 | DEBUG | #6 6.976   - Installing psr/http-factory (1.1.0): Extracting archive
+17:37:55 | DEBUG | #6 6.980   - Installing league/uri-interfaces (7.5.0): Extracting archive
+17:37:55 | DEBUG | #6 6.989   - Installing league/uri (7.5.1): Extracting archive
+17:37:55 | DEBUG | #6 6.996   - Installing kelunik/certificate (v1.1.3): Extracting archive
+17:37:55 | DEBUG | #6 6.997   - Installing symfony/polyfill-ctype (v1.32.0): Extracting archive
+17:37:55 | DEBUG | #6 6.997   - Installing daverandom/libdns (v2.1.0): Extracting archive
+17:37:55 | DEBUG | #6 6.998   - Installing amphp/parser (v1.1.1): Extracting archive
+17:37:55 | DEBUG | #6 6.998   - Installing amphp/byte-stream (v2.1.2): Extracting archive
+17:37:55 | DEBUG | #6 6.999   - Installing amphp/process (v2.0.3): Extracting archive
+17:37:55 | DEBUG | #6 7.000   - Installing amphp/cache (v2.0.1): Extracting archive
+17:37:55 | DEBUG | #6 7.000   - Installing amphp/dns (v2.4.0): Extracting archive
+17:37:55 | DEBUG | #6 7.001   - Installing amphp/socket (v2.3.1): Extracting archive
+17:37:55 | DEBUG | #6 7.004   - Installing amphp/parallel (v2.3.1): Extracting archive
+17:37:55 | DEBUG | #6 7.012   - Installing amphp/sql (v2.0.1): Extracting archive
+17:37:55 | DEBUG | #6 7.019   - Installing amphp/sql-common (v2.0.2): Extracting archive
+17:37:55 | DEBUG | #6 7.030   - Installing amphp/websocket (v2.0.4): Extracting archive
+17:37:55 | DEBUG | #6 7.037   - Installing aws/aws-crt-php (v1.2.7): Extracting archive
+17:37:55 | DEBUG | #6 7.038   - Installing symfony/finder (v6.4.17): Extracting archive
+17:37:55 | DEBUG | #6 7.040   - Installing symfony/polyfill-mbstring (v1.33.0): Extracting archive
+17:37:55 | DEBUG | #6 7.043   - Installing symfony/deprecation-contracts (v3.6.0): Extracting archive
+17:37:55 | DEBUG | #6 7.044   - Installing symfony/var-dumper (v6.4.21): Extracting archive
+17:37:55 | DEBUG | #6 7.044   - Installing psr/log (3.0.2): Extracting archive
+17:37:55 | DEBUG | #6 7.045   - Installing php-debugbar/php-debugbar (v2.1.6): Extracting archive
+17:37:55 | DEBUG | #6 7.046   - Installing voku/portable-ascii (2.0.3): Extracting archive
+17:37:55 | DEBUG | #6 7.046   - Installing symfony/polyfill-php80 (v1.32.0): Extracting archive
+17:37:55 | DEBUG | #6 7.047   - Installing phpoption/phpoption (1.9.3): Extracting archive
+17:37:56 | DEBUG | #6 7.048   - Installing graham-campbell/result-type (v1.1.3): Extracting archive
+17:37:56 | DEBUG | #6 7.048   - Installing vlucas/phpdotenv (v5.6.2): Extracting archive
+17:37:56 | DEBUG | #6 7.049   - Installing symfony/css-selector (v7.2.0): Extracting archive
+17:37:56 | DEBUG | #6 7.050   - Installing tijsverkoyen/css-to-inline-styles (v2.3.0): Extracting archive
+17:37:56 | DEBUG | #6 7.050   - Installing symfony/polyfill-uuid (v1.32.0): Extracting archive
+17:37:56 | DEBUG | #6 7.051   - Installing symfony/uid (v6.4.13): Extracting archive
+17:37:56 | DEBUG | #6 7.051   - Installing symfony/routing (v6.4.18): Extracting archive
+17:37:56 | DEBUG | #6 7.052   - Installing symfony/process (v6.4.20): Extracting archive
+17:37:56 | DEBUG | #6 7.053   - Installing symfony/polyfill-intl-normalizer (v1.32.0): Extracting archive
+17:37:56 | DEBUG | #6 7.053   - Installing symfony/polyfill-intl-idn (v1.32.0): Extracting archive
+17:37:56 | DEBUG | #6 7.054   - Installing symfony/mime (v6.4.21): Extracting archive
+17:37:56 | DEBUG | #6 7.054   - Installing psr/container (2.0.2): Extracting archive
+17:37:56 | DEBUG | #6 7.055   - Installing symfony/service-contracts (v3.6.0): Extracting archive
+17:37:56 | DEBUG | #6 7.056   - Installing psr/event-dispatcher (1.0.0): Extracting archive
+17:37:56 | DEBUG | #6 7.056   - Installing symfony/event-dispatcher-contracts (v3.6.0): Extracting archive
+17:37:56 | DEBUG | #6 7.057   - Installing symfony/event-dispatcher (v7.2.0): Extracting archive
+17:37:56 | DEBUG | #6 7.057   - Installing doctrine/lexer (3.0.1): Extracting archive
+17:37:56 | DEBUG | #6 7.058   - Installing egulias/email-validator (4.0.4): Extracting archive
+17:37:56 | DEBUG | #6 7.059   - Installing symfony/mailer (v6.4.21): Extracting archive
+17:37:56 | DEBUG | #6 7.059   - Installing symfony/polyfill-php83 (v1.32.0): Extracting archive
+17:37:56 | DEBUG | #6 7.060   - Installing symfony/http-foundation (v6.4.21): Extracting archive
+17:37:56 | DEBUG | #6 7.060   - Installing symfony/error-handler (v6.4.20): Extracting archive
+17:37:56 | DEBUG | #6 7.061   - Installing symfony/http-kernel (v6.4.21): Extracting archive
+17:37:56 | DEBUG | #6 7.061   - Installing symfony/polyfill-intl-grapheme (v1.32.0): Extracting archive
+17:37:56 | DEBUG | #6 7.062   - Installing symfony/string (v7.2.6): Extracting archive
+17:37:56 | DEBUG | #6 7.063   - Installing symfony/console (v6.4.21): Extracting archive
+17:37:56 | DEBUG | #6 7.064   - Installing ramsey/collection (2.1.1): Extracting archive
+17:37:56 | DEBUG | #6 7.064   - Installing brick/math (0.12.3): Extracting archive
+17:37:56 | DEBUG | #6 7.065   - Installing ramsey/uuid (4.7.6): Extracting archive
+17:37:56 | DEBUG | #6 7.066   - Installing psr/simple-cache (3.0.0): Extracting archive
+17:37:56 | DEBUG | #6 7.066   - Installing nunomaduro/termwind (v1.17.0): Extracting archive
+17:37:56 | DEBUG | #6 7.067   - Installing symfony/translation-contracts (v3.6.0): Extracting archive
+17:37:56 | DEBUG | #6 7.068   - Installing symfony/translation (v6.4.21): Extracting archive
+17:37:56 | DEBUG | #6 7.068   - Installing psr/clock (1.0.0): Extracting archive
+17:37:56 | DEBUG | #6 7.069   - Installing carbonphp/carbon-doctrine-types (2.1.0): Extracting archive
+17:37:56 | DEBUG | #6 7.070   - Installing nesbot/carbon (2.73.0): Extracting archive
+17:37:56 | DEBUG | #6 7.070   - Installing monolog/monolog (3.9.0): Extracting archive
+17:37:56 | DEBUG | #6 7.071   - Installing league/mime-type-detection (1.16.0): Extracting archive
+17:37:56 | DEBUG | #6 7.080   - Installing league/flysystem (3.30.1): Extracting archive
+17:37:56 | DEBUG | #6 7.082   - Installing league/flysystem-local (3.30.0): Extracting archive
+17:37:56 | DEBUG | #6 7.083   - Installing nette/utils (v4.0.6): Extracting archive
+17:37:56 | DEBUG | #6 7.084   - Installing nette/schema (v1.3.2): Extracting archive
+17:37:56 | DEBUG | #6 7.085   - Installing dflydev/dot-access-data (v3.0.3): Extracting archive
+17:37:56 | DEBUG | #6 7.086   - Installing league/config (v1.2.0): Extracting archive
+17:37:56 | DEBUG | #6 7.087   - Installing league/commonmark (2.7.0): Extracting archive
+17:37:56 | DEBUG | #6 7.087   - Installing laravel/serializable-closure (v1.3.7): Extracting archive
+17:37:56 | DEBUG | #6 7.088   - Installing laravel/framework (v10.48.29): Extracting archive
+17:37:56 | DEBUG | #6 7.089   - Installing laravel/prompts (v0.1.25): Extracting archive
+17:37:56 | DEBUG | #6 7.089   - Installing guzzlehttp/uri-template (v1.0.4): Extracting archive
+17:37:56 | DEBUG | #6 7.090   - Installing fruitcake/php-cors (v1.3.0): Extracting archive
+17:37:56 | DEBUG | #6 7.090   - Installing webmozart/assert (1.11.0): Extracting archive
+17:37:56 | DEBUG | #6 7.091   - Installing dragonmantank/cron-expression (v3.4.0): Extracting archive
+17:37:56 | DEBUG | #6 7.092   - Installing doctrine/inflector (2.0.10): Extracting archive
+17:37:56 | DEBUG | #6 7.092   - Installing barryvdh/laravel-debugbar (v3.15.4): Extracting archive
+17:37:56 | DEBUG | #6 7.093   - Installing danog/libdns-json (0.2.1): Extracting archive
+17:37:56 | DEBUG | #6 7.093   - Installing paragonie/random_compat (v9.99.100): Extracting archive
+17:37:56 | DEBUG | #6 7.094   - Installing paragonie/constant_time_encoding (v3.0.0): Extracting archive
+17:37:56 | DEBUG | #6 7.094   - Installing phpseclib/phpseclib (3.0.43): Extracting archive
+17:37:56 | DEBUG | #6 7.095   - Installing nikic/php-parser (v5.4.0): Extracting archive
+17:37:56 | DEBUG | #6 7.096   - Installing danog/tg-file-decoder (1.0.1): Extracting archive
+17:37:56 | DEBUG | #6 7.096   - Installing danog/tg-dialog-id (1.1.0): Extracting archive
+17:37:56 | DEBUG | #6 7.097   - Installing danog/telegram-entities (1.0.4): Extracting archive
+17:37:56 | DEBUG | #6 7.097   - Installing danog/primemodule (1.0.13): Extracting archive
+17:37:56 | DEBUG | #6 7.098   - Installing danog/loop (1.1.1): Extracting archive
+17:37:56 | DEBUG | #6 7.099   - Installing danog/ipc (1.0.1): Extracting archive
+17:37:56 | DEBUG | #6 7.099   - Installing league/uri-components (7.5.1): Extracting archive
+17:37:56 | DEBUG | #6 7.100   - Installing amphp/http (v2.1.2): Extracting archive
+17:37:56 | DEBUG | #6 7.100   - Installing amphp/http-client (v5.3.3): Extracting archive
+17:37:56 | DEBUG | #6 7.101   - Installing danog/dns-over-https (1.0.1): Extracting archive
+17:37:56 | DEBUG | #6 7.102   - Installing promphp/prometheus_client_php (v2.14.1): Extracting archive
+17:37:56 | DEBUG | #6 7.102   - Installing danog/better-prometheus (0.1.1): Extracting archive
+17:37:56 | DEBUG | #6 7.103   - Installing amphp/redis (v2.0.3): Extracting archive
+17:37:56 | DEBUG | #6 7.103   - Installing amphp/postgres (v2.1.1): Extracting archive
+17:37:56 | DEBUG | #6 7.104   - Installing amphp/mysql (v3.0.0): Extracting archive
+17:37:56 | DEBUG | #6 7.105   - Installing danog/async-orm (1.1.3): Extracting archive
+17:37:56 | DEBUG | #6 7.105   - Installing dasprid/enum (1.0.6): Extracting archive
+17:37:56 | DEBUG | #6 7.106   - Installing bacon/bacon-qr-code (v3.0.1): Extracting archive
+17:37:56 | DEBUG | #6 7.106   - Installing amphp/websocket-client (v2.0.1): Extracting archive
+17:37:56 | DEBUG | #6 7.107   - Installing amphp/log (v2.0.0): Extracting archive
+17:37:56 | DEBUG | #6 7.108   - Installing amphp/http-server (v3.4.3): Extracting archive
+17:37:56 | DEBUG | #6 7.108   - Installing amphp/http-client-cookies (v2.0.0): Extracting archive
+17:37:56 | DEBUG | #6 7.109   - Installing amphp/file (v3.2.0): Extracting archive
+17:37:56 | DEBUG | #6 7.110   - Installing danog/madelineproto (8.4.4): Extracting archive
+17:37:56 | DEBUG | #6 7.111   - Installing fakerphp/faker (v1.24.1): Extracting archive
+17:37:56 | DEBUG | #6 7.112   - Installing guzzlehttp/promises (2.3.0): Extracting archive
+17:37:56 | DEBUG | #6 7.112   - Installing ralouphie/getallheaders (3.0.3): Extracting archive
+17:37:56 | DEBUG | #6 7.113   - Installing guzzlehttp/psr7 (2.8.0): Extracting archive
+17:37:56 | DEBUG | #6 7.118   - Installing intervention/image (2.7.2): Extracting archive
+17:37:56 | DEBUG | #6 7.120   - Installing laravel/breeze (v1.29.1): Extracting archive
+17:37:56 | DEBUG | #6 7.122   - Installing laravel/pint (v1.22.1): Extracting archive
+17:37:56 | DEBUG | #6 7.125   - Installing symfony/yaml (v7.2.6): Extracting archive
+17:37:56 | DEBUG | #6 7.127   - Installing laravel/sail (v1.43.1): Extracting archive
+17:37:56 | DEBUG | #6 7.129   - Installing laravel/sanctum (v3.3.3): Extracting archive
+17:37:56 | DEBUG | #6 7.132   - Installing psy/psysh (v0.12.8): Extracting archive
+17:37:56 | DEBUG | #6 7.134   - Installing laravel/tinker (v2.10.1): Extracting archive
+17:37:56 | DEBUG | #6 7.136   - Installing mtdowling/jmespath.php (2.8.0): Extracting archive
+17:37:56 | DEBUG | #6 7.139   - Installing psr/http-client (1.0.3): Extracting archive
+17:37:56 | DEBUG | #6 7.142   - Installing guzzlehttp/guzzle (7.10.0): Extracting archive
+17:37:56 | DEBUG | #6 7.143   - Installing aws/aws-sdk-php (3.356.42): Extracting archive
+17:37:56 | DEBUG | #6 7.145   - Installing league/flysystem-aws-s3-v3 (3.30.1): Extracting archive
+17:37:56 | DEBUG | #6 7.149   - Installing livewire/livewire (v3.6.3): Extracting archive
+17:37:56 | DEBUG | #6 7.151   - Installing markbaker/matrix (3.0.1): Extracting archive
+17:37:56 | DEBUG | #6 7.152   - Installing markbaker/complex (3.0.2): Extracting archive
+17:37:56 | DEBUG | #6 7.155   - Installing maennchen/zipstream-php (3.1.2): Extracting archive
+17:37:56 | DEBUG | #6 7.158   - Installing ezyang/htmlpurifier (v4.18.0): Extracting archive
+17:37:56 | DEBUG | #6 7.161   - Installing composer/pcre (3.3.2): Extracting archive
+17:37:56 | DEBUG | #6 7.163   - Installing phpoffice/phpspreadsheet (1.29.10): Extracting archive
+17:37:56 | DEBUG | #6 7.165   - Installing composer/semver (3.4.3): Extracting archive
+17:37:56 | DEBUG | #6 7.169   - Installing maatwebsite/excel (3.1.64): Extracting archive
+17:37:56 | DEBUG | #6 7.170   - Installing maxmind-db/reader (v1.12.1): Extracting archive
+17:37:56 | DEBUG | #6 7.173   - Installing composer/ca-bundle (1.5.7): Extracting archive
+17:37:56 | DEBUG | #6 7.175   - Installing maxmind/web-service-common (v0.10.0): Extracting archive
+17:37:56 | DEBUG | #6 7.177   - Installing hamcrest/hamcrest-php (v2.1.1): Extracting archive
+17:37:56 | DEBUG | #6 7.188   - Installing mockery/mockery (1.6.12): Extracting archive
+17:37:56 | DEBUG | #6 7.188   - Installing nicmart/tree (0.9.0): Extracting archive
+17:37:56 | DEBUG | #6 7.188   - Installing filp/whoops (2.18.0): Extracting archive
+17:37:56 | DEBUG | #6 7.194   - Installing nunomaduro/collision (v7.12.0): Extracting archive
+17:37:56 | DEBUG | #6 7.194   - Installing sebastian/version (4.0.1): Extracting archive
+17:37:56 | DEBUG | #6 7.194   - Installing sebastian/type (4.0.0): Extracting archive
+17:37:56 | DEBUG | #6 7.194   - Installing sebastian/recursion-context (5.0.0): Extracting archive
+17:37:56 | DEBUG | #6 7.213   - Installing sebastian/object-reflector (3.0.0): Extracting archive
+17:37:56 | DEBUG | #6 7.213   - Installing sebastian/object-enumerator (5.0.0): Extracting archive
+17:37:56 | DEBUG | #6 7.213   - Installing sebastian/global-state (6.0.2): Extracting archive
+17:37:56 | DEBUG | #6 7.213   - Installing sebastian/exporter (5.1.2): Extracting archive
+17:37:56 | DEBUG | #6 7.213   - Installing sebastian/environment (6.1.0): Extracting archive
+17:37:56 | DEBUG | #6 7.213   - Installing sebastian/diff (5.1.1): Extracting archive
+17:37:56 | DEBUG | #6 7.213   - Installing sebastian/comparator (5.0.3): Extracting archive
+17:37:56 | DEBUG | #6 7.213   - Installing sebastian/code-unit (2.0.0): Extracting archive
+17:37:56 | DEBUG | #6 7.213   - Installing sebastian/cli-parser (2.0.1): Extracting archive
+17:37:56 | DEBUG | #6 7.213   - Installing phpunit/php-timer (6.0.0): Extracting archive
+17:37:56 | DEBUG | #6 7.213   - Installing phpunit/php-text-template (3.0.1): Extracting archive
+17:37:56 | DEBUG | #6 7.233   - Installing phpunit/php-invoker (4.0.0): Extracting archive
+17:37:56 | DEBUG | #6 7.233   - Installing phpunit/php-file-iterator (4.1.0): Extracting archive
+17:37:56 | DEBUG | #6 7.233   - Installing theseer/tokenizer (1.2.3): Extracting archive
+17:37:56 | DEBUG | #6 7.233   - Installing sebastian/lines-of-code (2.0.2): Extracting archive
+17:37:56 | DEBUG | #6 7.233   - Installing sebastian/complexity (3.2.0): Extracting archive
+17:37:56 | DEBUG | #6 7.233   - Installing sebastian/code-unit-reverse-lookup (3.0.0): Extracting archive
+17:37:56 | DEBUG | #6 7.233   - Installing phpunit/php-code-coverage (10.1.16): Extracting archive
+17:37:56 | DEBUG | #6 7.233   - Installing phar-io/version (3.2.1): Extracting archive
+17:37:56 | DEBUG | #6 7.233   - Installing phar-io/manifest (2.0.4): Extracting archive
+17:37:56 | DEBUG | #6 7.233   - Installing myclabs/deep-copy (1.13.1): Extracting archive
+17:37:56 | DEBUG | #6 7.233   - Installing phpunit/phpunit (10.5.46): Extracting archive
+17:37:56 | DEBUG | #6 7.233   - Installing spatie/temporary-directory (2.3.0): Extracting archive
+17:37:56 | DEBUG | #6 7.233   - Installing spatie/browsershot (5.0.10): Extracting archive
+17:37:56 | DEBUG | #6 7.233   - Installing spatie/error-solutions (1.1.3): Extracting archive
+17:37:56 | DEBUG | #6 7.233   - Installing spatie/backtrace (1.7.4): Extracting archive
+17:37:56 | DEBUG | #6 7.233   - Installing spatie/flare-client-php (1.10.1): Extracting archive
+17:37:56 | DEBUG | #6 7.233   - Installing spatie/ignition (1.15.1): Extracting archive
+17:37:56 | DEBUG | #6 7.233   - Installing spatie/laravel-ignition (2.9.1): Extracting archive
+17:37:56 | DEBUG | #6 7.233   - Installing spatie/laravel-permission (6.18.0): Extracting archive
+17:37:56 | DEBUG | #6 7.267   - Installing masterminds/html5 (2.9.0): Extracting archive
+17:37:56 | DEBUG | #6 7.267   - Installing symfony/dom-crawler (v7.2.4): Extracting archive
+17:37:56 | DEBUG | #6 7.267   - Installing spatie/laravel-package-tools (1.92.4): Extracting archive
+17:37:56 | DEBUG | #6 7.267   - Installing spatie/robots-txt (2.5.0): Extracting archive
+17:37:56 | DEBUG | #6 7.267   - Installing spatie/crawler (8.4.3): Extracting archive
+17:37:56 | DEBUG | #6 7.267   - Installing spatie/laravel-sitemap (7.3.4): Extracting archive
+17:37:56 | DEBUG | #6 7.267   - Installing staudenmeir/belongs-to-through (v2.15.1): Extracting archive
+17:37:56 | DEBUG | #6 7.267   - Installing geoip2/geoip2 (v2.13.0): Extracting archive
+17:37:56 | DEBUG | #6 7.267   - Installing stevebauman/location (v6.6.2): Extracting archive
+17:37:56 | DEBUG | #6 7.267   - Installing wapmorgan/morphos (3.2.29): Extracting archive
+17:37:56 | DEBUG | #6 7.335    0/193 [>---------------------------]   0%
+17:37:56 | DEBUG | #6 7.613   26/193 [===>------------------------]  13%
+17:37:57 | DEBUG | #6 7.964   48/193 [======>---------------------]  24%
+17:37:57 | DEBUG | #6 8.247   64/193 [=========>------------------]  33%
+17:37:58 | DEBUG | #6 8.957   82/193 [===========>----------------]  42%
+17:37:58 | DEBUG | #6 9.301   98/193 [==============>-------------]  50%
+17:37:59 | DEBUG | #6 9.787  116/193 [================>-----------]  60%
+17:37:59 | DEBUG | #6 10.82  135/193 [===================>--------]  69%
+17:38:00 | DEBUG | #6 10.98  138/193 [====================>-------]  71%
+17:38:01 | DEBUG | #6 11.76  156/193 [======================>-----]  80%
+17:38:03 | DEBUG | #6 12.93  174/193 [=========================>--]  90%
+17:38:03 | DEBUG | #6 14.41  181/193 [==========================>-]  93%
+17:38:03 | DEBUG | #6 14.82  193/193 [============================] 100%
+17:38:03 | DEBUG | #6 15.13 Generating optimized autoload files
+17:38:07 | DEBUG | #6 18.90 Class App\Console\Commands\CalculateDoubles located in ./app/Console/Commands/calculateDoubles.php does not comply with psr-4 autoloading standard (rule: App\ => ./app). Skipping.
+17:38:08 | DEBUG | #6 19.30 > Illuminate\Foundation\ComposerScripts::postAutoloadDump
+17:38:08 | DEBUG | #6 19.35 > @php artisan package:discover --ansi
+17:38:08 | DEBUG | #6 19.78 
+17:38:08 | DEBUG | #6 19.78    INFO  Discovering packages.  
+17:38:08 | DEBUG | #6 19.78 
+17:38:08 | DEBUG | #6 19.80   barryvdh/laravel-debugbar ............................................. DONE
+17:38:08 | DEBUG | #6 19.80   intervention/image .................................................... DONE
+17:38:08 | DEBUG | #6 19.80   laravel/breeze ........................................................ DONE
+17:38:08 | DEBUG | #6 19.81   laravel/sail .......................................................... DONE
+17:38:08 | DEBUG | #6 19.81   laravel/sanctum ....................................................... DONE
+17:38:08 | DEBUG | #6 19.81   laravel/tinker ........................................................ DONE
+17:38:08 | DEBUG | #6 19.81   livewire/livewire ..................................................... DONE
+17:38:08 | DEBUG | #6 19.81   maatwebsite/excel ..................................................... DONE
+17:38:08 | DEBUG | #6 19.82   nesbot/carbon ......................................................... DONE
+17:38:08 | DEBUG | #6 19.82   nunomaduro/collision .................................................. DONE
+17:38:08 | DEBUG | #6 19.82   nunomaduro/termwind ................................................... DONE
+17:38:08 | DEBUG | #6 19.82   spatie/laravel-ignition ............................................... DONE
+17:38:08 | DEBUG | #6 19.82   spatie/laravel-permission ............................................. DONE
+17:38:08 | DEBUG | #6 19.82   spatie/laravel-sitemap ................................................ DONE
+17:38:08 | DEBUG | #6 19.83   staudenmeir/belongs-to-through ........................................ DONE
+17:38:08 | DEBUG | #6 19.83   stevebauman/location .................................................. DONE
+17:38:08 | DEBUG | #6 19.83 
+17:38:08 | DEBUG | #6 19.85 133 packages you are using are looking for funding.
+17:38:08 | DEBUG | #6 19.85 Use the `composer fund` command to find out more!
+17:38:09 | DEBUG | #6 DONE 20.3s
+17:38:09 | DEBUG | 
+17:38:09 | DEBUG | #7 [4/6] RUN mv .env.example .env
+17:38:09 | DEBUG | #7 DONE 0.3s
+17:38:09 | DEBUG | 
+17:38:09 | DEBUG | #8 [5/6] RUN php artisan migrate --force
+17:38:10 | DEBUG | #8 0.614 
+17:38:10 | DEBUG | #8 0.617    Illuminate\Database\QueryException 
+17:38:10 | DEBUG | #8 0.618 
+17:38:10 | DEBUG | #8 0.618   SQLSTATE[HY000] [2002] Connection refused (Connection: mysql, SQL: select table_name as `name`, (data_length + index_length) as `size`, table_comment as `comment`, engine as `engine`, table_collation as `collation` from information_schema.tables where table_schema = 'laravel' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED') order by table_name)
+17:38:10 | DEBUG | #8 0.619 
+17:38:10 | DEBUG | #8 0.619   at vendor/laravel/framework/src/Illuminate/Database/Connection.php:829
+17:38:10 | DEBUG | #8 0.625     825▕                     $this->getName(), $query, $this->prepareBindings($bindings), $e
+17:38:10 | DEBUG | #8 0.625     826▕                 );
+17:38:10 | DEBUG | #8 0.625     827▕             }
+17:38:10 | DEBUG | #8 0.625     828▕ 
+17:38:10 | DEBUG | #8 0.625   ➜ 829▕             throw new QueryException(
+17:38:10 | DEBUG | #8 0.625     830▕                 $this->getName(), $query, $this->prepareBindings($bindings), $e
+17:38:10 | DEBUG | #8 0.625     831▕             );
+17:38:10 | DEBUG | #8 0.625     832▕         }
+17:38:10 | DEBUG | #8 0.625     833▕     }
+17:38:10 | DEBUG | #8 0.625 
+17:38:10 | DEBUG | #8 0.626       +39 vendor frames 
+17:38:10 | DEBUG | #8 0.626 
+17:38:10 | DEBUG | #8 0.627   40  artisan:35
+17:38:10 | DEBUG | #8 0.627       Illuminate\Foundation\Console\Kernel::handle()
+17:38:10 | DEBUG | #8 0.627 
+17:38:10 | DEBUG | #8 ERROR: process "/bin/sh -c php artisan migrate --force" did not complete successfully: exit code: 1
+17:38:10 | DEBUG | ------
+17:38:10 | DEBUG |  > [5/6] RUN php artisan migrate --force:
+17:38:10 | DEBUG | 0.625     830▕                 $this->getName(), $query, $this->prepareBindings($bindings), $e
+17:38:10 | DEBUG | 0.625     831▕             );
+17:38:10 | DEBUG | 0.625     832▕         }
+17:38:10 | DEBUG | 0.625     833▕     }
+17:38:10 | DEBUG | 0.625 
+17:38:10 | DEBUG | 0.626       +39 vendor frames 
+17:38:10 | DEBUG | 0.626 
+17:38:10 | DEBUG | 0.627   40  artisan:35
+17:38:10 | DEBUG | 0.627       Illuminate\Foundation\Console\Kernel::handle()
+17:38:10 | DEBUG | 0.627 
+17:38:10 | DEBUG | ------
+17:38:10 | DEBUG | Dockerfile:5
+17:38:10 | DEBUG | --------------------
+17:38:10 | DEBUG |    3 |     RUN composer install
+17:38:10 | DEBUG |    4 |     RUN mv .env.example .env
+17:38:10 | DEBUG |    5 | >>> RUN php artisan migrate --force
+17:38:10 | DEBUG |    6 |     RUN php artisan key:generate
+17:38:10 | DEBUG |    7 |     
+17:38:10 | DEBUG | --------------------
+17:38:10 | DEBUG | ERROR: failed to build: failed to solve: process "/bin/sh -c php artisan migrate --force" did not complete successfully: exit code: 1
+17:38:10 | Layer None built successfully
+17:38:10 | ERROR | Deploy error

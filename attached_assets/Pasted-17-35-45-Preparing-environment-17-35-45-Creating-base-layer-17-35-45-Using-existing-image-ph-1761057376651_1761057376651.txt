@@ -1,0 +1,366 @@
+17:35:45 | Preparing environment
+17:35:45 | Creating base layer
+17:35:45 | Using existing image php8.3:latest
+17:35:45 | Building keys layer
+17:35:46 | DEBUG | #0 building with "default" instance using docker driver
+17:35:46 | DEBUG | 
+17:35:46 | DEBUG | #1 [internal] load build definition from Dockerfile
+17:35:46 | DEBUG | #1 transferring dockerfile: 158B done
+17:35:46 | DEBUG | #1 DONE 0.0s
+17:35:46 | DEBUG | 
+17:35:46 | DEBUG | #2 [internal] load metadata for docker.io/library/php8.3:latest
+17:35:46 | DEBUG | #2 DONE 0.0s
+17:35:46 | DEBUG | 
+17:35:46 | DEBUG | #3 [internal] load .dockerignore
+17:35:46 | DEBUG | #3 transferring context: 2B done
+17:35:46 | DEBUG | #3 DONE 0.0s
+17:35:46 | DEBUG | 
+17:35:46 | DEBUG | #4 [1/4] FROM docker.io/library/php8.3:latest
+17:35:46 | DEBUG | #4 DONE 0.0s
+17:35:46 | DEBUG | 
+17:35:46 | DEBUG | #5 [2/4] WORKDIR /opt/build
+17:35:46 | DEBUG | #5 CACHED
+17:35:46 | DEBUG | 
+17:35:46 | DEBUG | #6 [3/4] RUN mkdir -p /root/.ssh
+17:35:46 | DEBUG | #6 DONE 0.3s
+17:35:46 | DEBUG | 
+17:35:46 | DEBUG | #7 [4/4] RUN ssh-keyscan -t rsa github.com > /root/.ssh/known_hosts
+17:35:46 | DEBUG | #7 0.531 # github.com:22 SSH-2.0-85ba476
+17:35:47 | DEBUG | #7 DONE 0.8s
+17:35:47 | DEBUG | 
+17:35:47 | DEBUG | #8 exporting to image
+17:35:47 | DEBUG | #8 exporting layers 0.1s done
+17:35:47 | DEBUG | #8 writing image sha256:ccffefb2790743564ee7b0d4bb8fbc4a39d99b6e004facbeae830ed28f63b64d 0.0s done
+17:35:47 | DEBUG | #8 naming to docker.io/library/final-image-cdea0509-64c3-4b91-a80e-312d650b580c-keys done
+17:35:47 | DEBUG | #8 DONE 0.1s
+17:35:47 | Layer final-image-cdea0509-64c3-4b91-a80e-312d650b580c-keys built successfully
+17:35:47 | Cloning code
+17:35:47 | Building code layer
+17:35:47 | DEBUG | #0 building with "default" instance using docker driver
+17:35:47 | DEBUG | 
+17:35:47 | DEBUG | #1 [internal] load build definition from Dockerfile
+17:35:47 | DEBUG | #1 transferring dockerfile: 339B done
+17:35:47 | DEBUG | #1 DONE 0.0s
+17:35:47 | DEBUG | 
+17:35:47 | DEBUG | #2 [internal] load metadata for docker.io/library/final-image-cdea0509-64c3-4b91-a80e-312d650b580c-keys:latest
+17:35:47 | DEBUG | #2 DONE 0.0s
+17:35:47 | DEBUG | 
+17:35:47 | DEBUG | #3 [internal] load .dockerignore
+17:35:47 | DEBUG | #3 transferring context: 2B done
+17:35:47 | DEBUG | #3 DONE 0.0s
+17:35:47 | DEBUG | 
+17:35:47 | DEBUG | #4 [1/6] FROM docker.io/library/final-image-cdea0509-64c3-4b91-a80e-312d650b580c-keys:latest
+17:35:47 | DEBUG | #4 DONE 0.0s
+17:35:47 | DEBUG | 
+17:35:47 | DEBUG | #5 [2/6] WORKDIR /opt/build
+17:35:47 | DEBUG | #5 DONE 0.0s
+17:35:47 | DEBUG | 
+17:35:47 | DEBUG | #6 [3/6] RUN git clone https://github.com/armx2020/arm-new.git -b main /opt/build
+17:35:48 | DEBUG | #6 0.303 Cloning into '/opt/build'...
+17:35:49 | DEBUG | #6 DONE 2.2s
+17:35:50 | DEBUG | 
+17:35:50 | DEBUG | #7 [4/6] RUN cd /opt/build
+17:35:50 | DEBUG | #7 DONE 0.3s
+17:35:50 | DEBUG | 
+17:35:50 | DEBUG | #8 [5/6] RUN git remote rm origin
+17:35:50 | DEBUG | #8 DONE 0.4s
+17:35:50 | DEBUG | 
+17:35:50 | DEBUG | #9 [6/6] RUN git checkout 78959f889a88776d44077a7e678c7d1b538f5674
+17:35:51 | DEBUG | #9 0.474 Note: switching to '78959f889a88776d44077a7e678c7d1b538f5674'.
+17:35:51 | DEBUG | #9 0.474 
+17:35:51 | DEBUG | #9 0.474 You are in 'detached HEAD' state. You can look around, make experimental
+17:35:51 | DEBUG | #9 0.474 changes and commit them, and you can discard any commits you make in this
+17:35:51 | DEBUG | #9 0.474 state without impacting any branches by switching back to a branch.
+17:35:51 | DEBUG | #9 0.474 
+17:35:51 | DEBUG | #9 0.474 If you want to create a new branch to retain commits you create, you may
+17:35:51 | DEBUG | #9 0.474 do so (now or later) by using -c with the switch command. Example:
+17:35:51 | DEBUG | #9 0.474 
+17:35:51 | DEBUG | #9 0.474   git switch -c <new-branch-name>
+17:35:51 | DEBUG | #9 0.474 
+17:35:51 | DEBUG | #9 0.474 Or undo this operation with:
+17:35:51 | DEBUG | #9 0.474 
+17:35:51 | DEBUG | #9 0.474   git switch -
+17:35:51 | DEBUG | #9 0.474 
+17:35:51 | DEBUG | #9 0.474 Turn off this advice by setting config variable advice.detachedHead to false
+17:35:51 | DEBUG | #9 0.474 
+17:35:51 | DEBUG | #9 0.483 HEAD is now at 78959f8 Add initial project setup for Replit migration
+17:35:51 | DEBUG | #9 DONE 0.5s
+17:35:51 | DEBUG | 
+17:35:51 | DEBUG | #10 exporting to image
+17:35:51 | DEBUG | #10 exporting layers
+17:35:51 | DEBUG | #10 exporting layers 0.4s done
+17:35:51 | DEBUG | #10 writing image sha256:1fc190d96c4eff481ca1a814babb9b4e1ecb620908d1b04ad8c7eebb7d186caf
+17:35:51 | DEBUG | #10 writing image sha256:1fc190d96c4eff481ca1a814babb9b4e1ecb620908d1b04ad8c7eebb7d186caf done
+17:35:51 | DEBUG | #10 naming to docker.io/library/final-image-cdea0509-64c3-4b91-a80e-312d650b580c-code done
+17:35:51 | DEBUG | #10 DONE 0.4s
+17:35:51 | Layer final-image-cdea0509-64c3-4b91-a80e-312d650b580c-code built successfully
+17:35:51 | Switching to commit 78959f889a88776d44077a7e678c7d1b538f5674
+17:35:51 | Checking if there any system dependencies
+17:35:51 | Installing system dependencies
+17:35:51 | Building system_dependencies layer
+17:35:52 | DEBUG | #0 building with "default" instance using docker driver
+17:35:52 | DEBUG | 
+17:35:52 | DEBUG | #1 [internal] load build definition from Dockerfile
+17:35:52 | DEBUG | #1 transferring dockerfile: 217B done
+17:35:52 | DEBUG | #1 DONE 0.0s
+17:35:52 | DEBUG | 
+17:35:52 | DEBUG | #2 [internal] load metadata for docker.io/library/final-image-cdea0509-64c3-4b91-a80e-312d650b580c-code:latest
+17:35:52 | DEBUG | #2 DONE 0.0s
+17:35:52 | DEBUG | 
+17:35:52 | DEBUG | #3 [internal] load .dockerignore
+17:35:52 | DEBUG | #3 transferring context: 2B done
+17:35:52 | DEBUG | #3 DONE 0.0s
+17:35:52 | DEBUG | 
+17:35:52 | DEBUG | #4 [1/3] FROM docker.io/library/final-image-cdea0509-64c3-4b91-a80e-312d650b580c-code:latest
+17:35:52 | DEBUG | #4 DONE 0.1s
+17:35:52 | DEBUG | 
+17:35:52 | DEBUG | #5 [2/3] WORKDIR /opt/build
+17:35:52 | DEBUG | #5 DONE 0.0s
+17:35:52 | DEBUG | 
+17:35:52 | DEBUG | #6 [3/3] RUN DEBIAN_FRONTEND=noninteractive apt install -y php8.3-gd php8.3-mysql php8.3-mbstring php8.3-xml
+17:35:52 | DEBUG | #6 0.245 
+17:35:52 | DEBUG | #6 0.247 WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+17:35:52 | DEBUG | #6 0.248 
+17:35:54 | DEBUG | #6 0.340 Reading package lists...
+17:35:54 | DEBUG | #6 2.053 Building dependency tree...
+17:35:54 | DEBUG | #6 2.362 Reading state information...
+17:35:55 | DEBUG | #6 2.856 php8.3-xml is already the newest version (8.3.26-1+ubuntu22.04.1+deb.sury.org+1).
+17:35:55 | DEBUG | #6 2.856 The following additional packages will be installed:
+17:35:55 | DEBUG | #6 2.861   libabsl20210324 libaom3 libavif13 libdav1d5 libde265-0 libgav1-0 libgd3
+17:35:55 | DEBUG | #6 2.863   libheif1 libimagequant0 libnuma1 libonig5 libx265-199 libyuv0
+17:35:55 | DEBUG | #6 2.867 Suggested packages:
+17:35:55 | DEBUG | #6 2.867   libgd-tools
+17:35:55 | DEBUG | #6 3.071 The following NEW packages will be installed:
+17:35:55 | DEBUG | #6 3.074   libabsl20210324 libaom3 libavif13 libdav1d5 libde265-0 libgav1-0 libheif1
+17:35:55 | DEBUG | #6 3.076   libimagequant0 libnuma1 libonig5 libx265-199 libyuv0 php8.3-gd
+17:35:55 | DEBUG | #6 3.077   php8.3-mbstring php8.3-mysql
+17:35:55 | DEBUG | #6 3.080 The following packages will be upgraded:
+17:35:55 | DEBUG | #6 3.083   libgd3
+17:35:55 | DEBUG | #6 3.362 1 upgraded, 15 newly installed, 0 to remove and 3 not upgraded.
+17:35:55 | DEBUG | #6 3.362 Need to get 5893 kB of archives.
+17:35:55 | DEBUG | #6 3.362 After this operation, 30.5 MB of additional disk space will be used.
+17:35:55 | DEBUG | #6 3.362 Get:1 http://archive.ubuntu.com/ubuntu jammy/main amd64 libnuma1 amd64 2.0.14-3ubuntu2 [22.5 kB]
+17:35:55 | DEBUG | #6 3.594 Get:2 https://ppa.launchpadcontent.net/ondrej/php/ubuntu jammy/main amd64 libgd3 amd64 2.3.3-13+ubuntu22.04.1+deb.sury.org+1 [148 kB]
+17:35:55 | DEBUG | #6 3.602 Get:3 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libabsl20210324 amd64 0~20210324.2-2ubuntu0.2 [386 kB]
+17:35:56 | DEBUG | #6 3.801 Get:4 https://ppa.launchpadcontent.net/ondrej/php/ubuntu jammy/main amd64 php8.3-gd amd64 8.3.26-1+ubuntu22.04.1+deb.sury.org+1 [33.4 kB]
+17:35:56 | DEBUG | #6 3.805 Get:5 https://ppa.launchpadcontent.net/ondrej/php/ubuntu jammy/main amd64 php8.3-mbstring amd64 8.3.26-1+ubuntu22.04.1+deb.sury.org+1 [539 kB]
+17:35:56 | DEBUG | #6 4.055 Get:6 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 libaom3 amd64 3.3.0-1ubuntu0.1 [1748 kB]
+17:35:56 | DEBUG | #6 4.243 Get:7 https://ppa.launchpadcontent.net/ondrej/php/ubuntu jammy/main amd64 php8.3-mysql amd64 8.3.26-1+ubuntu22.04.1+deb.sury.org+1 [132 kB]
+17:35:56 | DEBUG | #6 4.335 Get:8 http://archive.ubuntu.com/ubuntu jammy/universe amd64 libdav1d5 amd64 0.9.2-1 [463 kB]
+17:35:56 | DEBUG | #6 4.369 Get:9 http://archive.ubuntu.com/ubuntu jammy/universe amd64 libgav1-0 amd64 0.17.0-1build1 [336 kB]
+17:35:56 | DEBUG | #6 4.387 Get:10 http://archive.ubuntu.com/ubuntu jammy/universe amd64 libyuv0 amd64 0.0~git20220104.b91df1a-2 [154 kB]
+17:35:56 | DEBUG | #6 4.395 Get:11 http://archive.ubuntu.com/ubuntu jammy/universe amd64 libavif13 amd64 0.9.3-3 [69.5 kB]
+17:35:56 | DEBUG | #6 4.399 Get:12 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 libde265-0 amd64 1.0.8-1ubuntu0.3 [290 kB]
+17:35:56 | DEBUG | #6 4.413 Get:13 http://archive.ubuntu.com/ubuntu jammy/universe amd64 libx265-199 amd64 3.5-2 [1170 kB]
+17:35:56 | DEBUG | #6 4.468 Get:14 http://archive.ubuntu.com/ubuntu jammy/universe amd64 libheif1 amd64 1.12.0-2build1 [196 kB]
+17:35:56 | DEBUG | #6 4.475 Get:15 http://archive.ubuntu.com/ubuntu jammy/main amd64 libimagequant0 amd64 2.17.0-1 [34.6 kB]
+17:35:56 | DEBUG | #6 4.481 Get:16 http://archive.ubuntu.com/ubuntu jammy/main amd64 libonig5 amd64 6.9.7.1-2build1 [172 kB]
+17:35:56 | DEBUG | #6 4.751 debconf: delaying package configuration, since apt-utils is not installed
+17:35:57 | DEBUG | #6 4.820 Fetched 5893 kB in 1s (4265 kB/s)
+17:35:57 | DEBUG | #6 4.853 Selecting previously unselected package libnuma1:amd64.
+17:35:57 | DEBUG | #6 4.856 (Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 25840 files and directories currently installed.)
+17:35:57 | DEBUG | #6 4.896 Preparing to unpack .../00-libnuma1_2.0.14-3ubuntu2_amd64.deb ...
+17:35:57 | DEBUG | #6 4.902 Unpacking libnuma1:amd64 (2.0.14-3ubuntu2) ...
+17:35:57 | DEBUG | #6 4.967 Selecting previously unselected package libabsl20210324:amd64.
+17:35:57 | DEBUG | #6 4.967 Preparing to unpack .../01-libabsl20210324_0~20210324.2-2ubuntu0.2_amd64.deb ...
+17:35:57 | DEBUG | #6 4.967 Unpacking libabsl20210324:amd64 (0~20210324.2-2ubuntu0.2) ...
+17:35:57 | DEBUG | #6 5.091 Selecting previously unselected package libaom3:amd64.
+17:35:57 | DEBUG | #6 5.097 Preparing to unpack .../02-libaom3_3.3.0-1ubuntu0.1_amd64.deb ...
+17:35:57 | DEBUG | #6 5.101 Unpacking libaom3:amd64 (3.3.0-1ubuntu0.1) ...
+17:35:57 | DEBUG | #6 5.206 Selecting previously unselected package libdav1d5:amd64.
+17:35:57 | DEBUG | #6 5.217 Preparing to unpack .../03-libdav1d5_0.9.2-1_amd64.deb ...
+17:35:57 | DEBUG | #6 5.221 Unpacking libdav1d5:amd64 (0.9.2-1) ...
+17:35:57 | DEBUG | #6 5.262 Selecting previously unselected package libgav1-0:amd64.
+17:35:57 | DEBUG | #6 5.266 Preparing to unpack .../04-libgav1-0_0.17.0-1build1_amd64.deb ...
+17:35:57 | DEBUG | #6 5.270 Unpacking libgav1-0:amd64 (0.17.0-1build1) ...
+17:35:57 | DEBUG | #6 5.308 Selecting previously unselected package libyuv0:amd64.
+17:35:57 | DEBUG | #6 5.315 Preparing to unpack .../05-libyuv0_0.0~git20220104.b91df1a-2_amd64.deb ...
+17:35:57 | DEBUG | #6 5.318 Unpacking libyuv0:amd64 (0.0~git20220104.b91df1a-2) ...
+17:35:57 | DEBUG | #6 5.364 Selecting previously unselected package libavif13:amd64.
+17:35:57 | DEBUG | #6 5.369 Preparing to unpack .../06-libavif13_0.9.3-3_amd64.deb ...
+17:35:57 | DEBUG | #6 5.373 Unpacking libavif13:amd64 (0.9.3-3) ...
+17:35:57 | DEBUG | #6 5.407 Selecting previously unselected package libde265-0:amd64.
+17:35:57 | DEBUG | #6 5.420 Preparing to unpack .../07-libde265-0_1.0.8-1ubuntu0.3_amd64.deb ...
+17:35:57 | DEBUG | #6 5.424 Unpacking libde265-0:amd64 (1.0.8-1ubuntu0.3) ...
+17:35:57 | DEBUG | #6 5.464 Selecting previously unselected package libx265-199:amd64.
+17:35:57 | DEBUG | #6 5.482 Preparing to unpack .../08-libx265-199_3.5-2_amd64.deb ...
+17:35:57 | DEBUG | #6 5.499 Unpacking libx265-199:amd64 (3.5-2) ...
+17:35:58 | DEBUG | #6 5.661 Selecting previously unselected package libheif1:amd64.
+17:35:58 | DEBUG | #6 5.668 Preparing to unpack .../09-libheif1_1.12.0-2build1_amd64.deb ...
+17:35:58 | DEBUG | #6 5.672 Unpacking libheif1:amd64 (1.12.0-2build1) ...
+17:35:58 | DEBUG | #6 5.707 Selecting previously unselected package libimagequant0:amd64.
+17:35:58 | DEBUG | #6 5.711 Preparing to unpack .../10-libimagequant0_2.17.0-1_amd64.deb ...
+17:35:58 | DEBUG | #6 5.714 Unpacking libimagequant0:amd64 (2.17.0-1) ...
+17:35:58 | DEBUG | #6 5.745 Preparing to unpack .../11-libgd3_2.3.3-13+ubuntu22.04.1+deb.sury.org+1_amd64.deb ...
+17:35:58 | DEBUG | #6 5.753 Unpacking libgd3:amd64 (2.3.3-13+ubuntu22.04.1+deb.sury.org+1) over (2.3.0-2ubuntu2.3) ...
+17:35:58 | DEBUG | #6 5.797 Selecting previously unselected package libonig5:amd64.
+17:35:58 | DEBUG | #6 5.810 Preparing to unpack .../12-libonig5_6.9.7.1-2build1_amd64.deb ...
+17:35:58 | DEBUG | #6 5.815 Unpacking libonig5:amd64 (6.9.7.1-2build1) ...
+17:35:58 | DEBUG | #6 5.865 Selecting previously unselected package php8.3-gd.
+17:35:58 | DEBUG | #6 5.869 Preparing to unpack .../13-php8.3-gd_8.3.26-1+ubuntu22.04.1+deb.sury.org+1_amd64.deb ...
+17:35:58 | DEBUG | #6 5.878 Unpacking php8.3-gd (8.3.26-1+ubuntu22.04.1+deb.sury.org+1) ...
+17:35:58 | DEBUG | #6 5.925 Selecting previously unselected package php8.3-mbstring.
+17:35:58 | DEBUG | #6 5.933 Preparing to unpack .../14-php8.3-mbstring_8.3.26-1+ubuntu22.04.1+deb.sury.org+1_amd64.deb ...
+17:35:58 | DEBUG | #6 5.940 Unpacking php8.3-mbstring (8.3.26-1+ubuntu22.04.1+deb.sury.org+1) ...
+17:35:58 | DEBUG | #6 5.985 Selecting previously unselected package php8.3-mysql.
+17:35:58 | DEBUG | #6 5.988 Preparing to unpack .../15-php8.3-mysql_8.3.26-1+ubuntu22.04.1+deb.sury.org+1_amd64.deb ...
+17:35:58 | DEBUG | #6 5.993 Unpacking php8.3-mysql (8.3.26-1+ubuntu22.04.1+deb.sury.org+1) ...
+17:35:58 | DEBUG | #6 6.071 Setting up libaom3:amd64 (3.3.0-1ubuntu0.1) ...
+17:35:58 | DEBUG | #6 6.092 Setting up php8.3-mysql (8.3.26-1+ubuntu22.04.1+deb.sury.org+1) ...
+17:35:58 | DEBUG | #6 6.238 
+17:35:58 | DEBUG | #6 6.241 Creating config file /etc/php/8.3/mods-available/mysqlnd.ini with new version
+17:35:58 | DEBUG | #6 6.483 
+17:35:58 | DEBUG | #6 6.484 Creating config file /etc/php/8.3/mods-available/mysqli.ini with new version
+17:35:59 | DEBUG | #6 6.778 
+17:35:59 | DEBUG | #6 6.782 Creating config file /etc/php/8.3/mods-available/pdo_mysql.ini with new version
+17:35:59 | DEBUG | #6 6.923 Setting up libimagequant0:amd64 (2.17.0-1) ...
+17:35:59 | DEBUG | #6 6.939 Setting up libabsl20210324:amd64 (0~20210324.2-2ubuntu0.2) ...
+17:35:59 | DEBUG | #6 6.949 Setting up libnuma1:amd64 (2.0.14-3ubuntu2) ...
+17:35:59 | DEBUG | #6 6.957 Setting up libdav1d5:amd64 (0.9.2-1) ...
+17:35:59 | DEBUG | #6 6.966 Setting up libde265-0:amd64 (1.0.8-1ubuntu0.3) ...
+17:35:59 | DEBUG | #6 6.975 Setting up libyuv0:amd64 (0.0~git20220104.b91df1a-2) ...
+17:35:59 | DEBUG | #6 6.984 Setting up libonig5:amd64 (6.9.7.1-2build1) ...
+17:35:59 | DEBUG | #6 6.992 Setting up php8.3-mbstring (8.3.26-1+ubuntu22.04.1+deb.sury.org+1) ...
+17:35:59 | DEBUG | #6 7.125 
+17:35:59 | DEBUG | #6 7.131 Creating config file /etc/php/8.3/mods-available/mbstring.ini with new version
+17:35:59 | DEBUG | #6 7.263 Setting up libgav1-0:amd64 (0.17.0-1build1) ...
+17:35:59 | DEBUG | #6 7.292 Setting up libx265-199:amd64 (3.5-2) ...
+17:35:59 | DEBUG | #6 7.313 Setting up libavif13:amd64 (0.9.3-3) ...
+17:35:59 | DEBUG | #6 7.321 Setting up libheif1:amd64 (1.12.0-2build1) ...
+17:35:59 | DEBUG | #6 7.330 Setting up libgd3:amd64 (2.3.3-13+ubuntu22.04.1+deb.sury.org+1) ...
+17:35:59 | DEBUG | #6 7.339 Setting up php8.3-gd (8.3.26-1+ubuntu22.04.1+deb.sury.org+1) ...
+17:35:59 | DEBUG | #6 7.508 
+17:35:59 | DEBUG | #6 7.510 Creating config file /etc/php/8.3/mods-available/gd.ini with new version
+17:36:00 | DEBUG | #6 7.678 Processing triggers for libapache2-mod-php8.3 (8.3.26-1+ubuntu22.04.1+deb.sury.org+1) ...
+17:36:00 | DEBUG | #6 7.741 invoke-rc.d: could not determine current runlevel
+17:36:00 | DEBUG | #6 7.746 invoke-rc.d: policy-rc.d denied execution of restart.
+17:36:00 | DEBUG | #6 7.751 Processing triggers for libc-bin (2.35-0ubuntu3.11) ...
+17:36:00 | DEBUG | #6 7.789 Processing triggers for php8.3-cli (8.3.26-1+ubuntu22.04.1+deb.sury.org+1) ...
+17:36:00 | DEBUG | #6 DONE 8.1s
+17:36:00 | DEBUG | 
+17:36:00 | DEBUG | #7 exporting to image
+17:36:00 | DEBUG | #7 exporting layers
+17:36:00 | DEBUG | #7 exporting layers 0.3s done
+17:36:00 | DEBUG | #7 writing image sha256:6626ec2485bd2b66bf78c227a87e32e77b644026c78f63793f827a4705168cc0
+17:36:00 | DEBUG | #7 writing image sha256:6626ec2485bd2b66bf78c227a87e32e77b644026c78f63793f827a4705168cc0 0.0s done
+17:36:00 | DEBUG | #7 naming to docker.io/library/final-image-cdea0509-64c3-4b91-a80e-312d650b580c-system_dependencies 0.0s done
+17:36:00 | DEBUG | #7 DONE 0.4s
+17:36:00 | Layer final-image-cdea0509-64c3-4b91-a80e-312d650b580c-system_dependencies built successfully
+17:36:01 | DEBUG | [".", "..", ".editorconfig", ".env.example", ".git", ".gitattributes", ".gitignore", ".replit", "IMAGES_SETUP.md", "README.md", "app", "artisan", "artisan-use-mysql", "artisan-use-mysql-dev", "artisan-use-mysql-prod", "artisan-use-postgres", "attached_assets", "bootstrap", "composer.json", "composer.lock", "config", "database", "deploy.sh", "git-push.sh", "lang", "package-lock.json", "package.json", "phpunit.xml", "postcss.config.js", "public", "replit.md", "resources", "routes", "storage", "tailwind.config.js", "tests", "vite.config.js"]
+17:36:01 | Installing dependencies
+17:36:01 | Building dependencies layer
+17:36:02 | DEBUG | #0 building with "default" instance using docker driver
+17:36:02 | DEBUG | 
+17:36:02 | DEBUG | #1 [internal] load build definition from Dockerfile
+17:36:02 | DEBUG | #1 transferring dockerfile: 239B done
+17:36:02 | DEBUG | #1 DONE 0.0s
+17:36:02 | DEBUG | 
+17:36:02 | DEBUG | #2 [internal] load metadata for docker.io/library/final-image-cdea0509-64c3-4b91-a80e-312d650b580c-system_dependencies:latest
+17:36:02 | DEBUG | #2 DONE 0.0s
+17:36:02 | DEBUG | 
+17:36:02 | DEBUG | #3 [internal] load .dockerignore
+17:36:02 | DEBUG | #3 transferring context: 2B done
+17:36:02 | DEBUG | #3 DONE 0.0s
+17:36:02 | DEBUG | 
+17:36:02 | DEBUG | #4 [1/6] FROM docker.io/library/final-image-cdea0509-64c3-4b91-a80e-312d650b580c-system_dependencies:latest
+17:36:02 | DEBUG | #4 DONE 0.1s
+17:36:02 | DEBUG | 
+17:36:02 | DEBUG | #5 [2/6] WORKDIR /opt/build
+17:36:02 | DEBUG | #5 DONE 0.1s
+17:36:02 | DEBUG | 
+17:36:02 | DEBUG | #6 [3/6] RUN composer install
+17:36:03 | DEBUG | #6 1.132 Installing dependencies from lock file (including require-dev)
+17:36:04 | DEBUG | #6 1.166 Verifying lock file contents can be installed on current platform.
+17:36:04 | DEBUG | #6 1.249 Your lock file does not contain a compatible set of packages. Please run composer update.
+17:36:04 | DEBUG | #6 1.252 
+17:36:04 | DEBUG | #6 1.252   Problem 1
+17:36:04 | DEBUG | #6 1.252     - phpoffice/phpspreadsheet is locked to version 1.29.10 and an update of this package was not requested.
+17:36:04 | DEBUG | #6 1.252     - phpoffice/phpspreadsheet 1.29.10 requires ext-zip * -> it is missing from your system. Install or enable PHP's zip extension.
+17:36:04 | DEBUG | #6 1.252   Problem 2
+17:36:04 | DEBUG | #6 1.252     - maatwebsite/excel is locked to version 3.1.64 and an update of this package was not requested.
+17:36:04 | DEBUG | #6 1.252     - maatwebsite/excel 3.1.64 requires phpoffice/phpspreadsheet ^1.29.9 -> satisfiable by phpoffice/phpspreadsheet[1.29.10].
+17:36:04 | DEBUG | #6 1.252     - phpoffice/phpspreadsheet 1.29.10 requires ext-zip * -> it is missing from your system. Install or enable PHP's zip extension.
+17:36:04 | DEBUG | #6 1.252 
+17:36:04 | DEBUG | #6 1.252 To enable extensions, verify that they are enabled in your .ini files:
+17:36:04 | DEBUG | #6 1.252     - /etc/php/8.3/cli/php.ini
+17:36:04 | DEBUG | #6 1.252     - /etc/php/8.3/cli/conf.d/10-mysqlnd.ini
+17:36:04 | DEBUG | #6 1.252     - /etc/php/8.3/cli/conf.d/10-opcache.ini
+17:36:04 | DEBUG | #6 1.252     - /etc/php/8.3/cli/conf.d/10-pdo.ini
+17:36:04 | DEBUG | #6 1.252     - /etc/php/8.3/cli/conf.d/15-xml.ini
+17:36:04 | DEBUG | #6 1.252     - /etc/php/8.3/cli/conf.d/20-calendar.ini
+17:36:04 | DEBUG | #6 1.252     - /etc/php/8.3/cli/conf.d/20-ctype.ini
+17:36:04 | DEBUG | #6 1.252     - /etc/php/8.3/cli/conf.d/20-curl.ini
+17:36:04 | DEBUG | #6 1.252     - /etc/php/8.3/cli/conf.d/20-dom.ini
+17:36:04 | DEBUG | #6 1.252     - /etc/php/8.3/cli/conf.d/20-exif.ini
+17:36:04 | DEBUG | #6 1.252     - /etc/php/8.3/cli/conf.d/20-ffi.ini
+17:36:04 | DEBUG | #6 1.252     - /etc/php/8.3/cli/conf.d/20-fileinfo.ini
+17:36:04 | DEBUG | #6 1.252     - /etc/php/8.3/cli/conf.d/20-ftp.ini
+17:36:04 | DEBUG | #6 1.252     - /etc/php/8.3/cli/conf.d/20-gd.ini
+17:36:04 | DEBUG | #6 1.252     - /etc/php/8.3/cli/conf.d/20-gettext.ini
+17:36:04 | DEBUG | #6 1.252     - /etc/php/8.3/cli/conf.d/20-iconv.ini
+17:36:04 | DEBUG | #6 1.252     - /etc/php/8.3/cli/conf.d/20-mbstring.ini
+17:36:04 | DEBUG | #6 1.252     - /etc/php/8.3/cli/conf.d/20-mysqli.ini
+17:36:04 | DEBUG | #6 1.252     - /etc/php/8.3/cli/conf.d/20-pdo_mysql.ini
+17:36:04 | DEBUG | #6 1.252     - /etc/php/8.3/cli/conf.d/20-pdo_sqlite.ini
+17:36:04 | DEBUG | #6 1.252     - /etc/php/8.3/cli/conf.d/20-phar.ini
+17:36:04 | DEBUG | #6 1.252     - /etc/php/8.3/cli/conf.d/20-posix.ini
+17:36:04 | DEBUG | #6 1.252     - /etc/php/8.3/cli/conf.d/20-readline.ini
+17:36:04 | DEBUG | #6 1.252     - /etc/php/8.3/cli/conf.d/20-shmop.ini
+17:36:04 | DEBUG | #6 1.252     - /etc/php/8.3/cli/conf.d/20-simplexml.ini
+17:36:04 | DEBUG | #6 1.252     - /etc/php/8.3/cli/conf.d/20-sockets.ini
+17:36:04 | DEBUG | #6 1.252     - /etc/php/8.3/cli/conf.d/20-sqlite3.ini
+17:36:04 | DEBUG | #6 1.252     - /etc/php/8.3/cli/conf.d/20-sysvmsg.ini
+17:36:04 | DEBUG | #6 1.252     - /etc/php/8.3/cli/conf.d/20-sysvsem.ini
+17:36:04 | DEBUG | #6 1.252     - /etc/php/8.3/cli/conf.d/20-sysvshm.ini
+17:36:04 | DEBUG | #6 1.252     - /etc/php/8.3/cli/conf.d/20-tokenizer.ini
+17:36:04 | DEBUG | #6 1.252     - /etc/php/8.3/cli/conf.d/20-xmlreader.ini
+17:36:04 | DEBUG | #6 1.252     - /etc/php/8.3/cli/conf.d/20-xmlwriter.ini
+17:36:04 | DEBUG | #6 1.252     - /etc/php/8.3/cli/conf.d/20-xsl.ini
+17:36:04 | DEBUG | #6 1.252 You can also run `php --ini` in a terminal to see which files are used by PHP in CLI mode.
+17:36:04 | DEBUG | #6 1.252 Alternatively, you can run Composer with `--ignore-platform-req=ext-zip` to temporarily ignore these required extensions.
+17:36:04 | DEBUG | #6 ERROR: process "/bin/sh -c composer install" did not complete successfully: exit code: 2
+17:36:04 | DEBUG | ------
+17:36:04 | DEBUG |  > [3/6] RUN composer install:
+17:36:04 | DEBUG | 1.252     - /etc/php/8.3/cli/conf.d/20-sqlite3.ini
+17:36:04 | DEBUG | 1.252     - /etc/php/8.3/cli/conf.d/20-sysvmsg.ini
+17:36:04 | DEBUG | 1.252     - /etc/php/8.3/cli/conf.d/20-sysvsem.ini
+17:36:04 | DEBUG | 1.252     - /etc/php/8.3/cli/conf.d/20-sysvshm.ini
+17:36:04 | DEBUG | 1.252     - /etc/php/8.3/cli/conf.d/20-tokenizer.ini
+17:36:04 | DEBUG | 1.252     - /etc/php/8.3/cli/conf.d/20-xmlreader.ini
+17:36:04 | DEBUG | 1.252     - /etc/php/8.3/cli/conf.d/20-xmlwriter.ini
+17:36:04 | DEBUG | 1.252     - /etc/php/8.3/cli/conf.d/20-xsl.ini
+17:36:04 | DEBUG | 1.252 You can also run `php --ini` in a terminal to see which files are used by PHP in CLI mode.
+17:36:04 | DEBUG | 1.252 Alternatively, you can run Composer with `--ignore-platform-req=ext-zip` to temporarily ignore these required extensions.
+17:36:04 | DEBUG | ------
+17:36:04 | DEBUG | Dockerfile:3
+17:36:04 | DEBUG | --------------------
+17:36:04 | DEBUG |    1 |     FROM final-image-cdea0509-64c3-4b91-a80e-312d650b580c-system_dependencies
+17:36:04 | DEBUG |    2 |     WORKDIR /opt/build
+17:36:04 | DEBUG |    3 | >>> RUN composer install
+17:36:04 | DEBUG |    4 |     RUN mv .env.example .env
+17:36:04 | DEBUG |    5 |     RUN php artisan migrate --force
+17:36:04 | DEBUG | --------------------
+17:36:04 | DEBUG | ERROR: failed to build: failed to solve: process "/bin/sh -c composer install" did not complete successfully: exit code: 2
+17:36:04 | Layer None built successfully
+17:36:04 | ERROR | Deploy error

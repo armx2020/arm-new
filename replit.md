@@ -6,10 +6,15 @@ vsearmyne.ru is an informational directory for the Armenian community globally, 
 ## Recent Changes (October 21, 2025)
 - ✅ **GitHub Repository Created**: Successfully created new repository `armx2020/arm-new` at https://github.com/armx2020/arm-new
 - ✅ **Initial Code Push**: Pushed full Laravel codebase (1176 files) to GitHub
-- ✅ **Authentication Setup**: Configured GitHub Personal Access Token in Replit Secrets (`GITHUB_PERSONAL_ACCESS_TOKEN`)
+- ✅ **GitHub Integration Configured**: Set up official Replit GitHub integration for OAuth-based authentication
+  - Git UI now fully functional for commits and pushes
+  - Alternative: GitHub Personal Access Token stored in Replit Secrets (`GITHUB_PERSONAL_ACCESS_TOKEN`)
 - ✅ **Git Push Helper**: Created `git-push.sh` script for easy push to GitHub using stored token
   - Usage: `./git-push.sh` (pushes to main branch)
   - Usage: `./git-push.sh branch-name` (pushes to specific branch)
+- ✅ **Two Push Methods Available**:
+  - **Git UI**: Use the Git tab in Replit (like other projects)
+  - **Shell Script**: Run `./git-push.sh` in terminal
 
 ## User Preferences
 I prefer iterative development and want to be asked before making major architectural changes.

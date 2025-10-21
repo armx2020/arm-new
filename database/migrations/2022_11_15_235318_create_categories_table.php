@@ -12,7 +12,7 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('name', 255)->fulltext();
+            $table->string('name', 255);
             $table->string('transcription', 255)->nullable();
             $table->integer('sort_id')->index()->nullable();
             $table->boolean('activity')->default(true);
@@ -23,6 +23,12 @@ return new class extends Migration
             $table->text('meta_2')->nullable();
             $table->index('name');
         });
+
+        if (DB::connection()->getDriverName() !== 'sqlite') {
+            Schema::table('categories', function (Blueprint $table) {
+                $table->fullText('name');
+            });
+        }
     }
 
     public function down(): void

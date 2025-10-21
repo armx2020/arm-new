@@ -12,10 +12,16 @@ return new class extends Migration
         Schema::create('entity_types', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('name', 255)->fulltext();
+            $table->string('name', 255);
             $table->string('transcription', 255)->nullable();
             $table->boolean('activity')->default(true);
         });
+
+        if (DB::connection()->getDriverName() !== 'sqlite') {
+            Schema::table('entity_types', function (Blueprint $table) {
+                $table->fullText('name');
+            });
+        }
 
         DB::table('entity_types')->insert([
             'name' => 'Компания',

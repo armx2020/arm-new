@@ -18,3 +18,21 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+
+# Replit specific
+.replit
+.upm
+.config
+.cache
+replit.nix
+
+# Laravel storage
+/storage/logs/*.log
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+
+# SSL certificates
+*.crt
+*.pem
+~/.cloud-certs/

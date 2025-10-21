@@ -64,8 +64,14 @@
    - Создан helper `storage_url()` для загрузки изображений с production
    - В dev режиме все изображения загружаются с https://vsearmyne.ru/storage
    - В production работает обычный asset()
-   - Обновлены ключевые компоненты для использования helper
+   - Обновлены все компоненты для использования helper:
+     - `components/pages/card.blade.php` (списки компаний/групп/мест)
+     - `components/pages/entity-card.blade.php` (страницы деталей)
+     - `components/profile/card.blade.php` (профиль пользователя)
+     - `dashboard.blade.php` (личный кабинет)
+   - **Исправлена критическая ошибка**: добавлены кавычки в атрибуты `src` в Blade шаблонах
    - 7,048 изображений доступны через production сервер
+   - **Проверено на production**: изображения загружаются корректно
 
 ## Технический стек
 - **Backend**: Laravel 10, PHP 8.2
@@ -142,7 +148,9 @@ USE_PRODUCTION_IMAGES=true
 - Единое хранилище для dev и production
 
 ## Следующие шаги
-- [ ] Обновить остальные view для использования storage_url()
+- [x] Обновить view для использования storage_url() - **ГОТОВО**
+  - Исправлены: card.blade.php, entity-card.blade.php, profile/card.blade.php, dashboard.blade.php
+  - Изображения загружаются с production сервера
 - [ ] Настроить Timeweb S3 для изображений (опционально)
 - [ ] Добавить больше тестовых данных для всех категорий
 - [ ] Настроить деплой на Timeweb через GitHub Actions

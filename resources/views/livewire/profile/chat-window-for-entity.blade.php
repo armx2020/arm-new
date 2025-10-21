@@ -41,7 +41,7 @@
                     <div class="relative">
                         @if ($participant->image)
                             <img class="h-10 w-10 rounded-full object-cover"
-                                src="{{ asset('storage/' . $participant->image) }}" alt="User avatar">
+                                src="{{ storage_url($participant->image) }}" alt="User avatar">
                         @else
                             <img class="h-10 w-10 rounded-full object-cover" src="{{ url('/image/no-image.png') }}"
                                 alt="User avatar" />
@@ -73,7 +73,7 @@
                     <div class="relative">
                         @if ($participant->primaryImageView)
                             <img class="h-10 w-10 rounded-full object-cover"
-                                src="{{ asset('storage/' . $participant->primaryImageView->path) }}" alt="User avatar">
+                                src="{{ storage_url($participant->primaryImageView->path) }}" alt="User avatar">
                         @else
                             <img class="h-10 w-10 rounded-full object-cover" src="{{ url('/image/no-image.png') }}"
                                 alt="image" />

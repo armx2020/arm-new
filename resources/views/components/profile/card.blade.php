@@ -1,7 +1,7 @@
 <div class="flex flex-col sm:flex-row rounded-lg bg-white h-auto sm:h-64 p-4  relative">
     <a href="{{ route($entitiesName . '.show', [$entityName => $entity->id]) }}" class="sm:basis-1/4 flex-none">
         <img class="h-full w-full rounded-2xl flex object-cover rounded-2xl flex object-cover"
-            src={{ isset($entity->primaryImage) ? storage_url($entity->primaryImage->path) : url('/image/no_photo.jpg') }}
+            src="{{ isset($entity->primaryImage) ? storage_url($entity->primaryImage->path) : url('/image/no_photo.jpg') }}"
             alt="{{ $entity->name }}" />
     </a>
     <div class="px-3 flex flex-col sm:basis-full">

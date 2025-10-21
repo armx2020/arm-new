@@ -99,11 +99,11 @@ return [
 
         'mysql_dev' => [
             'driver' => 'mysql',
-            'host' => getenv('MYSQL_DEV_HOST') ?: env('MYSQL_DEV_HOST'),
-            'port' => getenv('MYSQL_DEV_PORT') ?: env('MYSQL_DEV_PORT', '3306'),
-            'database' => getenv('MYSQL_DEV_DATABASE') ?: env('MYSQL_DEV_DATABASE'),
-            'username' => getenv('MYSQL_DEV_USERNAME') ?: env('MYSQL_DEV_USERNAME'),
-            'password' => getenv('MYSQL_DEV_PASSWORD') ?: env('MYSQL_DEV_PASSWORD'),
+            'host' => env('MYSQL_DEV_HOST'),
+            'port' => env('MYSQL_DEV_PORT', '3306'),
+            'database' => env('MYSQL_DEV_DATABASE'),
+            'username' => env('MYSQL_DEV_USERNAME'),
+            'password' => env('MYSQL_DEV_PASSWORD'),
             'unix_socket' => '',
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
@@ -111,7 +111,11 @@ return [
             'prefix_indexes' => true,
             'strict' => false,
             'engine' => null,
-            'options' => [],
+            'options' => extension_loaded('pdo_mysql') ? [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                PDO::MYSQL_ATTR_SSL_CA => '/home/runner/.cloud-certs/root.crt',
+                PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false,
+            ] : [],
         ],
 
         'sqlsrv' => [

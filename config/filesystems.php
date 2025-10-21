@@ -56,6 +56,14 @@ return [
             'throw' => false,
         ],
 
+        'production' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public'),
+            'url' => env('PRODUCTION_STORAGE_URL', 'https://vsearmyne.ru/storage'),
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
     ],
 
     /*

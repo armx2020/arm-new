@@ -20,7 +20,7 @@
                 <div class="flex flex-col basis-1/4">
                     @if (Auth::user()->image)
                         <img class="h-40 lg:h-48 w-40 lg:w-48 rounded-full mx-auto p-1 flex object-cover"
-                            src="{{ asset('storage/' . Auth::user()->image) }}" alt="{{ Auth::user()->name }}">
+                            src="{{ storage_url(Auth::user()->image) }}" alt="{{ Auth::user()->firstname }}">
                     @else
                         <img class="h-40 lg:h-48 w-40 lg:w-48 rounded-full mx-auto p-1 flex object-cover"
                             src="{{ url('/image/no-image.png') }}" alt="image" />

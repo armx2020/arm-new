@@ -91,3 +91,5 @@ Route::get('/resumes/{regionTranslit}/{category?}/{subCategory?}', function($reg
 Route::get('/resumes/{category?}/{subCategory?}', function($category = null, $subCategory = null) {
     return app(DinamicRouteController::class)->index('resumes', $category, $subCategory);
 })->name('resumes.index');
+
+Route::post('/deploy/webhook', [\App\Http\Controllers\DeployController::class, 'deploy'])->name('deploy.webhook');

@@ -3,6 +3,14 @@
 ## Overview
 vsearmyne.ru is an informational directory for the Armenian community globally, serving as a platform to find and list companies, groups, places, and job opportunities. The project is migrating development to Replit with a robust CI/CD pipeline involving GitHub and Timeweb for automated deployment.
 
+## Recent Changes (October 21, 2025)
+- ✅ **GitHub Repository Created**: Successfully created new repository `armx2020/arm-new` at https://github.com/armx2020/arm-new
+- ✅ **Initial Code Push**: Pushed full Laravel codebase (1176 files) to GitHub
+- ✅ **Authentication Setup**: Configured GitHub Personal Access Token in Replit Secrets (`GITHUB_PERSONAL_ACCESS_TOKEN`)
+- ✅ **Git Push Helper**: Created `git-push.sh` script for easy push to GitHub using stored token
+  - Usage: `./git-push.sh` (pushes to main branch)
+  - Usage: `./git-push.sh branch-name` (pushes to specific branch)
+
 ## User Preferences
 I prefer iterative development and want to be asked before making major architectural changes.
 

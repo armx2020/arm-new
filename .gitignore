@@ -36,3 +36,6 @@ replit.nix
 *.crt
 *.pem
 ~/.cloud-certs/
+
+# Git credentials helper (uses Replit secrets)
+.git-credentials-helper.sh

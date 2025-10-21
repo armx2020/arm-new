@@ -25,16 +25,16 @@
                         wire:ignore>
                         @if ($logo)
                             <img class="w-24 max-h-24 object-cover rounded-lg absolute z-10 top-3 left-3"
-                                src="{{ asset('storage/' . $logo->path) }}">
+                                src="{{ storage_url($logo->path) }}">
                         @endif
                         <div class="swiper mySwiper2 w-full h-full">
                             <div class="swiper-wrapper w-full h-full">
                                 @foreach ($images as $image)
                                     <div class="swiper-slide flex w-full h-full">
-                                        <a data-fancybox="gallery" href="{{ asset('storage/' . $image->path) }}"
+                                        <a data-fancybox="gallery" href="{{ storage_url($image->path) }}"
                                             class="w-full h-full">
                                             <img class="w-full h-full object-cover rounded-lg"
-                                                src="{{ asset('storage/' . $image->path) }}">
+                                                src="{{ storage_url($image->path) }}">
                                         </a>
                                     </div>
                                 @endforeach
@@ -101,7 +101,7 @@
                                     @foreach ($images as $image)
                                         <div class="swiper-slide">
                                             <img class="w-full h-14 ms:h-16 ls:h-20 sm:h-16 md:h-20 object-cover rounded-lg"
-                                                src="{{ asset('storage/' . $image->path) }}">
+                                                src="{{ storage_url($image->path) }}">
                                         </div>
                                     @endforeach
                                 </div>
@@ -116,7 +116,7 @@
                                 @foreach ($images as $image)
                                     <div class="swiper-slide">
                                         <img class="w-full h-14 ms:h-16 ls:h-20 sm:h-16 md:h-20 object-cover rounded-lg"
-                                            src="{{ asset('storage/' . $image->path) }}">
+                                            src="{{ storage_url($image->path) }}">
                                     </div>
                                 @endforeach
                             </div>

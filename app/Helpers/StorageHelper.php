@@ -16,7 +16,7 @@ class StorageHelper
             return Storage::disk('s3')->url($path);
         }
 
-        if (app()->environment('local') && env('USE_PRODUCTION_IMAGES', true)) {
+        if (env('USE_PRODUCTION_IMAGES', false)) {
             return env('PRODUCTION_STORAGE_URL', 'https://vsearmyne.ru/storage') . '/' . $path;
         }
 

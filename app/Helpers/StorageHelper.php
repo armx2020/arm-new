@@ -4,6 +4,10 @@ namespace App\Helpers;
 
 use Illuminate\Support\Facades\Storage;
 
+/**
+ * Helper для работы с изображениями
+ * Поддерживает загрузку с S3, production сервера или локально
+ */
 class StorageHelper
 {
     public static function imageUrl(?string $path): string

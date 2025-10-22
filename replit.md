@@ -3,18 +3,18 @@
 ## Overview
 vsearmyne.ru is an informational directory for the Armenian community globally, serving as a platform to find and list companies, groups, places, and job opportunities. The project is migrating development to Replit with a robust CI/CD pipeline involving GitHub and Timeweb for automated deployment.
 
-## Recent Changes (October 21, 2025)
+## Recent Changes (October 22, 2025)
 - ✅ **GitHub Repository Created**: Successfully created new repository `armx2020/arm-new` at https://github.com/armx2020/arm-new
 - ✅ **Initial Code Push**: Pushed full Laravel codebase (1176 files) to GitHub
 - ✅ **GitHub Integration Configured**: Set up official Replit GitHub integration for OAuth-based authentication
   - Git UI now fully functional for commits and pushes
   - Alternative: GitHub Personal Access Token stored in Replit Secrets (`GITHUB_PERSONAL_ACCESS_TOKEN`)
-- ✅ **Git Push Helper**: Created `git-push.sh` script for easy push to GitHub using stored token
-  - Usage: `./git-push.sh` (pushes to main branch)
-  - Usage: `./git-push.sh branch-name` (pushes to specific branch)
-- ✅ **Two Push Methods Available**:
-  - **Git UI**: Use the Git tab in Replit (like other projects)
-  - **Shell Script**: Run `./git-push.sh` in terminal
+- ✅ **Timeweb Laravel App Staging**: Successfully deployed to https://armx2020-arm-new-d635.twc1.net/
+  - Auto-deploy configured: push to GitHub automatically rebuilds application
+  - Connected to MySQL staging database `default_db` on 46.229.214.78
+  - Images loaded from production server (https://vsearmyane.ru/storage)
+  - Environment variables configured: APP_URL, ASSET_URL, FORCE_HTTPS, USE_PRODUCTION_IMAGES
+- ✅ **StorageHelper Fixed**: Modified to load production images in any environment when USE_PRODUCTION_IMAGES=true
 
 ## User Preferences
 I prefer iterative development and want to be asked before making major architectural changes.

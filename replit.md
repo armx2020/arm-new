@@ -15,6 +15,11 @@ vsearmyne.ru is an informational directory for the Armenian community globally, 
   - Images loaded from production server (https://vsearmyane.ru/storage)
   - Environment variables configured: APP_URL, ASSET_URL, FORCE_HTTPS, USE_PRODUCTION_IMAGES
 - ✅ **StorageHelper Fixed**: Modified to load production images in any environment when USE_PRODUCTION_IMAGES=true
+- ✅ **MySQL Dev Connection in Replit**: Successfully configured connection to Timeweb MySQL database (armbase-2) from Replit
+  - Database user: `gen_user2` with proper credentials
+  - Replit IP (35.185.248.192) whitelisted in Timeweb firewall
+  - Connection working via both .env file and Replit Secrets
+  - Application now loads real data from staging database in development environment
 
 ## User Preferences
 I prefer iterative development and want to be asked before making major architectural changes.

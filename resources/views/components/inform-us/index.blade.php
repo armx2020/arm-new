@@ -2,7 +2,7 @@
     <div class="bg-[#dbe6fb] rounded-xl row-span-1">
         <div class="flex flex-col lg:flex-row">
             <div class="flex flex-col text-left basis-2/3 lg:basis-1/2 p-5 xl:p-8">
-                <div class="my-1 lg:my-2 text-md md:text-lg lg:text-2xl font-extrabold uppercase">Добавить информацию
+                <div class="my-1 lg:my-2 text-md md:text-lg lg:text-2xl font-extrabold uppercase">Добавить информацию.
                 </div>
                 <div class="my-1 text-sm md:text-md lg:text-lg xl:text-xl font-normal">
                     Добавить услуги, сообщить о проблеме или просто написать нам</div>

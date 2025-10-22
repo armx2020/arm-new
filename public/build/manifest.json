@@ -1,0 +1,35 @@
+{
+  "public/next.png": {
+    "file": "assets/next-aec51367.png",
+    "src": "public/next.png"
+  },
+  "public/prev.png": {
+    "file": "assets/prev-9f040af4.png",
+    "src": "public/prev.png"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-66b1743d.css",
+    "isEntry": true,
+    "src": "resources/css/app.css"
+  },
+  "resources/css/select.css": {
+    "file": "assets/select-ad45dee1.css",
+    "isEntry": true,
+    "src": "resources/css/select.css"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-1b7dd379.js",
+    "isEntry": true,
+    "src": "resources/js/app.js"
+  },
+  "resources/js/mask_phone.js": {
+    "file": "assets/mask_phone-6e86f59e.js",
+    "isEntry": true,
+    "src": "resources/js/mask_phone.js"
+  },
+  "resources/js/scripts.js": {
+    "file": "assets/scripts-bdcb73ca.js",
+    "isEntry": true,
+    "src": "resources/js/scripts.js"
+  }
+}

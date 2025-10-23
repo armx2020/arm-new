@@ -23,6 +23,15 @@ vsearmyne.ru is an informational directory for the Armenian community globally, 
   - Application now loads real data from staging database in development environment
 - ✅ **Admin UX Improvement**: Added clickable link to entity card from appeal edit form
   - Entity name and ID in appeals now link directly to entity edit page for easier navigation
+- ✅ **S3 Cloud Storage Migration Completed** (October 23, 2025):
+  - Migrated 4.64 GB (20,781 files, 27,114 total objects) from production server to Timeweb S3
+  - S3 Bucket: `46885a37-67c8e067-4002-4498-a06b-cb98be807ea3`
+  - S3 Endpoint: `https://s3.timeweb.cloud`
+  - Laravel configured with S3 as default filesystem disk
+  - StorageHelper updated to handle S3 paths with `storage/app/public/` prefix
+  - Migration performed using S3 Browser (GUI tool) after downloading via FileZilla
+  - Credentials stored in Replit Secrets: `S3_ACCESS_KEY`, `S3_SECRET_KEY`
+  - Deleted intermediate server "Копия arm" (78.40.219.141) - no longer needed
 
 ## User Preferences
 I prefer iterative development and want to be asked before making major architectural changes.
@@ -36,7 +45,7 @@ The project is built on Laravel 10 (PHP 8.2) for the backend, utilizing Blade, V
     1.  **PostgreSQL (Development):** Local to Replit for development, with `FULLTEXT` indexes adapted for PostgreSQL.
     2.  **MySQL Dev (armbase-2):** A full-access copy of the production database hosted on Timeweb Cloud (46.229.214.78) for primary development, including SSL.
     3.  **MySQL Production:** A read-only connection to the live production database for viewing current data.
-- **Image Handling:** In development, all images are sourced from the production server via a `storage_url()` helper. Future plans include migrating images to Timeweb S3 with CDN integration for unified storage and faster delivery.
+- **Image Handling:** All images are now stored in Timeweb S3 cloud storage (4.64 GB, 20,781 files). The `StorageHelper` automatically generates S3 URLs for all images. Files are stored with `storage/app/public/` prefix in S3, while database paths remain without prefix (e.g., `uploaded/file.jpg`). Future plans include CDN integration for faster delivery.
 - **Automated Deployment:** A CI/CD pipeline is set up: changes pushed from Replit to GitHub trigger a webhook to Timeweb, which executes a `deploy.sh` script to update the production environment. This includes `git pull`, `composer install`, cache clearing, `php artisan migrate`, configuration caching, and permission setting.
 - **Security:** The deployment webhook is secured with a shared secret and GitHub's `X-Hub-Signature-256` for request validation.
 - **Environment Configuration:** `bootstrap/set-replit-url.php` automatically configures `APP_URL` for Replit. `TrustProxies` middleware is configured for correct operation with Replit's proxy.
@@ -61,4 +70,4 @@ The project is built on Laravel 10 (PHP 8.2) for the backend, utilizing Blade, V
 -   **NPM:** JavaScript package management.
 -   **Tailwind CSS:** Utility-first CSS framework.
 -   **Alpine.js:** Lightweight JavaScript framework for reactive interfaces.
--   **Timeweb S3 (Planned):** Cloud storage for media assets.
+-   **Timeweb S3:** Cloud storage for media assets (4.64 GB, 20,781 image files).

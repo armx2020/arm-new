@@ -19,8 +19,7 @@ class StorageHelper
         $defaultDisk = config('filesystems.default', 'local');
         
         if ($defaultDisk === 's3') {
-            $s3Path = 'storage/app/public/' . $path;
-            return Storage::disk('s3')->url($s3Path);
+            return Storage::disk('s3')->url($path);
         }
 
         if (env('USE_PRODUCTION_IMAGES', false)) {

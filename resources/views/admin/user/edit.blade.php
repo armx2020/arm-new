@@ -29,7 +29,7 @@
                                                 src="{{ url('/image/no-image.png') }}" alt="{{ $user->firstname }} avatar">
                                         @else
                                             <img class="h-20 w-20 rounded-full m-4 object-cover" id="img"
-                                                src="{{ asset('storage/' . $user->image) }}"
+                                                src="{{ storage_url($user->image) }}"
                                                 alt="{{ $user->firstname }} avatar">
                                         @endif
                                         <button type="button" id="remove_image" class="absolute top-2 right-2"
@@ -276,7 +276,7 @@
 
                                                         @case('img')
                                                         @if(isset($entity->primaryImage->path))
-                                                            <img class="w-8 h-8 object-cover rounded-lg" src="{{ asset('storage/' . $entity->primaryImage->path) }}" alt="Image">
+                                                            <img class="w-8 h-8 object-cover rounded-lg" src="{{ storage_url($entity->primaryImage->path) }}" alt="Image">
                                                         @else
                                                             -
                                                         @endif

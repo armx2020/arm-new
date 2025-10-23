@@ -46,8 +46,12 @@
                                         @if ($appeal->entity_id)
                                             <div class="flex items-center mb-4">
                                                 <h5 class="text-lg leading-none text-gray-900">
-                                                    {{ $appeal->entity->name }}
-                                                    (id{{ $appeal->entity->id }})</h5>
+                                                    <a href="{{ route('admin.entity.edit', ['entity' => $appeal->entity->id]) }}" 
+                                                       class="text-blue-600 hover:text-blue-800 hover:underline">
+                                                        {{ $appeal->entity->name }}
+                                                        (id{{ $appeal->entity->id }})
+                                                    </a>
+                                                </h5>
                                             </div>
                                         @endif
 

@@ -147,19 +147,24 @@ class EntityController extends Controller
                     }
                     foreach ($request->file('images') as $sortId => $file) {
                         $sortId += ($lastImage + 1);
+                        
+                        // Process image locally first
+                        $img = Image::make($file)
+                            ->resize(400, null, function ($constraint) {
+                                $constraint->aspectRatio();
+                            });
+                        
+                        // Store to S3
                         $path = $file->store('uploaded', 'public');
+                        
+                        // Save processed image to S3
+                        Storage::disk('public')->put($path, (string) $img->encode());
 
                         $imageEntity = $entity->images()->create([
                             'path' => $path,
                             'sort_id' => $sortId,
                             'checked' => 0,
                         ]);
-
-                        Image::make('storage/' . $imageEntity->path)
-                            ->resize(400, null, function ($constraint) {
-                                $constraint->aspectRatio();
-                            })
-                            ->save();
                     }
                 }
             }

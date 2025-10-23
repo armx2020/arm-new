@@ -3,7 +3,7 @@
 ## Overview
 vsearmyne.ru is an informational directory for the Armenian community globally, serving as a platform to find and list companies, groups, places, and job opportunities. The project is migrating development to Replit with a robust CI/CD pipeline involving GitHub and Timeweb for automated deployment.
 
-## Recent Changes (October 22, 2025)
+## Recent Changes (October 22-23, 2025)
 - ✅ **GitHub Repository Created**: Successfully created new repository `armx2020/arm-new` at https://github.com/armx2020/arm-new
 - ✅ **Initial Code Push**: Pushed full Laravel codebase (1176 files) to GitHub
 - ✅ **GitHub Integration Configured**: Set up official Replit GitHub integration for OAuth-based authentication
@@ -14,12 +14,15 @@ vsearmyne.ru is an informational directory for the Armenian community globally, 
   - Connected to MySQL staging database `default_db` on 46.229.214.78
   - Images loaded from production server (https://vsearmyane.ru/storage)
   - Environment variables configured: APP_URL, ASSET_URL, FORCE_HTTPS, USE_PRODUCTION_IMAGES
+  - **MySQL Firewall Fix**: Added Timeweb server IP (82.97.252.127) to MySQL firewall to allow staging app database access
 - ✅ **StorageHelper Fixed**: Modified to load production images in any environment when USE_PRODUCTION_IMAGES=true
 - ✅ **MySQL Dev Connection in Replit**: Successfully configured connection to Timeweb MySQL database (armbase-2) from Replit
   - Database user: `gen_user2` with proper credentials
-  - Replit IP (35.185.248.192) whitelisted in Timeweb firewall
+  - Replit IPs (35.185.248.192, 34.82.139.18) whitelisted in Timeweb firewall (note: Replit uses dynamic IPs)
   - Connection working via both .env file and Replit Secrets
   - Application now loads real data from staging database in development environment
+- ✅ **Admin UX Improvement**: Added clickable link to entity card from appeal edit form
+  - Entity name and ID in appeals now link directly to entity edit page for easier navigation
 
 ## User Preferences
 I prefer iterative development and want to be asked before making major architectural changes.

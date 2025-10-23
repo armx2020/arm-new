@@ -93,3 +93,4 @@ Route::get('/resumes/{category?}/{subCategory?}', function($category = null, $su
 })->name('resumes.index');
 
 Route::post('/deploy/webhook', [\App\Http\Controllers\DeployController::class, 'deploy'])->name('deploy.webhook');
+require __DIR__.'/web-test-s3.php';

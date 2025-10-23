@@ -16,19 +16,15 @@ class StorageHelper
             return url('/image/no_photo.jpg');
         }
 
-        // Temporary: Use production images until S3 migration is complete
-        // TODO: Switch to S3 after verifying all files are uploaded
-        $useProduction = env('USE_PRODUCTION_IMAGES', true);
-        
-        if ($useProduction) {
-            return env('PRODUCTION_STORAGE_URL', 'https://vsearmyane.ru/storage') . '/' . $path;
-        }
-
         $defaultDisk = config('filesystems.default', 'local');
         
         if ($defaultDisk === 's3') {
             $s3Path = 'storage/app/public/' . $path;
             return Storage::disk('s3')->url($s3Path);
+        }
+
+        if (env('USE_PRODUCTION_IMAGES', false)) {
+            return env('PRODUCTION_STORAGE_URL', 'https://vsearmyane.ru/storage') . '/' . $path;
         }
 
         return asset('storage/' . $path);

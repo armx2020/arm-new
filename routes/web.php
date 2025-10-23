@@ -92,4 +92,8 @@ Route::get('/resumes/{category?}/{subCategory?}', function($category = null, $su
     return app(DinamicRouteController::class)->index('resumes', $category, $subCategory);
 })->name('resumes.index');
 
+Route::get('/test-s3-config', function() {
+    return view('test-s3');
+})->name('test.s3');
+
 Route::post('/deploy/webhook', [\App\Http\Controllers\DeployController::class, 'deploy'])->name('deploy.webhook');

@@ -43,14 +43,9 @@ class MigrateImagesToS3 extends Command
                 continue;
             }
 
-            if (Storage::disk('s3')->exists($image->path)) {
-                $stats['skipped']++;
-                continue;
-            }
+            $productionUrl = env('PRODUCTION_STORAGE_URL', 'https://vsearmyane.ru/storage') . '/' . $image->path;
 
             if (!$isDryRun) {
-                $productionUrl = env('PRODUCTION_STORAGE_URL', 'https://vsearmyane.ru/storage') . '/' . $image->path;
-                
                 try {
                     $response = Http::timeout(30)->get($productionUrl);
                     
@@ -59,13 +54,14 @@ class MigrateImagesToS3 extends Command
                         $stats['success']++;
                     } else {
                         $stats['failed']++;
-                        $this->error("\n❌ Failed to download: {$image->path}");
+                        $this->error("\n❌ Failed to download: {$image->path} (HTTP {$response->status()})");
                     }
                 } catch (\Exception $e) {
                     $stats['failed']++;
-                    $this->error("\n❌ Error processing {$image->path}: " . $e->getMessage());
+                    $this->error("\n❌ Error: {$image->path}: " . $e->getMessage());
                 }
             } else {
+                // Dry run - just show what would be processed
                 $stats['success']++;
             }
         }

@@ -46,13 +46,13 @@ return [
 
         's3' => [
             'driver' => 's3',
-            'key' => env('AWS_ACCESS_KEY_ID'),
-            'secret' => env('AWS_SECRET_ACCESS_KEY'),
+            'key' => env('S3_ACCESS_KEY') ?: env('AWS_ACCESS_KEY_ID'),
+            'secret' => env('S3_SECRET_KEY') ?: env('AWS_SECRET_ACCESS_KEY'),
             'region' => env('AWS_DEFAULT_REGION', 'ru-1'),
-            'bucket' => env('AWS_BUCKET'),
+            'bucket' => env('AWS_BUCKET', '46885a37-67c8e067-4002-4498-a06b-cb98be807ea3'),
             'url' => env('AWS_URL'),
             'endpoint' => env('AWS_ENDPOINT', 'https://s3.twcstorage.ru'),
-            'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', true),
+            'use_path_style_endpoint' => false,
             'throw' => false,
             'visibility' => 'public',
         ],

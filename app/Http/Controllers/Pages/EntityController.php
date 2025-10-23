@@ -148,17 +148,7 @@ class EntityController extends Controller
                     foreach ($request->file('images') as $sortId => $file) {
                         $sortId += ($lastImage + 1);
                         
-                        // Process image locally first
-                        $img = Image::make($file)
-                            ->resize(400, null, function ($constraint) {
-                                $constraint->aspectRatio();
-                            });
-                        
-                        // Store to S3
-                        $path = $file->store('uploaded', 'public');
-                        
-                        // Save processed image to S3
-                        Storage::disk('public')->put($path, (string) $img->encode());
+                        $path = \App\Helpers\ImageUploadHelper::processAndStore($file, 'uploaded', 400, 'public');
 
                         $imageEntity = $entity->images()->create([
                             'path' => $path,

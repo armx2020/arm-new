@@ -27,11 +27,14 @@ vsearmyne.ru is an informational directory for the Armenian community globally, 
   - Migrated 4.64 GB (20,781 files, 27,114 total objects) from production server to Timeweb S3
   - S3 Bucket: `46885a37-67c8e067-4002-4498-a06b-cb98be807ea3`
   - S3 Endpoint: `https://s3.timeweb.cloud`
-  - Laravel configured with S3 as default filesystem disk
+  - Laravel configured with S3 as default filesystem disk (`FILESYSTEM_DISK=s3`)
   - StorageHelper updated to handle S3 paths with `storage/app/public/` prefix
   - Migration performed using S3 Browser (GUI tool) after downloading via FileZilla
   - Credentials stored in Replit Secrets: `S3_ACCESS_KEY`, `S3_SECRET_KEY`
   - Deleted intermediate server "Копия arm" (78.40.219.141) - no longer needed
+  - Created ImageUploadHelper for proper image processing and S3 upload
+  - Fixed image URLs in profile and admin views to use storage_url() helper
+  - Connected Replit dev to MySQL database (IP: 34.83.81.116 added to whitelist)
 
 ## User Preferences
 I prefer iterative development and want to be asked before making major architectural changes.

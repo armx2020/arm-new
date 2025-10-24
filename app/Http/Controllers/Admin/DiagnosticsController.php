@@ -17,10 +17,9 @@ class DiagnosticsController extends Controller
 {
     public function index()
     {
-        // Проверка прав доступа - только для пользователя +79782205008
-        $user = auth()->user();
-        if ($user->phone !== '+79782205008') {
-            abort(403, 'Доступ запрещен');
+        // Проверка прав доступа - только для администраторов
+        if (!auth()->user() || !auth()->user()->is_admin) {
+            abort(403, 'Доступ запрещен. Только для администраторов.');
         }
 
         // Сбор данных о проекте

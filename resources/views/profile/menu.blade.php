@@ -70,6 +70,9 @@
                 <hr class="my-3">
                 <li class="p-2 hover:text-gray-500 rounded-md"><a href="{{ route('admin.dashboard') }}">Админ панель</a>
                 </li>
+                <li class="p-2 hover:text-gray-500 rounded-md @if (request()->routeIs('admin.diagnostics')) bg-gray-100 @endif">
+                    <a href="{{ route('admin.diagnostics') }}" class="text-red-600 font-semibold">ДИАГНОСТИКА</a>
+                </li>
             @endrole
 
         </ul>

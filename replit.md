@@ -46,6 +46,7 @@ vsearmyne.ru is an informational directory for the Armenian community globally, 
   - **Development (Replit)**: Uses production proxy → `https://vsearmyane.ru/storage/uploaded/file.jpg`
   - **Production (Timeweb)**: Uses local storage or S3 (depending on server config)
 - ✅ **Production**: Files stored locally on server at `/storage/app/public`, served via nginx
+- ✅ **Admin Fix**: Fixed `storage_url()` helper to work correctly in both development and staging
 - ⚠️ **Future**: To use S3 directly, need to configure bucket public access policy on Timeweb
 
 ## Recent Changes (October 22-24, 2025 continued)

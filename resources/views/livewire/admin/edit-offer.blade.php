@@ -145,7 +145,7 @@
 
                                             <img class="h-20 w-20 rounded-lg m-4 object-cover" id="img_3"
                                                 alt="image"
-                                                @if (empty($images[2])) src="{{ url('/image/no-image.png') }}" @else src="{{ asset('storage/' . $images[2]->path) }}" @endif>
+                                                @if (empty($images[2])) src="{{ url('/image/no-image.png') }}" @else src="{{ \App\Helpers\StorageHelper::imageUrl($images[2]->path) }}" @endif>
 
                                             <button type="button" id="remove_image_3" class="absolute top-2 right-2"
                                                 @if (isset($images[2]) && empty($images[3])) style="display: block;" @else style="display: none;" @endif>
@@ -177,7 +177,7 @@
 
                                             <img class="h-20 w-20 rounded-lg m-4 object-cover" id="img_4"
                                                 alt="image"
-                                                @if (empty($images[3])) src="{{ url('/image/no-image.png') }}" @else src="{{ asset('storage/' . $images[3]->path) }}" @endif>
+                                                @if (empty($images[3])) src="{{ url('/image/no-image.png') }}" @else src="{{ \App\Helpers\StorageHelper::imageUrl($images[3]->path) }}" @endif>
 
                                             <button type="button" id="remove_image_4" class="absolute top-2 right-2"
                                                 @if (isset($images[3])) style="display: block;" @else style="display: none;" @endif>

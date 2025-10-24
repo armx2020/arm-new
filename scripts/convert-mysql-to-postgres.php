@@ -35,19 +35,42 @@ if (!$output) {
 
 echo "🔧 Конвертируем MySQL → PostgreSQL...\n";
 
-// Пишем заголовок
+// Пишем заголовок (БЕЗ session_replication_role - Neon не позволяет)
 fwrite($output, "-- Converted from MySQL to PostgreSQL\n");
 fwrite($output, "-- Generated: " . date('Y-m-d H:i:s') . "\n\n");
-fwrite($output, "SET session_replication_role = 'replica';\n\n");
 
 $lineCount = 0;
 $processedCount = 0;
+$skippedCount = 0;
 
 while (($line = fgets($input)) !== false) {
     $lineCount++;
     
-    // Пропускаем комментарии и пустые строки
-    if (preg_match('/^--/', $line) || trim($line) === '') {
+    // Пропускаем комментарии
+    if (preg_match('/^--/', $line)) {
+        continue;
+    }
+    
+    // Пропускаем пустые строки
+    if (trim($line) === '') {
+        continue;
+    }
+    
+    // Пропускаем MySQL-специфичные команды
+    if (preg_match('/^\/\*!/', $line)) {
+        $skippedCount++;
+        continue;
+    }
+    
+    // Пропускаем LOCK/UNLOCK TABLES
+    if (preg_match('/^(LOCK|UNLOCK) TABLES/', $line)) {
+        $skippedCount++;
+        continue;
+    }
+    
+    // Пропускаем SET команды
+    if (preg_match('/^SET /', $line)) {
+        $skippedCount++;
         continue;
     }
     
@@ -82,9 +105,6 @@ while (($line = fgets($input)) !== false) {
     }
 }
 
-// Футер
-fwrite($output, "\nSET session_replication_role = 'origin';\n");
-
 fclose($input);
 fclose($output);
 
@@ -92,6 +112,7 @@ $sizeKb = round(filesize($outputFile) / 1024, 2);
 echo "\n✅ Конвертация завершена!\n";
 echo "   Прочитано строк: " . number_format($lineCount) . "\n";
 echo "   Обработано строк: " . number_format($processedCount) . "\n";
+echo "   Пропущено строк: " . number_format($skippedCount) . "\n";
 echo "   Размер выходного файла: {$sizeKb} KB\n";
 echo "📄 Файл сохранен: $outputFile\n";
 

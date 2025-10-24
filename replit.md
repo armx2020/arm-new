@@ -50,11 +50,13 @@ vsearmyne.ru is an informational directory for the Armenian community globally, 
   - **Development (Replit)**: Uses production proxy → `https://vsearmyane.ru/storage/uploaded/file.jpg`
   - **Staging/Production (Timeweb)**: Uses S3 storage with correct path prefix → S3 URL generation works
 - ✅ **Public Pages Working**: All public-facing pages (show.blade.php) load images from S3 correctly
-- ✅ **Edit Pages Fixed** (October 24, 2025): Updated 6 edit.blade.php files to use S3 URLs:
-  - `company/edit.blade.php`, `group/edit.blade.php`, `place/edit.blade.php`, `offer/edit.blade.php`
-  - `job/edit.blade.php`, `community/edit.blade.php`
-  - **Fix**: Replaced JavaScript hardcode `'/storage/' + image.path` with backend-generated S3 URLs via StorageHelper
-  - **Result**: Image previews now load correctly in admin/profile edit forms from S3
+- ✅ **Edit Pages Fixed** (October 24, 2025): Updated 10 view files to use S3 URLs via StorageHelper:
+  - Profile pages: `company/edit.blade.php`, `group/edit.blade.php`, `place/edit.blade.php`, `offer/edit.blade.php`, `job/edit.blade.php`, `community/edit.blade.php`
+  - Admin pages: `admin/appeal/edit.blade.php` (4 images), `admin/dashboard.blade.php` (2 images), `admin/project/edit.blade.php` (1 image)
+  - **Fix 1**: Replaced JavaScript hardcode `'/storage/' + image.path` with backend-generated S3 URLs via StorageHelper
+  - **Fix 2**: Replaced all `asset('storage/')` and `url('/storage/')` with `\App\Helpers\StorageHelper::imageUrl()`
+  - **FORCE_HTTPS**: Added `FORCE_HTTPS=true` to .env to force HTTPS URLs (fixes Mixed Content errors)
+  - **Result**: All images (existing and new) load correctly from S3 with HTTPS URLs
 - ✅ **All Action Classes Fixed - S3 Upload Complete** (October 24, 2025): All 9 Action classes now upload new images to S3:
   - `EntityAction.php`, `CompanyAction.php`, `GroupAction.php`, `PlaceAction.php`
   - `JobAction.php`, `OfferAction.php`, `CommunityAction.php`, `ProjectAction.php`

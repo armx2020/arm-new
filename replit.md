@@ -3,7 +3,7 @@
 ## Overview
 vsearmyne.ru is an informational directory for the Armenian community globally, serving as a platform to find and list companies, groups, places, and job opportunities. The project is migrating development to Replit with a robust CI/CD pipeline involving GitHub and Timeweb for automated deployment.
 
-## Recent Changes (October 22-23, 2025)
+## Recent Changes (October 22-24, 2025)
 - ✅ **GitHub Repository Created**: Successfully created new repository `armx2020/arm-new` at https://github.com/armx2020/arm-new
 - ✅ **Initial Code Push**: Pushed full Laravel codebase (1176 files) to GitHub
 - ✅ **GitHub Integration Configured**: Set up official Replit GitHub integration for OAuth-based authentication
@@ -23,6 +23,17 @@ vsearmyne.ru is an informational directory for the Armenian community globally, 
   - Application now loads real data from staging database in development environment
 - ✅ **Admin UX Improvement**: Added clickable link to entity card from appeal edit form
   - Entity name and ID in appeals now link directly to entity edit page for easier navigation
+- ✅ **Production Server Crisis Resolved** (October 24, 2025):
+  - Fixed 504 Gateway Timeout on vsearmyane.ru
+  - Increased PHP-FPM workers from 5 to 20 (`pm.max_children`)
+  - Closed SSH port 22 to public (0.0.0.0/0) - stopped brute-force attacks
+  - Recommended Fail2Ban installation for ongoing security
+- ✅ **Staging Photo Gallery Fixed** (October 24, 2025):
+  - Installed Node.js 20 and npm on Timeweb staging server
+  - Compiled Vite assets (Swiper.js for photo galleries)
+  - Added `URL::forceScheme('https')` in AppServiceProvider to force HTTPS
+  - Fixed Mixed Content errors blocking JavaScript
+  - Photo galleries now display correctly with horizontal thumbnails and navigation
 - ✅ **S3 Cloud Storage Migration Completed** (October 23-24, 2025):
   - Migrated 4.64 GB (20,781 files, 27,114 total objects) from production server to Timeweb S3
   - S3 Bucket: `46885a37-67c8e067-4002-4498-a06b-cb98be807ea3`

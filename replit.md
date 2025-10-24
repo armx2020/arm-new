@@ -32,11 +32,11 @@ vsearmyne.ru is an informational directory for the Armenian community globally, 
   - **Status**: Migration scripts ready but not yet executed (process stopped October 24, 2025)
   - **Current DB**: System continues using MySQL (Timeweb armbase-2) for development
   
-### **Migration Strategy**:
-1. **Development**: Replit uses PostgreSQL (Neon) for local development
-2. **Staging**: Timeweb staging currently uses MySQL, plan to migrate to PostgreSQL
-3. **Production**: Will transition Timeweb staging → production by moving vsearmyane.ru domain
-4. **Goal**: Unified PostgreSQL across all environments (dev, staging, production)
+### **Database Strategy (Updated October 24, 2025)**:
+- **Decision**: Continue using MySQL across all environments
+- **Reason**: PostgreSQL migration attempts were unsuccessful due to data type incompatibilities
+- **Current**: All environments use MySQL (Timeweb armbase-2 for development, default_db for staging/production)
+- **Code**: Fully compatible with both MySQL and PostgreSQL (ready for future migration if needed)
 
 ## Recent Changes (October 22-24, 2025 continued)
 - ✅ **GitHub Repository Created**: Successfully created new repository `armx2020/arm-new` at https://github.com/armx2020/arm-new

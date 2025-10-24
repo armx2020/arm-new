@@ -13,10 +13,14 @@
     <link type="image/png" sizes="96x96" rel="icon" href="{{ url('image/favicon-96x96.png') }}">
     <link type="image/png" sizes="120x120" rel="icon" href="{{ url('image/favicon-120x120.png') }}">
 
-    <!-- Fonts -->
+    <!-- Fonts with optimized loading -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+    <!-- Preload critical scripts -->
+    <link rel="preload" href="{{ url('/jquery-3.7.0.min.js') }}" as="script">
+    <link rel="preload" href="{{ url('/select2.min.js') }}" as="script">
+    
     <script src="{{ url('/jquery-3.7.0.min.js') }}"></script>
     <script src="{{ url('/select2.min.js') }}"></script>
     <script src="{{ url('/jquery.maskedinput.min.js') }}"></script>

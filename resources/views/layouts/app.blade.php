@@ -25,8 +25,8 @@
     <!-- Preload critical resources -->
     <link rel="preload" href="{{ url('/jquery-3.7.0.min.js') }}" as="script">
     
-    <!-- Scripts with defer for non-blocking load -->
-    <script src="{{ url('/jquery-3.7.0.min.js') }}" defer></script>
+    <!-- Scripts -->
+    <script src="{{ url('/jquery-3.7.0.min.js') }}"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @yield('scripts')
 

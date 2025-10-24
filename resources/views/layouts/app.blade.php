@@ -15,15 +15,18 @@
     <link type="image/png" sizes="96x96" rel="icon" href="{{ url('image/favicon-96x96.png') }}">
     <link type="image/png" sizes="120x120" rel="icon" href="{{ url('image/favicon-120x120.png') }}">
 
-    <!-- Fonts -->
+    <!-- Fonts with optimized loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;800&display=swap" rel="stylesheet">
 
-    <!-- Scripts -->
-    <script src="{{ url('/jquery-3.7.0.min.js') }}"></script>
+    <!-- Preload critical resources -->
+    <link rel="preload" href="{{ url('/jquery-3.7.0.min.js') }}" as="script">
+    
+    <!-- Scripts with defer for non-blocking load -->
+    <script src="{{ url('/jquery-3.7.0.min.js') }}" defer></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @yield('scripts')
 

@@ -20,6 +20,12 @@ return [
             'sub' => []
         ],
         [
+            'name' => 'Диагностика',
+            'route' => 'admin.diagnostics',
+            'routeIs' => 'admin.diagnostics',
+            'sub' => []
+        ],
+        [
             'name' => 'Пользователи',
             'route' => 'admin.user.index',
             'routeIs' => 'admin.user.*',

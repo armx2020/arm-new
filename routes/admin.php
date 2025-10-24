@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AppealController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\DiagnosticsController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CategoryEntityController;
 use App\Http\Controllers\Admin\EntityController;
@@ -25,6 +26,8 @@ Route::name('admin.')->prefix('admin')->group(function () {
         ]);
 
         Route::group(['middleware' => ['role:super-admin']], function () {
+            Route::get('diagnostics', [DiagnosticsController::class, 'index'])->name('diagnostics');
+            
             Route::resource('user', UserController::class)->except([
                 'show'
             ]);

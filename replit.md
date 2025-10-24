@@ -34,6 +34,12 @@ vsearmyne.ru is an informational directory for the Armenian community globally, 
   - Added `URL::forceScheme('https')` in AppServiceProvider to force HTTPS
   - Fixed Mixed Content errors blocking JavaScript
   - Photo galleries now display correctly with horizontal thumbnails and navigation
+- ✅ **Admin Diagnostics Page Added** (October 24, 2025):
+  - Created comprehensive diagnostics page at `/admin/diagnostics`
+  - Access restricted to super-admin user +79782205008
+  - Displays project structure, database status, S3 status, system info, and statistics
+  - Shows deployment flow diagram and real-time system metrics
+  - Added to admin navigation menu for easy access
 - ✅ **S3 Cloud Storage Migration Completed** (October 23-24, 2025):
   - Migrated 4.64 GB (20,781 files, 27,114 total objects) from production server to Timeweb S3
   - S3 Bucket: `46885a37-67c8e067-4002-4498-a06b-cb98be807ea3`

@@ -20,7 +20,7 @@ class StorageHelper
             return url('/image/no_photo.jpg');
         }
 
-        // Для Replit используем production proxy т.к. Timeweb блокирует прямые S3 запросы
+        // Replit блокирует HTTPS подключения к Timeweb S3 -> используем production proxy
         if (config('app.env') === 'local' && env('REPL_ID')) {
             return env('PRODUCTION_STORAGE_URL', 'https://vsearmyane.ru/storage') . '/' . $path;
         }
@@ -28,11 +28,10 @@ class StorageHelper
         $defaultDisk = config('filesystems.default', 'local');
         
         if ($defaultDisk === 's3') {
-            // Для staging/production используем S3 напрямую
+            // Staging/Production используют S3 напрямую
             try {
                 return Storage::disk('s3')->url($path);
             } catch (\Exception $e) {
-                // Fallback на локальное хранилище
                 return asset('storage/' . $path);
             }
         }

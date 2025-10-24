@@ -41,3 +41,6 @@ replit.nix
 
 # User uploaded files and screenshots
 attached_assets/
+
+# Migration scripts with credentials
+migrate_ftp_to_s3.php

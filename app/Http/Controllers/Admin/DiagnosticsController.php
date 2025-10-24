@@ -17,9 +17,9 @@ class DiagnosticsController extends Controller
 {
     public function index()
     {
-        // Проверка прав доступа - только для администраторов
-        if (!auth()->check() || !auth()->user()->hasRole(['super-admin', 'moderator'])) {
-            abort(403, 'Доступ запрещен. Только для администраторов.');
+        // Доступ только в development окружении (Replit)
+        if (!app()->environment(['local', 'development'])) {
+            abort(404, 'Страница доступна только в development окружении');
         }
 
         // Сбор данных о проекте

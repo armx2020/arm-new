@@ -67,6 +67,15 @@
                     @endguest
                 </li>
 
+                 @if(app()->environment(['local', 'development']))
+                    <li class="mb-4 mx-4">
+                        <a href="{{ route('admin.diagnostics') }}" 
+                           class="block bg-gradient-to-r from-red-500 to-orange-500 text-white font-bold px-4 py-3 rounded-lg shadow-lg text-center">
+                            🔧 ДИАГНОСТИКА (DEV ONLY)
+                        </a>
+                    </li>
+                @endif
+                
                  @foreach ($headerMenu as $item)
                     <li class="mb-2 pl-4">
                         <a href="{{ $item['url'] }}"
@@ -119,6 +128,16 @@
             @else
                 <a class="" href="{{ route('home') }}">
                     <img src="{{ url('/image/logo.png') }}" class="w-30 h-10" alt="logo" />
+                </a>
+            @endif
+            
+            @if(app()->environment(['local', 'development']))
+                <a href="{{ route('admin.diagnostics') }}" 
+                   class="ml-4 bg-gradient-to-r from-red-500 to-orange-500 text-white font-bold px-4 py-2 rounded-lg shadow-lg hover:from-red-600 hover:to-orange-600 transform hover:scale-105 transition-all duration-200 flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    🔧 ДИАГНОСТИКА
                 </a>
             @endif
         </div>

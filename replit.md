@@ -23,6 +23,14 @@ vsearmyne.ru is an informational directory for the Armenian community globally, 
   - `GroupAction.php`, `PlaceAction.php`, `JobAction.php`, `ProjectAction.php`
   - `EntityAction.php`, `CommunityAction.php`, `OfferAction.php`
   - Pattern: Replace `findCityByCoordinates()` and `findRegionByCoordinates()` with `GeoHelper` calls
+- ✅ **Migration Scripts Created** (`scripts/` directory):
+  - `migrate-mysql-to-postgres.sh`: Main orchestration script for safe data migration
+  - `convert-mysql-to-postgres.php`: Converts MySQL dump to PostgreSQL-compatible format
+  - `update-sequences.php`: Updates auto-increment sequences after import
+  - `verify-migration.php`: Validates data integrity and foreign key relationships
+  - Safely migrates from MySQL (Timeweb armbase-2) → PostgreSQL (Replit Neon)
+  - Preserves all ID values and foreign key relationships
+  - Full documentation in `scripts/README.md`
   
 ### **Migration Strategy**:
 1. **Development**: Replit uses PostgreSQL (Neon) for local development

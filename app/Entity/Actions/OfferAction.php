@@ -77,18 +77,18 @@ class OfferAction
 
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $sortId => $file) {
-                $path = $file->store('uploaded', 'public');
+                $image = Image::make($file);
+                $image->resize(400, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+                
+                $filename = 'uploaded/' . uniqid() . '.' . $file->getClientOriginalExtension();
+                Storage::put($filename, (string) $image->encode());
 
-                $imageOffer = $offer->images()->create([
-                    'path' => $path,
+                $offer->images()->create([
+                    'path' => $filename,
                     'sort_id' => $sortId,
                 ]);
-
-                Image::make('storage/' . $imageOffer->path)
-                    ->resize(400, null, function ($constraint) {
-                        $constraint->aspectRatio();
-                    })
-                    ->save();
             }
         }
 
@@ -172,7 +172,7 @@ class OfferAction
             $images = $offer->images()->whereIn('id', $idsToDelete)->get();
             foreach ($images as $image) {
                 if ($image->path) {
-                    Storage::delete('public/' . $image->path);
+                    Storage::delete( $image->path);
                 }
             }
             $offer->images()->whereIn('id', $idsToDelete)->delete();
@@ -187,18 +187,18 @@ class OfferAction
             if (str_starts_with($imageId, 'new_')) {
                 $file = $request->file("images.$index.file");
                 if ($file) {
-                    $path = $file->store('uploaded', 'public');
+                    $image = Image::make($file);
+                    $image->resize(400, null, function($constraint){
+                        $constraint->aspectRatio();
+                    });
+                    
+                    $filename = 'uploaded/' . uniqid() . '.' . $file->getClientOriginalExtension();
+                    Storage::put($filename, (string) $image->encode());
 
-                    $newImage = $offer->images()->create([
+                    $offer->images()->create([
                         'sort_id' => $sortId,
-                        'path'    => $path,
+                        'path'    => $filename,
                     ]);
-
-                    Image::make('storage/' . $newImage->path)
-                        ->resize(400, null, function($constraint){
-                            $constraint->aspectRatio();
-                        })
-                        ->save();
                 }
             } else {
                 $oldImage = $oldImagesMap->get($imageId);
@@ -215,7 +215,7 @@ class OfferAction
     public function destroy($offer): void
     {
         foreach ($offer->images as $image) {
-            Storage::delete('public/' . $image->path);
+            Storage::delete( $image->path);
             $image->delete();
         }
 

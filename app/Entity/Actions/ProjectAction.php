@@ -60,18 +60,18 @@ class ProjectAction
 
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $sortId => $file) {
-                $path = $file->store('uploaded', 'public');
+                $image = Image::make($file);
+                $image->resize(400, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+                
+                $filename = 'uploaded/' . uniqid() . '.' . $file->getClientOriginalExtension();
+                Storage::put($filename, (string) $image->encode());
 
-                $imageEntity = $entity->images()->create([
-                    'path' => $path,
+                $entity->images()->create([
+                    'path' => $filename,
                     'sort_id' => $sortId,
                 ]);
-
-                Image::make('storage/' . $imageEntity->path)
-                    ->resize(400, null, function ($constraint) {
-                        $constraint->aspectRatio();
-                    })
-                    ->save();
             }
         }
 

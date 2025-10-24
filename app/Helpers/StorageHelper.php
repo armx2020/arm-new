@@ -20,9 +20,9 @@ class StorageHelper
             return url('/image/no_photo.jpg');
         }
 
-        // Replit блокирует HTTPS подключения к Timeweb S3 -> используем production proxy
+        // Replit webview блокирует внешние HTTPS запросы -> используем production proxy
         if (config('app.env') === 'local' && env('REPL_ID')) {
-            return env('PRODUCTION_STORAGE_URL', 'https://vsearmyane.ru/storage') . '/' . $path;
+            return env('PRODUCTION_STORAGE_URL', 'http://vsearmyane.ru/storage') . '/' . $path;
         }
 
         $defaultDisk = config('filesystems.default', 'local');

@@ -40,16 +40,19 @@ vsearmyne.ru is an informational directory for the Armenian community globally, 
 
 ### **Image Storage Fix (October 24, 2025)**:
 - ✅ **S3 Configuration Fixed**: Corrected S3 URL generation in `config/filesystems.php`
-  - Removed duplicate prefix issue where `root` + `url` caused double path
+  - Fixed duplicate prefix bug: `url` parameter now points to bucket root only
+  - Laravel adds `root` + `path` automatically → single prefix in final URL
   - Files stored in bucket: `storage/app/public/uploaded/file.jpg`
   - S3 URL: `https://s3.timeweb.cloud/[bucket]/storage/app/public/uploaded/file.jpg` ✅
 - ✅ **S3 Bucket Public Access Configured**: Set up Bucket Policy via S3 Browser
-  - All 20,781 files publicly readable (read-only access)
-  - Direct S3 URLs work in all environments
-- ✅ **StorageHelper Unified Logic**:
-  - **All environments**: Use S3 URLs directly (bucket is public)
-  - **Fallback**: Production proxy if S3 unavailable (Replit only)
-  - **Result**: Consistent S3 URLs everywhere → `Storage::disk('s3')->url($path)`
+  - 14,309 image files publicly readable (read-only access)
+  - Direct S3 URLs work from staging/production servers
+- ✅ **StorageHelper Environment-Specific Logic**:
+  - **Replit (development)**: Production proxy (Replit blocks Timeweb S3 HTTPS connections)
+    - URL: `https://vsearmyane.ru/storage/uploaded/file.jpg`
+  - **Staging/Production (Timeweb)**: S3 direct URLs
+    - URL: `https://s3.timeweb.cloud/[bucket]/storage/app/public/uploaded/file.jpg`
+  - **Result**: Images load correctly in all environments
 - ✅ **Public Pages Working**: All public-facing pages (show.blade.php) load images from S3 correctly
 - ✅ **Edit Pages Fixed** (October 24, 2025): Updated 10 view files to use S3 URLs via StorageHelper:
   - Profile pages: `company/edit.blade.php`, `group/edit.blade.php`, `place/edit.blade.php`, `offer/edit.blade.php`, `job/edit.blade.php`, `community/edit.blade.php`

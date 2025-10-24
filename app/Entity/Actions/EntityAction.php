@@ -71,34 +71,36 @@ class EntityAction
         // images
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $sortId => $file) {
-                $path = $file->store('uploaded', 'public');
+                $image = Image::make($file);
+                $image->resize(400, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+                
+                $filename = 'uploaded/' . uniqid() . '.' . $file->getClientOriginalExtension();
+                Storage::put($filename, (string) $image->encode());
 
-                $imageEntity = $entity->images()->create([
-                    'path' => $path,
+                $entity->images()->create([
+                    'path' => $filename,
                     'sort_id' => $sortId
                 ]);
-
-                Image::make('storage/' . $imageEntity->path)
-                    ->resize(400, null, function ($constraint) {
-                        $constraint->aspectRatio();
-                    })
-                    ->save();
             }
         }
 
         // logo
         if ($request->hasFile('logotype')) {
+            $file = $request->file('logotype');
+            $image = Image::make($file);
+            $image->resize(400, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            
+            $filename = 'uploaded/' . uniqid() . '.' . $file->getClientOriginalExtension();
+            Storage::put($filename, (string) $image->encode());
 
-            $path = $request->file('logotype')->store('uploaded', 'public');
-            $imageEntity = $entity->images()->create([
-                'path' => $path,
+            $entity->images()->create([
+                'path' => $filename,
                 'is_logo' => 1
             ]);
-            Image::make('storage/' . $imageEntity->path)
-                ->resize(400, null, function ($constraint) {
-                    $constraint->aspectRatio();
-                })
-                ->save();
         }
 
         // fields
@@ -203,7 +205,7 @@ class EntityAction
             $images = $entity->images(false)->whereIn('id', $idsToDelete)->get();
             foreach ($images as $image) {
                 if ($image->path) {
-                    Storage::delete('public/' . $image->path);
+                    Storage::delete($image->path);
                 }
             }
             $entity->images(false)->whereIn('id', $idsToDelete)->delete();
@@ -218,22 +220,22 @@ class EntityAction
             if (str_starts_with($imageId, 'new_')) {
                 $file = $request->file("images.$index.file");
                 if ($file) {
-                    $path = $file->store('uploaded', 'public');
+                    $image = Image::make($file);
+                    $image->resize(400, null, function ($constraint) {
+                        $constraint->aspectRatio();
+                    });
+                    
+                    $filename = 'uploaded/' . uniqid() . '.' . $file->getClientOriginalExtension();
+                    Storage::put($filename, (string) $image->encode());
 
-                    $newImage = $entity->images()->create([
+                    $entity->images()->create([
                         'sort_id' => $sortId,
-                        'path'    => $path,
+                        'path'    => $filename,
                     ]);
 
                     if (isset($imgData['checked']) && $imgData['checked'] == '1') {
                         $newData['checked'] = 1;
                     }
-
-                    Image::make('storage/' . $newImage->path)
-                        ->resize(400, null, function ($constraint) {
-                            $constraint->aspectRatio();
-                        })
-                        ->save();
                 }
             } else {
                 $oldImage = $oldImagesMap->get($imageId);
@@ -254,16 +256,19 @@ class EntityAction
 
         if ($request->hasFile('logotype')) {
             $entity->deleteLogo();
-            $path = $request->file('logotype')->store('uploaded', 'public');
-            $imageEntity = $entity->images()->create([
-                'path' => $path,
+            $file = $request->file('logotype');
+            $image = Image::make($file);
+            $image->resize(400, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            
+            $filename = 'uploaded/' . uniqid() . '.' . $file->getClientOriginalExtension();
+            Storage::put($filename, (string) $image->encode());
+
+            $entity->images()->create([
+                'path' => $filename,
                 'is_logo' => 1
             ]);
-            Image::make('storage/' . $imageEntity->path)
-                ->resize(400, null, function ($constraint) {
-                    $constraint->aspectRatio();
-                })
-                ->save();
         }
 
         return $entity;
@@ -280,7 +285,7 @@ class EntityAction
         }
 
         foreach ($entity->images as $image) {
-            Storage::delete('public/' . $image->path);
+            Storage::delete($image->path);
             $image->delete();
         }
 

@@ -84,7 +84,7 @@
                                         wire:ignore>
                                         <div class="flex relative">
                                             <img class="h-20 w-20 rounded-lg m-4  object-cover" id="logo"
-                                                @if ($logo) src="{{ url('/storage/' . $logo->path) }}"  @else src="{{ url('/image/no-image.png') }}" @endif
+                                                @if ($logo) src="{{ \App\Helpers\StorageHelper::imageUrl($logo->path) }}"  @else src="{{ url('/image/no-image.png') }}" @endif
                                                 alt="logo">
                                             <button type="button" id="remove_logo"
                                                 class="absolute top-2 right-2 hidden"

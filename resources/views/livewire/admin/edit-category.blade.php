@@ -36,7 +36,7 @@
                                                 src="{{ url('/image/no-image.png') }}" alt="image">
                                         @else
                                             <img class="h-10 w-10 rounded-lg m-4 object-cover" id="img"
-                                                src="{{ asset('storage/' . $category->image) }}" alt="image">
+                                                src="{{ \App\Helpers\StorageHelper::imageUrl($category->image) }}" alt="image">
                                         @endif
 
                                         <button type="button" id="remove_image" class="absolute top-2 right-2 hidden"

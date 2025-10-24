@@ -51,7 +51,7 @@ return [
             'region' => env('AWS_DEFAULT_REGION', 'ru-1'),
             'bucket' => env('AWS_BUCKET', '46885a37-67c8e067-4002-4498-a06b-cb98be807ea3'),
             'root' => 'storage/app/public',
-            'url' => env('AWS_URL', 'https://s3.timeweb.cloud/46885a37-67c8e067-4002-4498-a06b-cb98be807ea3'),
+            'url' => env('AWS_URL', 'https://s3.timeweb.cloud/46885a37-67c8e067-4002-4498-a06b-cb98be807ea3/storage/app/public'),
             'endpoint' => env('AWS_ENDPOINT', 'https://s3.timeweb.cloud'),
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', true),
             'throw' => true,

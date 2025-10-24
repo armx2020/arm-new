@@ -48,7 +48,7 @@
                                         <div class="flex relative p-3">
                                             <img class="h-20 w-20 rounded-lg m-4 object-cover" id="img"
                                                 alt="image"
-                                                @if (empty($offer->image)) src="{{ url('/image/no-image.png') }}" @else src="{{ asset('storage/' . $offer->image) }}" @endif>
+                                                @if (empty($offer->image)) src="{{ url('/image/no-image.png') }}" @else src="{{ \App\Helpers\StorageHelper::imageUrl($offer->image) }}" @endif>
 
                                             <button type="button" id="remove_image" class="absolute top-2 right-2"
                                                 @if (isset($offer->image) && empty($images[0])) style="display: block;" @else style="display: none;" @endif>
@@ -80,7 +80,7 @@
                                         <div class="flex relative p-3">
                                             <img class="h-20 w-20 rounded-lg m-4 object-cover" id="img_1"
                                                 alt="image"
-                                                @if (empty($images[0])) src="{{ url('/image/no-image.png') }}" @else src="{{ asset('storage/' . $images[0]->path) }}" @endif>
+                                                @if (empty($images[0])) src="{{ url('/image/no-image.png') }}" @else src="{{ \App\Helpers\StorageHelper::imageUrl($images[0]->path) }}" @endif>
 
                                             <button type="button" id="remove_image_1" class="absolute top-2 right-2"
                                                 @if (isset($images[0]) && empty($images[1])) style="display: block;" @else style="display: none;" @endif>
@@ -113,7 +113,7 @@
 
                                             <img class="h-20 w-20 rounded-lg m-4 object-cover" id="img_2"
                                                 alt="image"
-                                                @if (empty($images[1])) src="{{ url('/image/no-image.png') }}" @else src="{{ asset('storage/' . $images[1]->path) }}" @endif>
+                                                @if (empty($images[1])) src="{{ url('/image/no-image.png') }}" @else src="{{ \App\Helpers\StorageHelper::imageUrl($images[1]->path) }}" @endif>
 
                                             <button type="button" id="remove_image_2" class="absolute top-2 right-2"
                                                 @if (isset($images[1]) && empty($images[2])) style="display: block;" @else style="display: none;" @endif>

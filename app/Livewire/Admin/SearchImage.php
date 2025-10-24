@@ -32,7 +32,6 @@ class SearchImage extends BaseComponent
         $emptyEntity = 'Изображений нет';
         $entityName = 'image';
 
-        sleep(0.5);
         $entities = Image::query()->withOutGlobalScopes([SortAscScope::class, CheckedScope::class])->with('imageable');
 
         if ($this->term == "") {

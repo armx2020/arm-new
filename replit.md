@@ -55,13 +55,21 @@ vsearmyne.ru is an informational directory for the Armenian community globally, 
   - `job/edit.blade.php`, `community/edit.blade.php`
   - **Fix**: Replaced JavaScript hardcode `'/storage/' + image.path` with backend-generated S3 URLs via StorageHelper
   - **Result**: Image previews now load correctly in admin/profile edit forms from S3
-- ⚠️ **Known Issue - New Uploads**: 7 Action classes still hardcode `'public'` disk instead of default S3:
+- ✅ **All Action Classes Fixed - S3 Upload Complete** (October 24, 2025): All 9 Action classes now upload new images to S3:
   - `EntityAction.php`, `CompanyAction.php`, `GroupAction.php`, `PlaceAction.php`
-  - `ProjectAction.php`, `CommunityAction.php`, `OfferAction.php`
-  - **Impact**: New image uploads go to local disk instead of S3
-  - **Workaround**: Existing images work, new uploads work locally (not critical for staging)
-  - **Fix Planned**: Requires updating all Action classes to use default disk + handle Image::make() with S3
-- ✅ **Staging Images Fully Working**: Public site displays all 20,781 images from S3 successfully
+  - `JobAction.php`, `OfferAction.php`, `CommunityAction.php`, `ProjectAction.php`
+  - Fixed 8 Action classes that handle entity-specific uploads
+  - **Fix Implementation**: Changed from `$file->store('uploaded', 'public')` to proper S3 workflow:
+    1. Process image locally with `Image::make($file)` for resizing (400px width, aspect ratio preserved)
+    2. Upload processed image to S3 using `Storage::put($filename, (string) $image->encode())`
+    3. Save database path without prefix (e.g., `uploaded/file.jpg`)
+  - **Delete Operations**: Fixed `Storage::delete()` calls - removed `'public/'` prefix (now uses default S3 disk)
+  - **Result**: New image uploads go directly to S3 cloud storage instead of local disk
+- ✅ **S3 Integration 100% Complete**: All image operations (view, edit, upload, delete) fully integrated with S3 storage
+  - Existing images: 20,781 files load from S3 correctly
+  - New uploads: Go directly to S3 with proper processing
+  - Edit forms: Display S3 images with StorageHelper-generated URLs
+  - Delete operations: Remove files from S3 when entities/images deleted
 
 ## Recent Changes (October 22-24, 2025 continued)
 - ✅ **GitHub Repository Created**: Successfully created new repository `armx2020/arm-new` at https://github.com/armx2020/arm-new

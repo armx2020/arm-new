@@ -42,17 +42,27 @@ vsearmyne.ru is an informational directory for the Armenian community globally, 
 - ✅ **S3 Configuration Restored**: Fixed `root` prefix in S3 config back to `'storage/app/public'`
   - **Why**: Files in S3 bucket are stored with this prefix (uploaded via S3 Browser)
   - **Result**: Existing 20,781 images now load correctly from S3 on staging
+- ✅ **S3 Bucket Public Access Configured**: Set up Bucket Policy via S3 Browser
+  - All files now publicly readable (read-only access)
+  - Direct S3 URLs work: `https://s3.timeweb.cloud/bucket/storage/app/public/uploaded/file.png`
 - ✅ **Development Images**: Development environment automatically loads images from production server
 - ✅ **StorageHelper Environment Detection**:
   - **Development (Replit)**: Uses production proxy → `https://vsearmyane.ru/storage/uploaded/file.jpg`
-  - **Staging/Production (Timeweb)**: Uses S3 storage with correct path prefix
+  - **Staging/Production (Timeweb)**: Uses S3 storage with correct path prefix → S3 URL generation works
+- ✅ **Public Pages Working**: All public-facing pages (show.blade.php) load images from S3 correctly
+- ⚠️ **Known Issue - Edit Pages**: 7 edit.blade.php files hardcode `/storage/` in JavaScript:
+  - `company/edit.blade.php`, `group/edit.blade.php`, `place/edit.blade.php`, `offer/edit.blade.php`
+  - `job/edit.blade.php`, `community/edit.blade.php`, `project/edit.blade.php`
+  - **Impact**: Image previews don't load in admin/profile edit forms (404 errors)
+  - **Workaround**: Not critical - only affects internal edit pages, public site works perfectly
+  - **Fix**: Need to replace JavaScript hardcode `'/storage/' + image.path` with backend-generated S3 URLs
 - ⚠️ **Known Issue - New Uploads**: 7 Action classes still hardcode `'public'` disk instead of default S3:
   - `EntityAction.php`, `CompanyAction.php`, `GroupAction.php`, `PlaceAction.php`
   - `ProjectAction.php`, `CommunityAction.php`, `OfferAction.php`
   - **Impact**: New image uploads go to local disk instead of S3
-  - **Workaround**: Existing images work, new uploads work locally (not critical)
+  - **Workaround**: Existing images work, new uploads work locally (not critical for staging)
   - **Fix Planned**: Requires updating all Action classes to use default disk + handle Image::make() with S3
-- ✅ **Admin Fix**: Fixed `storage_url()` helper to work correctly in both development and staging
+- ✅ **Staging Images Fully Working**: Public site displays all 20,781 images from S3 successfully
 
 ## Recent Changes (October 22-24, 2025 continued)
 - ✅ **GitHub Repository Created**: Successfully created new repository `armx2020/arm-new` at https://github.com/armx2020/arm-new

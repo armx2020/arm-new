@@ -17,6 +17,9 @@ use App\Http\Controllers\Admin\UserController;
 
 Route::name('admin.')->prefix('admin')->group(function () {
 
+    // Диагностика - доступна без проверки ролей (только в development окружении)
+    Route::get('diagnostics', [DiagnosticsController::class, 'index'])->name('diagnostics');
+
     Route::middleware(['role:super-admin|moderator'])->group(function () {
 
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
@@ -26,7 +29,6 @@ Route::name('admin.')->prefix('admin')->group(function () {
         ]);
 
         Route::group(['middleware' => ['role:super-admin']], function () {
-            Route::get('diagnostics', [DiagnosticsController::class, 'index'])->name('diagnostics');
             
             Route::resource('user', UserController::class)->except([
                 'show'

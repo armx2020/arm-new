@@ -11,7 +11,7 @@ class YandexGeocoderService
 {
     protected string $apiUrl = 'https://geocode-maps.yandex.ru/1.x/';
     protected string $apiKey;
-    protected int $dailyLimit = 10; // TODO:Исправить до 700
+    protected int $dailyLimit = 700;
     protected int $usedRequests = 0;
 
     public function __construct()

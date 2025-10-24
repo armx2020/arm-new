@@ -4,6 +4,33 @@
 vsearmyne.ru is an informational directory for the Armenian community globally, serving as a platform to find and list companies, groups, places, and job opportunities. The project is migrating development to Replit with a robust CI/CD pipeline involving GitHub and Timeweb for automated deployment.
 
 ## Recent Changes (October 22-24, 2025)
+
+### **MySQL ↔ PostgreSQL Compatibility (October 24, 2025)**
+- ✅ **Database Compatibility Layer Implemented**: Code now supports both MySQL and PostgreSQL
+- ✅ **Search Trait Updated** (`app/Models/Traits/Search.php`):
+  - MySQL: Uses `MATCH() AGAINST()` fulltext search
+  - PostgreSQL: Uses `to_tsvector()` and `to_tsquery()` for fulltext search
+  - Automatically switches based on `DB_CONNECTION` environment variable
+- ✅ **SQL Compatibility Fixed**:
+  - Replaced MySQL-only `FIELD()` function with universal `CASE WHEN` in `DinamicRouteController.php`
+  - Works identically in both MySQL and PostgreSQL
+- ✅ **GeoHelper Created** (`app/Helpers/GeoHelper.php`):
+  - Centralizes geospatial queries (`ST_Distance_Sphere`)
+  - Geosearch currently works only with MySQL (requires PostGIS extension for PostgreSQL)
+  - Gracefully handles PostgreSQL by returning null when geo features unavailable
+  - Updated: `CompanyAction.php`, `Entity.php` (scopeNearby)
+- ⏳ **Remaining Action Files** (require same GeoHelper update as CompanyAction.php):
+  - `GroupAction.php`, `PlaceAction.php`, `JobAction.php`, `ProjectAction.php`
+  - `EntityAction.php`, `CommunityAction.php`, `OfferAction.php`
+  - Pattern: Replace `findCityByCoordinates()` and `findRegionByCoordinates()` with `GeoHelper` calls
+  
+### **Migration Strategy**:
+1. **Development**: Replit uses PostgreSQL (Neon) for local development
+2. **Staging**: Timeweb staging currently uses MySQL, plan to migrate to PostgreSQL
+3. **Production**: Will transition Timeweb staging → production by moving vsearmyane.ru domain
+4. **Goal**: Unified PostgreSQL across all environments (dev, staging, production)
+
+## Recent Changes (October 22-24, 2025 continued)
 - ✅ **GitHub Repository Created**: Successfully created new repository `armx2020/arm-new` at https://github.com/armx2020/arm-new
 - ✅ **Initial Code Push**: Pushed full Laravel codebase (1176 files) to GitHub
 - ✅ **GitHub Integration Configured**: Set up official Replit GitHub integration for OAuth-based authentication

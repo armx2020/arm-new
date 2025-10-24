@@ -304,36 +304,11 @@ class CompanyAction
 
     protected function findCityByCoordinates($lat, $lon)
     {
-        // Простейшая реализация - ищем ближайший город в радиусе 50 км
-        return City::selectRaw(
-            '*, ST_Distance_Sphere(
-                POINT(?, ?),
-                POINT(lon, lat)
-            ) as distance',
-            [$lon, $lat]
-        )
-            ->whereRaw('ST_Distance_Sphere(
-            POINT(lon, lat),
-            POINT(?, ?)
-        ) < ?', [$lon, $lat, 50000]) // 50 км в метрах
-            ->orderBy('distance')
-            ->first();
+        return \App\Helpers\GeoHelper::nearestCityQuery(City::class, $lat, $lon, 50000);
     }
 
     protected function findRegionByCoordinates($lat, $lon)
     {
-        return Region::selectRaw(
-            '*, ST_Distance_Sphere(
-                POINT(?, ?),
-                POINT(lon, lat)
-            ) as distance',
-            [$lon, $lat]
-        )
-        ->whereRaw('ST_Distance_Sphere(
-            POINT(lon, lat),
-            POINT(?, ?)
-        ) < ?', [$lon, $lat, 10000]) // 100 км в метрах
-        ->orderBy('distance')
-        ->first();
+        return \App\Helpers\GeoHelper::nearestRegionQuery(Region::class, $lat, $lon, 200000);
     }
 }

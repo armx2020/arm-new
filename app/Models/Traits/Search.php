@@ -2,6 +2,8 @@
 
 namespace App\Models\Traits;
 
+use Illuminate\Support\Facades\DB;
+
 trait Search
 {
     private function buildWildCards($term) {
@@ -22,11 +24,26 @@ trait Search
 
     protected function scopeSearch($query, $term) {
         $columns = implode(',', $this->searchable);
+        $driver = config('database.default');
 
-        $query->whereRaw(
-            "MATCH ({$columns}) AGAINST (? IN BOOLEAN MODE)",
-            $this->buildWildCards($term)
-        );
+        if ($driver === 'pgsql') {
+            $tsColumns = implode(" || ' ' || ", array_map(function($col) {
+                return "COALESCE({$col}, '')";
+            }, $this->searchable));
+            
+            $searchTerm = str_replace(' ', ' & ', trim($term));
+            
+            $query->whereRaw(
+                "to_tsvector('simple', {$tsColumns}) @@ to_tsquery('simple', ?)",
+                [$searchTerm]
+            );
+        } else {
+            $query->whereRaw(
+                "MATCH ({$columns}) AGAINST (? IN BOOLEAN MODE)",
+                $this->buildWildCards($term)
+            );
+        }
+        
         return $query;
     }
 }

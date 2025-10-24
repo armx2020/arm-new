@@ -102,9 +102,7 @@ class Entity extends Model
 
     public function scopeNearby($query, $lat, $lon, $radius = 5000)
     {
-        return $query->selectRaw("id, name, lat, lon, ST_Distance_Sphere(POINT(lon, lat), POINT(?, ?)) AS distance", [$lon, $lat])
-            ->having('distance', '<=', $radius)
-            ->orderBy('distance');
+        return \App\Helpers\GeoHelper::nearbyEntities($query, $lat, $lon, $radius);
     }
 
     public function scopeActive($query)

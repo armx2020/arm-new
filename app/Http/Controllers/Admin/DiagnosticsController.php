@@ -18,7 +18,7 @@ class DiagnosticsController extends Controller
     public function index()
     {
         // Проверка прав доступа - только для администраторов
-        if (!auth()->user() || !auth()->user()->is_admin) {
+        if (!auth()->check() || !auth()->user()->hasRole(['super-admin', 'moderator'])) {
             abort(403, 'Доступ запрещен. Только для администраторов.');
         }
 

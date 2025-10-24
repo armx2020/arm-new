@@ -37,7 +37,14 @@
                         </div>
 
                         @php
-                            $images = $entity->images()->get();
+                            $images = $entity->images()->get()->map(function($image) {
+                                return [
+                                    'id' => $image->id,
+                                    'path' => $image->path,
+                                    'url' => \App\Helpers\StorageHelper::imageUrl($image->path),
+                                    'sort_id' => $image->sort_id
+                                ];
+                            });
                             $logo = $entity->logo()->First();
                         @endphp
 
@@ -458,7 +465,7 @@
             function createExistingSlot(image) {
                 const $slot = cloneSlotTemplate();
                 $slot.attr('data-id', image.id);
-                $slot.find('.preview-img').attr('src', '/storage/' + image.path);
+                $slot.find('.preview-img').attr('src', image.url);
                 $slot.find('.file-label').addClass('hidden');
                 $slot.find('.remove-image-btn').show().on('click', function(e) {
                     e.stopPropagation();

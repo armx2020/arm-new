@@ -50,12 +50,11 @@ vsearmyne.ru is an informational directory for the Armenian community globally, 
   - **Development (Replit)**: Uses production proxy → `https://vsearmyane.ru/storage/uploaded/file.jpg`
   - **Staging/Production (Timeweb)**: Uses S3 storage with correct path prefix → S3 URL generation works
 - ✅ **Public Pages Working**: All public-facing pages (show.blade.php) load images from S3 correctly
-- ⚠️ **Known Issue - Edit Pages**: 7 edit.blade.php files hardcode `/storage/` in JavaScript:
+- ✅ **Edit Pages Fixed** (October 24, 2025): Updated 6 edit.blade.php files to use S3 URLs:
   - `company/edit.blade.php`, `group/edit.blade.php`, `place/edit.blade.php`, `offer/edit.blade.php`
-  - `job/edit.blade.php`, `community/edit.blade.php`, `project/edit.blade.php`
-  - **Impact**: Image previews don't load in admin/profile edit forms (404 errors)
-  - **Workaround**: Not critical - only affects internal edit pages, public site works perfectly
-  - **Fix**: Need to replace JavaScript hardcode `'/storage/' + image.path` with backend-generated S3 URLs
+  - `job/edit.blade.php`, `community/edit.blade.php`
+  - **Fix**: Replaced JavaScript hardcode `'/storage/' + image.path` with backend-generated S3 URLs via StorageHelper
+  - **Result**: Image previews now load correctly in admin/profile edit forms from S3
 - ⚠️ **Known Issue - New Uploads**: 7 Action classes still hardcode `'public'` disk instead of default S3:
   - `EntityAction.php`, `CompanyAction.php`, `GroupAction.php`, `PlaceAction.php`
   - `ProjectAction.php`, `CommunityAction.php`, `OfferAction.php`

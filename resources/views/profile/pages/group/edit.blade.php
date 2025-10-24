@@ -37,7 +37,14 @@
                         </div>
 
                         @php
-                            $images = $entity->images()->get();
+                            $images = $entity->images()->get()->map(function($image) {
+                                return [
+                                    'id' => $image->id,
+                                    'path' => $image->path,
+                                    'url' => \App\Helpers\StorageHelper::imageUrl($image->path),
+                                    'sort_id' => $image->sort_id
+                                ];
+                            });
                         @endphp
 
                         <div class="border-b min-h-auto overflow-hidden pb-2" wire:ignore>
@@ -429,7 +436,7 @@
             function createExistingSlot(image) {
                 const $slot = cloneSlotTemplate();
                 $slot.attr('data-id', image.id);
-                $slot.find('.preview-img').attr('src', '/storage/' + image.path);
+                $slot.find('.preview-img').attr('src', image.url);
                 $slot.find('.file-label').addClass('hidden');
                 $slot.find('.remove-image-btn').show().on('click', function(e) {
                     e.stopPropagation();

@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Storage;
  */
 class StorageHelper
 {
+    /**
+     * Генерирует URL для изображения
+     * S3: использует root path из config, не добавляет префикс
+     */
     public static function imageUrl(?string $path): string
     {
         if (empty($path)) {

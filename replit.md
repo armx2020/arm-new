@@ -39,15 +39,20 @@ vsearmyne.ru is an informational directory for the Armenian community globally, 
 - **Code**: Fully compatible with both MySQL and PostgreSQL (ready for future migration if needed)
 
 ### **Image Storage Fix (October 24, 2025)**:
-- ✅ **S3 Configuration Fixed**: Removed incorrect `root` prefix in S3 config (was `storage/app/public`, now empty)
+- ✅ **S3 Configuration Restored**: Fixed `root` prefix in S3 config back to `'storage/app/public'`
+  - **Why**: Files in S3 bucket are stored with this prefix (uploaded via S3 Browser)
+  - **Result**: Existing 20,781 images now load correctly from S3 on staging
 - ✅ **Development Images**: Development environment automatically loads images from production server
-- ✅ **Reason**: S3 bucket has 403 Forbidden errors (not configured for public access)
-- ✅ **Solution**: StorageHelper automatically detects environment:
+- ✅ **StorageHelper Environment Detection**:
   - **Development (Replit)**: Uses production proxy → `https://vsearmyane.ru/storage/uploaded/file.jpg`
-  - **Production (Timeweb)**: Uses local storage or S3 (depending on server config)
-- ✅ **Production**: Files stored locally on server at `/storage/app/public`, served via nginx
+  - **Staging/Production (Timeweb)**: Uses S3 storage with correct path prefix
+- ⚠️ **Known Issue - New Uploads**: 7 Action classes still hardcode `'public'` disk instead of default S3:
+  - `EntityAction.php`, `CompanyAction.php`, `GroupAction.php`, `PlaceAction.php`
+  - `ProjectAction.php`, `CommunityAction.php`, `OfferAction.php`
+  - **Impact**: New image uploads go to local disk instead of S3
+  - **Workaround**: Existing images work, new uploads work locally (not critical)
+  - **Fix Planned**: Requires updating all Action classes to use default disk + handle Image::make() with S3
 - ✅ **Admin Fix**: Fixed `storage_url()` helper to work correctly in both development and staging
-- ⚠️ **Future**: To use S3 directly, need to configure bucket public access policy on Timeweb
 
 ## Recent Changes (October 22-24, 2025 continued)
 - ✅ **GitHub Repository Created**: Successfully created new repository `armx2020/arm-new` at https://github.com/armx2020/arm-new

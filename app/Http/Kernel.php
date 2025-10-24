@@ -40,6 +40,7 @@ class Kernel extends HttpKernel
             // \App\Http\Middleware\TrackLastActiveAt::class,
             \App\Http\Middleware\FromLocation::class,
             // \App\Http\Middleware\UpdateUserActivity::class,
+            \App\Http\Middleware\CompressResponse::class,
         ],
 
         'api' => [

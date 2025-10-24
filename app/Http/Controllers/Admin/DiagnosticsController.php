@@ -22,22 +22,7 @@ class DiagnosticsController extends Controller
             abort(404, 'Страница доступна только в development окружении');
         }
 
-        // Сбор данных о проекте
-        $projectInfo = $this->getProjectInfo();
-        $databaseStatus = $this->getDatabaseStatus();
-        $s3Status = $this->getS3Status();
-        $systemStatus = $this->getSystemStatus();
-        $statistics = $this->getStatistics();
-        $environmentInfo = $this->getEnvironmentInfo();
-
-        return view('admin.diagnostics', [
-            'projectInfo' => $projectInfo,
-            'databaseStatus' => $databaseStatus,
-            's3Status' => $s3Status,
-            'systemStatus' => $systemStatus,
-            'statistics' => $statistics,
-            'environmentInfo' => $environmentInfo,
-        ]);
+        return view('admin.diagnostics-raw');
     }
 
     private function getProjectInfo()
@@ -50,6 +35,21 @@ class DiagnosticsController extends Controller
             'git_branch' => trim(shell_exec('git rev-parse --abbrev-ref HEAD 2>/dev/null') ?: 'unknown'),
             'git_commit' => trim(shell_exec('git rev-parse --short HEAD 2>/dev/null') ?: 'unknown'),
             'last_commit_date' => trim(shell_exec('git log -1 --format=%cd --date=format:"%Y-%m-%d %H:%M:%S" 2>/dev/null') ?: 'unknown'),
+        ];
+    }
+
+    private function getDatabaseStatusLight()
+    {
+        $currentDb = config('database.default');
+        
+        return [
+            'current' => [
+                'status' => 'unknown',
+                'driver' => config('database.connections.' . $currentDb . '.driver'),
+                'host' => config('database.connections.' . $currentDb . '.host'),
+                'database' => config('database.connections.' . $currentDb . '.database'),
+                'note' => 'Легкая версия диагностики (без проверки подключения)',
+            ],
         ];
     }
 
@@ -109,6 +109,18 @@ class DiagnosticsController extends Controller
         return $status;
     }
 
+    private function getS3StatusLight()
+    {
+        return [
+            'status' => 'unknown',
+            'bucket' => config('filesystems.disks.s3.bucket'),
+            'endpoint' => config('filesystems.disks.s3.endpoint'),
+            'region' => config('filesystems.disks.s3.region'),
+            'default_disk' => config('filesystems.default'),
+            'note' => 'Легкая версия (без проверки подключения)',
+        ];
+    }
+
     private function getS3Status()
     {
         $status = [];
@@ -152,6 +164,14 @@ class DiagnosticsController extends Controller
             'disk_space_free' => $this->formatBytes(disk_free_space('/')),
             'memory_limit' => ini_get('memory_limit'),
             'max_execution_time' => ini_get('max_execution_time'),
+        ];
+    }
+
+    private function getStatisticsLight()
+    {
+        return [
+            'message' => 'Статистика отключена для ускорения загрузки страницы',
+            'note' => 'БД запросы могут быть медленными в Replit',
         ];
     }
 

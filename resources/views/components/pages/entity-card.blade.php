@@ -25,7 +25,7 @@
                         wire:ignore>
                         @if ($logo)
                             <img class="w-24 max-h-24 object-cover rounded-lg absolute z-10 top-3 left-3"
-                                src="{{ storage_url($logo->path) }}">
+                                src="{{ storage_url($logo->path) }}" loading="lazy">
                         @endif
                         <div class="swiper mySwiper2 w-full h-full">
                             <div class="swiper-wrapper w-full h-full">
@@ -34,7 +34,7 @@
                                         <a data-fancybox="gallery" href="{{ storage_url($image->path) }}"
                                             class="w-full h-full">
                                             <img class="w-full h-full object-cover rounded-lg"
-                                                src="{{ storage_url($image->path) }}">
+                                                src="{{ storage_url($image->path) }}" loading="lazy">
                                         </a>
                                     </div>
                                 @endforeach
@@ -86,7 +86,7 @@
                                         class="block h-14 ms:h-16 ls:h-20 sm:h-16 md:h-20 relative hover:drop-shadow-xl">
 
                                         <img class="w-full h-full object-cover rounded-lg"
-                                            src="{{ url('/image/video_link.jpg') }}">
+                                            src="{{ url('/image/video_link.jpg') }}" loading="lazy">
                                         <p
                                             class="absolute text-white bottom-0 lg:bottom-2 right-3 text-[10px] lg:text-sm">
                                             {{ $isYoutube ? 'YouTube' : 'RuTube' }} Video
@@ -116,7 +116,7 @@
                                 @foreach ($images as $image)
                                     <div class="swiper-slide">
                                         <img class="w-full h-14 ms:h-16 ls:h-20 sm:h-16 md:h-20 object-cover rounded-lg"
-                                            src="{{ storage_url($image->path) }}">
+                                            src="{{ storage_url($image->path) }}" loading="lazy">
                                     </div>
                                 @endforeach
                             </div>

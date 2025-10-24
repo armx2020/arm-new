@@ -30,7 +30,6 @@ class SearchCategory extends BaseComponent
         $emptyEntity = 'Категорий нет';
         $entityName = 'category';
 
-        sleep(0.5);
         $entities = Category::query()->with('type');
 
         if ($this->term == "") {

@@ -30,7 +30,6 @@ class SearchOffer extends BaseComponent
         $emptyEntity = 'Предложений нет';
         $entityName = 'offer';
 
-        sleep(0.5);
         $entities = Offer::query()->with('city');
 
         if ($this->term == "") {

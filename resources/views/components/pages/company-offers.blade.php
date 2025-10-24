@@ -11,10 +11,10 @@
                 <div class="block rounded-lg bg-white h-80">
                     @if ($offer->image == null)
                         <img class="h-48 w-full rounded-2xl p-2 flex object-cover" src="{{ url('/image/no-image.png') }}"
-                            alt="image" />
+                            alt="image" loading="lazy" />
                     @else
                         <img class="h-48 w-full rounded-2xl p-2 flex object-cover"
-                            src="{{ \App\Helpers\StorageHelper::imageUrl($offer->image) }}" alt="image">
+                            src="{{ \App\Helpers\StorageHelper::imageUrl($offer->image) }}" alt="image" loading="lazy">
                     @endif
                     <div class="px-6">
                         <div class="h-12">

@@ -63,10 +63,10 @@
                 <div class="flex flex-col basis-1/5">
                     @if ($user->image)
                         <img class="h-40 lg:h-48 w-40 lg:w-48 rounded-full mx-auto p-1 flex object-cover"
-                            src="{{ \App\Helpers\StorageHelper::imageUrl($user->image) }}" alt="{{ $user->name }}">
+                            src="{{ \App\Helpers\StorageHelper::imageUrl($user->image) }}" alt="{{ $user->name }}" loading="lazy">
                     @else
                         <img class="h-40 lg:h-48 w-40 lg:w-48 rounded-full mx-auto p-1 flex object-cover"
-                            src="{{ url('/image/no-image.png') }}" alt="image" />
+                            src="{{ url('/image/no-image.png') }}" alt="image" loading="lazy" />
                     @endif
                     <div class="m-5">
                         <div class="my-2 flex flex-row">

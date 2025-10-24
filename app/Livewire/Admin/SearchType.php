@@ -30,7 +30,6 @@ class SearchType extends BaseComponent
         $emptyEntity = 'Типов для сущностей нет';
         $entityName = 'type';
 
-        sleep(1);
         if ($this->term == "") {
 
             $entities = EntityType::query();

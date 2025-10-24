@@ -22,7 +22,6 @@ class SearchCategoryEntity extends BaseComponent
         $emptyEntity = 'Связей нет';
         $entityName = 'category-entity';
 
-        sleep(0.5);
         $entities = CategoryEntity::query()->with('category', 'entity');
 
         if ($this->term == "") {

@@ -4,7 +4,7 @@
         <img class="h-32 w-32 min-h-32 min-w-32 md:h-56 md:w-56 md:min-h-56 md:min-w-56 lg:h-72 lg:w-72 lg:min-h-72 lg:min-w-72 rounded-lg object-cover"
             @if (isset($entity->images[0])) src="{{ storage_url($entity->images[0]->path) }}"
         @else src="{{ url('/image/no_photo.jpg') }}" @endif
-            alt="{{ $entity->name }}" />
+            alt="{{ $entity->name }}" loading="lazy" />
     </a>
     <div class="px-3 lg:px-5 flex flex-col flex-1">
         <div class="flex max-h-8 overflow-hidden mb-2">

@@ -30,7 +30,6 @@ class SearchAppeal extends BaseComponent
         $emptyEntity = 'Сообщений нет';
         $entityName = 'appeal';
 
-        sleep(0.5);
         $entities = Appeal::query()->with('entity', 'user');
 
         if ($this->term == "") {

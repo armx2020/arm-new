@@ -18,7 +18,7 @@
                                 @if( $project->image == null)
                                 <img class="h-10 w-10 rounded-lg m-4" src="{{ url('/image/no-image.png')}}" alt="{{ $project->name }}">
                                 @else
-                                <img class="h-10 w-10 rounded-full m-4" src="{{ asset('storage/'. $project->image) }}" alt="{{ $project->image }}">
+                                <img class="h-10 w-10 rounded-full m-4" src="{{ \App\Helpers\StorageHelper::imageUrl($project->image) }}" alt="{{ $project->image }}">
                                 @endif
                                 <h3 class="text-2xl font-bold leading-none text-gray-900"> {{ $project->name }}</h3>
                             </div>

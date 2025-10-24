@@ -73,7 +73,7 @@
                                                     alt="{{ $user->firstname }} avatar">
                                             @else
                                                 <img class="h-8 w-8 rounded-full"
-                                                    src="{{ asset('storage/' . $user->image) }}"
+                                                    src="{{ \App\Helpers\StorageHelper::imageUrl($user->image) }}"
                                                     alt="{{ $user->firstname }} avatar">
                                             @endif
                                         </div>
@@ -168,7 +168,7 @@
                                             </div>
                                             <div class="flex-1 min-w-0">
                                                 <img class="w-8 h-8 object-cover rounded-lg"
-                                                    src="{{ asset('storage/' . $image->path) }}" alt="Image">
+                                                    src="{{ \App\Helpers\StorageHelper::imageUrl($image->path) }}" alt="Image">
                                             </div>
 
                                             <div class="flex-1 min-w-0">

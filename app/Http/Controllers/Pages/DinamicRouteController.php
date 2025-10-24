@@ -145,7 +145,7 @@ class DinamicRouteController extends Controller
         $subCategories = null;
 
         if ($regionTranslit) {
-            $entities = $entities->orderByRaw("FIELD(`region_id`, $region->id) DESC")->orderBy('offers_count', 'desc');
+            $entities = $entities->orderByRaw("CASE WHEN region_id = ? THEN 0 ELSE 1 END", [$region->id])->orderBy('offers_count', 'desc');
         }
 
         if ($category) {

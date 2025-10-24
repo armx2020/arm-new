@@ -23,17 +23,19 @@ vsearmyne.ru is an informational directory for the Armenian community globally, 
   - Application now loads real data from staging database in development environment
 - ✅ **Admin UX Improvement**: Added clickable link to entity card from appeal edit form
   - Entity name and ID in appeals now link directly to entity edit page for easier navigation
-- ✅ **S3 Cloud Storage Migration Completed** (October 23, 2025):
+- ✅ **S3 Cloud Storage Migration Completed** (October 23-24, 2025):
   - Migrated 4.64 GB (20,781 files, 27,114 total objects) from production server to Timeweb S3
   - S3 Bucket: `46885a37-67c8e067-4002-4498-a06b-cb98be807ea3`
   - S3 Endpoint: `https://s3.timeweb.cloud`
   - Laravel configured with S3 as default filesystem disk (`FILESYSTEM_DISK=s3`)
-  - StorageHelper updated to handle S3 paths with `storage/app/public/` prefix
+  - S3 disk configuration uses `'root' => 'storage/app/public'` to match file structure in bucket
+  - Base URL set to bucket root: `https://s3.timeweb.cloud/46885a37-67c8e067-4002-4498-a06b-cb98be807ea3`
+  - StorageHelper uses `Storage::disk('s3')->url($path)` without adding prefix (handled by root config)
   - Migration performed using S3 Browser (GUI tool) after downloading via FileZilla
-  - Credentials stored in Replit Secrets: `S3_ACCESS_KEY`, `S3_SECRET_KEY`
-  - Deleted intermediate server "Копия arm" (78.40.219.141) - no longer needed
+  - Credentials stored in Replit Secrets and Timeweb environment: `S3_ACCESS_KEY`, `S3_SECRET_KEY`, `FILESYSTEM_DISK=s3`
   - Created ImageUploadHelper for proper image processing and S3 upload
   - Fixed image URLs in profile and admin views to use storage_url() helper
+  - Test page available at `/test-s3-config` for S3 diagnostics
   - Connected Replit dev to MySQL database (IP: 34.83.81.116 added to whitelist)
 
 ## User Preferences

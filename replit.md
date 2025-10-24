@@ -39,16 +39,17 @@ vsearmyne.ru is an informational directory for the Armenian community globally, 
 - **Code**: Fully compatible with both MySQL and PostgreSQL (ready for future migration if needed)
 
 ### **Image Storage Fix (October 24, 2025)**:
-- ✅ **S3 Configuration Restored**: Fixed `root` prefix in S3 config back to `'storage/app/public'`
-  - **Why**: Files in S3 bucket are stored with this prefix (uploaded via S3 Browser)
-  - **Result**: Existing 20,781 images now load correctly from S3 on staging
+- ✅ **S3 Configuration Fixed**: Corrected S3 URL generation in `config/filesystems.php`
+  - Removed duplicate prefix issue where `root` + `url` caused double path
+  - Files stored in bucket: `storage/app/public/uploaded/file.jpg`
+  - S3 URL: `https://s3.timeweb.cloud/[bucket]/storage/app/public/uploaded/file.jpg` ✅
 - ✅ **S3 Bucket Public Access Configured**: Set up Bucket Policy via S3 Browser
-  - All files now publicly readable (read-only access)
-  - Direct S3 URLs work: `https://s3.timeweb.cloud/bucket/storage/app/public/uploaded/file.png`
-- ✅ **Development Images**: Development environment automatically loads images from production server
-- ✅ **StorageHelper Environment Detection**:
-  - **Development (Replit)**: Uses production proxy → `https://vsearmyane.ru/storage/uploaded/file.jpg`
-  - **Staging/Production (Timeweb)**: Uses S3 storage with correct path prefix → S3 URL generation works
+  - All 20,781 files publicly readable (read-only access)
+  - Direct S3 URLs work in all environments
+- ✅ **StorageHelper Unified Logic**:
+  - **All environments**: Use S3 URLs directly (bucket is public)
+  - **Fallback**: Production proxy if S3 unavailable (Replit only)
+  - **Result**: Consistent S3 URLs everywhere → `Storage::disk('s3')->url($path)`
 - ✅ **Public Pages Working**: All public-facing pages (show.blade.php) load images from S3 correctly
 - ✅ **Edit Pages Fixed** (October 24, 2025): Updated 10 view files to use S3 URLs via StorageHelper:
   - Profile pages: `company/edit.blade.php`, `group/edit.blade.php`, `place/edit.blade.php`, `offer/edit.blade.php`, `job/edit.blade.php`, `community/edit.blade.php`
@@ -67,11 +68,17 @@ vsearmyne.ru is an informational directory for the Armenian community globally, 
     3. Save database path without prefix (e.g., `uploaded/file.jpg`)
   - **Delete Operations**: Fixed `Storage::delete()` calls - removed `'public/'` prefix (now uses default S3 disk)
   - **Result**: New image uploads go directly to S3 cloud storage instead of local disk
+- ✅ **All View Files Fixed with StorageHelper** (October 24, 2025): Updated 16 view files total:
+  - **Profile edit pages**: 6 files (company, group, place, offer, job, community)
+  - **Admin pages**: 3 files (appeal/edit, dashboard, project/edit)
+  - **Livewire admin**: 3 files (edit-category, edit-entity, edit-offer) - total 7 images
+  - **Fix**: Replaced all `asset('storage/')` and `url('/storage/')` with `\App\Helpers\StorageHelper::imageUrl()`
 - ✅ **S3 Integration 100% Complete**: All image operations (view, edit, upload, delete) fully integrated with S3 storage
-  - Existing images: 20,781 files load from S3 correctly
+  - Existing images: 20,781 files load from S3 correctly across all environments
   - New uploads: Go directly to S3 with proper processing
   - Edit forms: Display S3 images with StorageHelper-generated URLs
   - Delete operations: Remove files from S3 when entities/images deleted
+  - **URL Format**: `https://s3.timeweb.cloud/[bucket]/storage/app/public/uploaded/file.jpg`
 
 ## Recent Changes (October 22-24, 2025 continued)
 - ✅ **GitHub Repository Created**: Successfully created new repository `armx2020/arm-new` at https://github.com/armx2020/arm-new

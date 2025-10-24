@@ -22,7 +22,17 @@ class DiagnosticsController extends Controller
             abort(404, 'Страница доступна только в development окружении');
         }
 
-        return view('admin.diagnostics-raw');
+        $data = [
+            'project_info' => $this->getProjectInfo(),
+            'database_status' => $this->getCurrentDatabaseStatus(),
+            's3_status' => $this->getS3StatusLight(),
+            'system_status' => $this->getSystemStatus(),
+            'statistics' => $this->getStatisticsLight(),
+            'environment_info' => $this->getEnvironmentInfo(),
+            'project_structure' => $this->getProjectStructure(),
+        ];
+
+        return view('admin.diagnostics-raw', $data);
     }
 
     private function getProjectInfo()
@@ -38,19 +48,42 @@ class DiagnosticsController extends Controller
         ];
     }
 
-    private function getDatabaseStatusLight()
+    private function getCurrentDatabaseStatus()
     {
         $currentDb = config('database.default');
+        $connection = config('database.connections.' . $currentDb);
         
-        return [
-            'current' => [
-                'status' => 'unknown',
-                'driver' => config('database.connections.' . $currentDb . '.driver'),
-                'host' => config('database.connections.' . $currentDb . '.host'),
-                'database' => config('database.connections.' . $currentDb . '.database'),
-                'note' => 'Легкая версия диагностики (без проверки подключения)',
-            ],
+        $status = [
+            'connection_name' => $currentDb,
+            'driver' => $connection['driver'] ?? 'unknown',
+            'host' => $connection['host'] ?? 'unknown',
+            'port' => $connection['port'] ?? 'unknown',
+            'database' => $connection['database'] ?? 'unknown',
+            'username' => $connection['username'] ?? 'unknown',
+            'status' => 'disconnected',
+            'tables_count' => 0,
+            'error' => null,
         ];
+
+        try {
+            // Проверка подключения
+            DB::connection($currentDb)->getPdo();
+            $status['status'] = 'connected';
+            
+            // Подсчет таблиц
+            if ($connection['driver'] === 'mysql') {
+                $tables = DB::connection($currentDb)->select('SHOW TABLES');
+                $status['tables_count'] = count($tables);
+            } elseif ($connection['driver'] === 'pgsql') {
+                $tables = DB::connection($currentDb)->select("SELECT tablename FROM pg_tables WHERE schemaname = 'public'");
+                $status['tables_count'] = count($tables);
+            }
+        } catch (\Exception $e) {
+            $status['status'] = 'error';
+            $status['error'] = $e->getMessage();
+        }
+
+        return $status;
     }
 
     private function getDatabaseStatus()
@@ -230,5 +263,54 @@ class DiagnosticsController extends Controller
         }
         
         return round($bytes, 2) . ' ' . $units[$i];
+    }
+
+    private function getProjectStructure()
+    {
+        return [
+            'backend' => [
+                'framework' => 'Laravel 10',
+                'php_version' => PHP_VERSION,
+                'key_directories' => [
+                    'app/Http/Controllers' => 'Контроллеры приложения',
+                    'app/Models' => 'Eloquent модели',
+                    'app/Entity/Actions' => 'Бизнес-логика для сущностей',
+                    'app/Helpers' => 'Helper классы (GeoHelper, StorageHelper)',
+                    'routes/web.php' => 'Публичные маршруты',
+                    'routes/admin.php' => 'Административные маршруты',
+                    'database/migrations' => 'Миграции базы данных',
+                ],
+            ],
+            'frontend' => [
+                'templating' => 'Blade Templates',
+                'css' => 'Tailwind CSS',
+                'javascript' => 'Alpine.js',
+                'build_tool' => 'Vite',
+                'key_directories' => [
+                    'resources/views' => 'Blade шаблоны',
+                    'resources/css' => 'Стили приложения',
+                    'resources/js' => 'JavaScript файлы',
+                    'public/build' => 'Скомпилированные assets',
+                ],
+            ],
+            'storage' => [
+                'images' => 'Timeweb S3 Cloud Storage (4.64 GB, 20,781 файлов)',
+                'local_storage' => 'storage/app/public (для разработки)',
+            ],
+            'deployment' => [
+                'development' => 'Replit (этот сервер)',
+                'version_control' => 'GitHub (armx2020/arm-new)',
+                'staging' => 'Timeweb Laravel App',
+                'production' => 'Timeweb (после переноса домена)',
+                'ci_cd' => 'GitHub Webhook → Timeweb Auto-Deploy',
+            ],
+            'key_features' => [
+                'Dynamic Routing' => 'DinamicRouteController обрабатывает разные типы URL',
+                'Multi-Database Support' => 'Код работает с MySQL и PostgreSQL',
+                'Geo Search' => 'GeoHelper для геопространственных запросов',
+                'Fulltext Search' => 'Search trait с поддержкой обеих БД',
+                'S3 Integration' => 'Автоматическая загрузка изображений в S3',
+            ],
+        ];
     }
 }

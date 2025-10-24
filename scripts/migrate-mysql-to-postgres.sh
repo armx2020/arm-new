@@ -50,7 +50,7 @@ mysqldump \
   --skip-add-drop-table \
   --no-create-info \
   --complete-insert \
-  --single-transaction \
+  --skip-lock-tables \
   --quick \
   "$MYSQL_DEV_DATABASE" > "$MYSQL_DUMP"
 

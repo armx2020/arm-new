@@ -160,7 +160,7 @@
                                                             @case('img')
                                                                 @if (isset($entity->primaryImage->path))
                                                                     <img class="w-8 h-8 object-cover rounded-lg"
-                                                                        src="{{ asset('storage/' . $entity->primaryImage->path) }}"
+                                                                        src="{{ \App\Helpers\StorageHelper::imageUrl($entity->primaryImage->path) }}"
                                                                         alt="Image">
                                                                 @else
                                                                     -
@@ -201,7 +201,7 @@
                                                             @case('path')
                                                                 @if (isset($entity->path))
                                                                     <img class="w-8 h-8 object-cover rounded-lg"
-                                                                        src="{{ asset('storage/' . $entity->path) }}"
+                                                                        src="{{ \App\Helpers\StorageHelper::imageUrl($entity->path) }}"
                                                                         alt="Image">
                                                                 @else
                                                                     -

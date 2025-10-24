@@ -15,6 +15,10 @@ The project is built on Laravel 10 (PHP 8.2) for the backend, utilizing Blade, V
     *   **Development:** Connects to a Timeweb MySQL database (armbase-2) for real-time data.
     *   **Staging/Production:** Uses MySQL database instances.
 *   **Image Handling:** All images are stored in Timeweb S3 cloud storage. A `StorageHelper` automatically generates S3 URLs. New image uploads are processed (resized to 400px width) and directly stored in S3. Image URLs in views and JavaScript are managed by the `StorageHelper` to ensure correct loading across environments.
+    *   **S3 Integration Complete (October 24, 2025):** All view files updated to use StorageHelper for S3 URLs
+        - Fixed 17 view files: admin edit pages (edit-entity, edit-category, edit-offer), profile edit pages, entity registries (entity-table), user pages, offer/place show pages
+        - Fixed JavaScript hardcoded paths in edit-entity.blade.php to use backend-generated S3 URLs
+        - All image previews now load from S3 cloud storage (14,309+ images)
 *   **Automated Deployment:** A CI/CD pipeline is established where pushes to GitHub trigger an automated deployment to Timeweb. This process includes `git pull`, Composer installation, cache clearing, database migrations, and permission adjustments.
 *   **Security:** The deployment webhook is secured with a shared secret and GitHub's `X-Hub-Signature-256` for request validation. SSH access to the production server has been restricted to enhance security.
 *   **Environment Configuration:** `bootstrap/set-replit-url.php` dynamically configures `APP_URL` for the Replit development environment. `TrustProxies` middleware is configured for seamless operation with Replit's proxy.

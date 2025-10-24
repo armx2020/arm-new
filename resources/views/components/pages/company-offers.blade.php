@@ -14,7 +14,7 @@
                             alt="image" />
                     @else
                         <img class="h-48 w-full rounded-2xl p-2 flex object-cover"
-                            src="{{ asset('storage/' . $offer->image) }}" alt="image">
+                            src="{{ \App\Helpers\StorageHelper::imageUrl($offer->image) }}" alt="image">
                     @endif
                     <div class="px-6">
                         <div class="h-12">

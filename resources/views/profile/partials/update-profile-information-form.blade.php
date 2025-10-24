@@ -19,7 +19,7 @@
                         src="{{ url('/image/no-image.png') }}" alt="{{ $user->firstname }} avatar">
                 @else
                     <img class="h-20 w-20 rounded-full m-1 object-cover" id="img"
-                        src="{{ asset('storage/' . $user->image) }}" alt="{{ $user->firstname }} avatar">
+                        src="{{ \App\Helpers\StorageHelper::imageUrl($user->image) }}" alt="{{ $user->firstname }} avatar">
                 @endif
                 <button type="button" id="remove_image" class="absolute top-2 right-2"
                     @if ($user->image == null) style="display: none;"

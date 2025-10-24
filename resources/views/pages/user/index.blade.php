@@ -63,7 +63,7 @@
                 <div class="flex flex-col basis-1/5">
                     @if ($user->image)
                         <img class="h-40 lg:h-48 w-40 lg:w-48 rounded-full mx-auto p-1 flex object-cover"
-                            src="{{ asset('storage/' . $user->image) }}" alt="{{ $user->name }}">
+                            src="{{ \App\Helpers\StorageHelper::imageUrl($user->image) }}" alt="{{ $user->name }}">
                     @else
                         <img class="h-40 lg:h-48 w-40 lg:w-48 rounded-full mx-auto p-1 flex object-cover"
                             src="{{ url('/image/no-image.png') }}" alt="image" />

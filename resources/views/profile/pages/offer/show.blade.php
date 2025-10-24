@@ -29,7 +29,7 @@
                                 alt="image" />
                         @else
                             <img class="h-64 w-64 rounded-2xl p-2 flex object-cover"
-                                src="{{ asset('storage/' . $entity->image) }}" alt="image">
+                                src="{{ \App\Helpers\StorageHelper::imageUrl($entity->image) }}" alt="image">
                         @endif
                     </div>
                     <div class="flex flex-col px-3 lg:px-10">

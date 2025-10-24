@@ -38,6 +38,16 @@ vsearmyne.ru is an informational directory for the Armenian community globally, 
 - **Current**: All environments use MySQL (Timeweb armbase-2 for development, default_db for staging/production)
 - **Code**: Fully compatible with both MySQL and PostgreSQL (ready for future migration if needed)
 
+### **Image Storage Fix (October 24, 2025)**:
+- ✅ **S3 Configuration Fixed**: Removed incorrect `root` prefix in S3 config (was `storage/app/public`, now empty)
+- ✅ **Development Images**: Development environment automatically loads images from production server
+- ✅ **Reason**: S3 bucket has 403 Forbidden errors (not configured for public access)
+- ✅ **Solution**: StorageHelper automatically detects environment:
+  - **Development (Replit)**: Uses production proxy → `https://vsearmyane.ru/storage/uploaded/file.jpg`
+  - **Production (Timeweb)**: Uses local storage or S3 (depending on server config)
+- ✅ **Production**: Files stored locally on server at `/storage/app/public`, served via nginx
+- ⚠️ **Future**: To use S3 directly, need to configure bucket public access policy on Timeweb
+
 ## Recent Changes (October 22-24, 2025 continued)
 - ✅ **GitHub Repository Created**: Successfully created new repository `armx2020/arm-new` at https://github.com/armx2020/arm-new
 - ✅ **Initial Code Push**: Pushed full Laravel codebase (1176 files) to GitHub

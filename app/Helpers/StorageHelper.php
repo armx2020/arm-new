@@ -20,14 +20,24 @@ class StorageHelper
             return url('/image/no_photo.jpg');
         }
 
+        // В development окружении всегда используем production images
+        // т.к. S3 bucket не настроен для публичного доступа
+        if (config('app.env') === 'local' || config('app.env') === 'development') {
+            return env('PRODUCTION_STORAGE_URL', 'https://vsearmyane.ru/storage') . '/' . $path;
+        }
+
         $defaultDisk = config('filesystems.default', 'local');
         
         if ($defaultDisk === 's3') {
-            return Storage::disk('s3')->url($path);
-        }
-
-        if (env('USE_PRODUCTION_IMAGES', false)) {
-            return env('PRODUCTION_STORAGE_URL', 'https://vsearmyane.ru/storage') . '/' . $path;
+            // На production используем S3 с временными URL (если bucket приватный)
+            // или обычный URL (если bucket публичный)
+            try {
+                // Пробуем обычный URL (если bucket публичный)
+                return Storage::disk('s3')->url($path);
+            } catch (\Exception $e) {
+                // Fallback на локальное хранилище
+                return asset('storage/' . $path);
+            }
         }
 
         return asset('storage/' . $path);

@@ -28,9 +28,9 @@ vsearmyne.ru is an informational directory for the Armenian community globally, 
   - `convert-mysql-to-postgres.php`: Converts MySQL dump to PostgreSQL-compatible format
   - `update-sequences.php`: Updates auto-increment sequences after import
   - `verify-migration.php`: Validates data integrity and foreign key relationships
-  - Safely migrates from MySQL (Timeweb armbase-2) → PostgreSQL (Replit Neon)
-  - Preserves all ID values and foreign key relationships
   - Full documentation in `scripts/README.md`
+  - **Status**: Migration scripts ready but not yet executed (process stopped October 24, 2025)
+  - **Current DB**: System continues using MySQL (Timeweb armbase-2) for development
   
 ### **Migration Strategy**:
 1. **Development**: Replit uses PostgreSQL (Neon) for local development

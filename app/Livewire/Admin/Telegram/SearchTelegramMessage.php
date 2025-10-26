@@ -5,6 +5,7 @@ namespace App\Livewire\Admin\Telegram;
 use App\Entity\Repository\Admin\Telegram\TelegramMessageRepository;
 use App\Livewire\Admin\BaseComponent;
 use App\Models\TelegramMessage;
+use App\Models\TelegramGroup;
 
 class SearchTelegramMessage extends BaseComponent
 {
@@ -26,7 +27,9 @@ class SearchTelegramMessage extends BaseComponent
         $emptyEntity = 'сообщений нет';
         $entityName = 'telegram_message';
 
-        $entities = TelegramMessage::query();
+        $telegramGroups = TelegramGroup::all();
+
+        $entities = TelegramMessage::query()->with('group', 'user');
 
         if ($this->term == "") {
             foreach ($this->selectedFilters as $filterName => $filterValue) {
@@ -51,6 +54,7 @@ class SearchTelegramMessage extends BaseComponent
                 'title' => $title,
                 'emptyEntity' => $emptyEntity,
                 'entityName' => $entityName,
+                'telegramGroups' => $telegramGroups,
             ]
         );
     }

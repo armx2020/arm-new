@@ -30,6 +30,7 @@ class TelegramMessageRepository implements EntityColumnsInterface, EntityFilters
     ];
 
     protected $filters = [
+        'group_id' => 'relation',
         'created_at' => 'date',
         'updated_at' => 'date',
     ];

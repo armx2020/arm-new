@@ -178,6 +178,33 @@
                         </select>
                     @endif
                     @break
+
+                    {{-- Фильтр relation --}}
+                    @case('relation')
+                    {{-- group_id для telegram_messages --}}
+                    @if ($name == 'group_id')
+                        <div class="mb-1 font-semibold">
+                            Telegram группа
+                        </div>
+                        <select
+                            class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg
+                                   focus:ring-cyan-600 focus:border-cyan-600 p-2.5 w-full"
+                            wire:model.live="selectedFilters.{{ $name }}.="
+                        >
+                            <option value="">- все группы -</option>
+                            @if (isset($telegramGroups))
+                                @foreach ($telegramGroups as $group)
+                                    <option value="{{ $group->id }}">
+                                        {{ $group->title }} 
+                                        @if($group->username)
+                                            (@{{ $group->username }})
+                                        @endif
+                                    </option>
+                                @endforeach
+                            @endif
+                        </select>
+                    @endif
+                    @break
                 @endswitch
             </div>
         @endforeach

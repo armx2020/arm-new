@@ -114,6 +114,11 @@ return [
             'engine' => null,
             'options' => extension_loaded('pdo_mysql') ? [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_PERSISTENT => true,              // 🚀 Переиспользование соединений
+                PDO::ATTR_TIMEOUT => 30,                   // ⏱️ Увеличенный таймаут
+                PDO::MYSQL_ATTR_COMPRESS => true,          // 📦 Сжатие данных
+                PDO::MYSQL_ATTR_INIT_COMMAND => "SET SESSION sql_mode='NO_ENGINE_SUBSTITUTION'",
+                PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true, // 💾 Буферизация запросов
                 PDO::MYSQL_ATTR_SSL_CA => '/home/runner/.cloud-certs/root.crt',
                 PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false,
             ] : [],

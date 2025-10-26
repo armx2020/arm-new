@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Traits\Search;
 use Illuminate\Database\Eloquent\Model;
 
 class TelegramGroup extends Model
 {
+    use Search;
+
     protected $fillable = [
         'id',
         'username',
@@ -14,6 +17,8 @@ class TelegramGroup extends Model
     ];
 
     public $incrementing = false;
+
+    protected $searchable = ['title', 'username', 'description'];
 
     public function telegram_messages()
     {

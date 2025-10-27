@@ -9,6 +9,75 @@
         <p class="text-gray-600 mt-2">Информация о структуре проекта, состоянии систем и статистика</p>
     </div>
 
+    @if(!empty(getenv('REPLIT_DEV_DOMAIN')) || !empty(getenv('REPLIT_DOMAINS')))
+        @php
+            $currentMode = session('db_mode', 'demo');
+            $isDemoMode = $currentMode === 'demo';
+            $currentConnection = config('database.default');
+        @endphp
+        
+        <div class="bg-gradient-to-r {{ $isDemoMode ? 'from-green-500 to-blue-500' : 'from-red-600 to-orange-600' }} shadow-xl rounded-lg p-6 mb-6 text-white">
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-4">
+                <div class="flex-1">
+                    <h2 class="text-2xl font-bold mb-2">
+                        @if($isDemoMode)
+                            🚀 Режим: ДЕМО (PostgreSQL)
+                        @else
+                            🔴 Режим: БОЕВОЙ (MySQL)
+                        @endif
+                    </h2>
+                    <div class="space-y-1 text-sm">
+                        <p class="opacity-90">
+                            <strong>База данных:</strong> {{ $currentConnection }} 
+                            @if($isDemoMode)
+                                (PostgreSQL Neon, США - быстро ~0.8s)
+                            @else
+                                (MySQL Timeweb, Россия - медленно ~2-3s)
+                            @endif
+                        </p>
+                        <p class="opacity-90">
+                            <strong>Данные:</strong> 
+                            @if($isDemoMode)
+                                Демо-данные для разработки (5 сущностей, 5 категорий)
+                            @else
+                                Боевые данные из России (полная база)
+                            @endif
+                        </p>
+                    </div>
+                </div>
+                <div class="flex-shrink-0">
+                    <form method="POST" action="{{ route('replit.db.switch') }}">
+                        @csrf
+                        <input type="hidden" name="mode" value="{{ $isDemoMode ? 'production' : 'demo' }}">
+                        <button type="submit" class="bg-white {{ $isDemoMode ? 'text-blue-600 hover:bg-blue-50' : 'text-red-600 hover:bg-red-50' }} font-bold px-8 py-4 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-200 flex items-center gap-3 text-lg">
+                            @if($isDemoMode)
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                </svg>
+                                <span>Переключить на MySQL<br><small class="text-xs opacity-70">(медленно)</small></span>
+                            @else
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                                </svg>
+                                <span>Переключить на PostgreSQL<br><small class="text-xs opacity-70">(быстро)</small></span>
+                            @endif
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="mt-4 pt-4 border-t border-white border-opacity-30">
+                <p class="text-xs opacity-75">
+                    💡 <strong>Подсказка:</strong> 
+                    @if($isDemoMode)
+                        Демо режим использует PostgreSQL (США) для быстрой разработки. Переключитесь на боевой режим для доступа к полной базе MySQL из России.
+                    @else
+                        Боевой режим подключается к MySQL в России (медленно ~2-3s). Для быстрой разработки переключитесь на демо режим с PostgreSQL (~0.8s).
+                    @endif
+                </p>
+            </div>
+        </div>
+    @endif
+
     {{-- Информация о проекте --}}
     <div class="bg-white shadow rounded-lg p-6 mb-6">
         <h2 class="text-xl font-bold text-gray-900 mb-4">📋 Информация о проекте</h2>

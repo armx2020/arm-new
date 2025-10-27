@@ -24,17 +24,9 @@ $updated = preg_replace(
     $envContent
 );
 
-// В Replit используем PostgreSQL для быстрой разработки
-$updated = preg_replace(
-    '/^DB_CONNECTION=.*/m',
-    "DB_CONNECTION=pgsql",
-    $updated
-);
-
 if ($updated !== $envContent) {
     file_put_contents($envPath, $updated);
     echo "Updated APP_URL to: {$appUrl}\n";
-    echo "Set DB_CONNECTION to: pgsql (Replit PostgreSQL)\n";
 } else {
     echo "APP_URL already set correctly\n";
 }

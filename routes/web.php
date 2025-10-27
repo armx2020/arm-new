@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DbSwitchController;
 use App\Http\Controllers\Pages\DinamicRouteController;
 use App\Http\Controllers\Pages\EntityController;
 use App\Http\Controllers\Pages\HomeController;
@@ -10,6 +11,8 @@ require __DIR__ . '/auth.php';
 require __DIR__ . '/admin.php';
 require __DIR__ . '/profile.php';
 require __DIR__ . '/inform-us.php';
+
+Route::post('/replit/db-switch', [DbSwitchController::class, 'switch'])->name('replit.db.switch');
 
 Route::get('/privacy-policy', [HomeController::class, 'privacyPolicy'])->name('privacy-policy');
 Route::get('/condition-of-use', [HomeController::class, 'conditionOfUse'])->name('condition-of-use');

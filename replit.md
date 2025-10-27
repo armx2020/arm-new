@@ -12,9 +12,10 @@ The project is built on Laravel 10 (PHP 8.2) for the backend, utilizing Blade, V
 **Key Architectural Decisions & Features:**
 *   **Dynamic Routing:** A `DinamicRouteController` handles dynamic URLs for various entity types (companies, groups, places, etc.), adapting to multiple URL forms via an inflector.
 *   **Database Management:** The system uses MySQL in production and PostgreSQL for Replit development. The codebase maintains compatibility with both databases (MySQL uses `MATCH() AGAINST()` for fulltext search, PostgreSQL uses `to_tsvector()` and `to_tsquery()`).
-    *   **Development (Replit):** Connects to PostgreSQL (Neon, USA) with demo data for fast development (~0.7s latency). Auto-configured via `bootstrap/set-replit-url.php`.
+    *   **Development (Replit):** Connects to PostgreSQL (Neon, USA) with demo data for fast development (~0.8s latency). **Переключатель режимов** доступен на странице `/admin/diagnostics`.
     *   **Production (Timeweb):** Uses MySQL database (Russia) with full production data.
     *   **Demo Data Seeder:** `DemoDataSeeder` creates sample entities, users, and categories for Replit development environment.
+    *   **Database Switcher:** Middleware `DatabaseSwitcher` позволяет переключаться между демо (PostgreSQL) и боевым (MySQL) режимами через session. По умолчанию: демо режим.
 *   **Image Handling:** All images are stored in Timeweb S3 cloud storage. A `StorageHelper` automatically generates S3 URLs. New image uploads are processed (resized to 400px width) and directly stored in S3. Image URLs in views and JavaScript are managed by the `StorageHelper` to ensure correct loading across environments.
     *   **S3 Integration Complete (October 24, 2025):** All view files updated to use StorageHelper for S3 URLs
         - Fixed 17 view files: admin edit pages (edit-entity, edit-category, edit-offer), profile edit pages, entity registries (entity-table), user pages, offer/place show pages

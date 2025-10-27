@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Log;
 class YandexGeocoderService
 {
     protected string $apiUrl = 'https://geocode-maps.yandex.ru/1.x/';
-    protected string $apiKey;
+    protected ?string $apiKey;
     protected int $dailyLimit = 700;
     protected int $usedRequests = 0;
 
@@ -22,6 +22,11 @@ class YandexGeocoderService
 
     public function geocode($entity, bool $queueIfExceeded = true): ?array
     {
+        if (!$this->apiKey) {
+            Log::warning('YandexGeocoderService: API key not configured');
+            return null;
+        }
+
         if (!$this->hasAvailableRequests()) {
             if ($queueIfExceeded) {
                 ProcessEntitiesGeocoding::dispatch($entity)->delay(now()->addDay());

@@ -41,6 +41,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\FromLocation::class,
             // \App\Http\Middleware\UpdateUserActivity::class,
             \App\Http\Middleware\CompressResponse::class,
+            \App\Http\Middleware\DemoMode::class,
         ],
 
         'api' => [

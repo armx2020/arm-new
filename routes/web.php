@@ -97,3 +97,18 @@ Route::get('/test-s3-config', function() {
 })->name('test.s3');
 
 Route::post('/deploy/webhook', [\App\Http\Controllers\DeployController::class, 'deploy'])->name('deploy.webhook');
+
+// DEMO Mode Toggle (только для Replit)
+Route::post('/toggle-demo-mode', function() {
+    if (config('app.env') !== 'production') {
+        $newMode = !session('demo_mode', true);
+        session(['demo_mode' => $newMode]);
+        
+        return response()->json([
+            'success' => true,
+            'demo_mode' => $newMode,
+            'message' => $newMode ? '🟢 DEMO режим включен (быстро)' : '🔴 БОЕВОЙ режим включен (медленно)'
+        ]);
+    }
+    return response()->json(['success' => false], 403);
+})->name('toggle.demo.mode');

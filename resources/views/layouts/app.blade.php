@@ -45,5 +45,8 @@
 
     @yield('body')
 
+    {{-- DEMO режим переключатель (только на Replit) --}}
+    <x-demo-mode-toggle />
+
 </body>
 </html>

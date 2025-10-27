@@ -13,23 +13,12 @@ class FromLocation
     public function handle(Request $request, Closure $next): Response
     {
         if (!$request->session()->has('regionTranslit')) {
-            try {
-                // Пробуем получить регион из БД
-                $region = DB::table('regions')->where('id', 1)->first();
-                
-                if ($region) {
-                    $request->session()->put('regionName', $region->name ?? 'Россия');
-                    $request->session()->put('regionTranslit', $region->transcription ?? 'russia');
-                } else {
-                    // Если регион не найден, используем значения по умолчанию
-                    $request->session()->put('regionName', 'Россия');
-                    $request->session()->put('regionTranslit', 'russia');
-                }
-            } catch (\Exception $e) {
-                // В случае ошибки БД, устанавливаем безопасные значения по умолчанию
-                $request->session()->put('regionName', 'Россия');
-                $request->session()->put('regionTranslit', 'russia');
-            }
+            // DEMO режим или продакшн - устанавливаем быстрые значения
+            $request->session()->put('regionName', 'Россия');
+            $request->session()->put('regionTranslit', 'russia');
+            $request->session()->put('lat', 55.7558);
+            $request->session()->put('lon', 37.6176);
+            $request->session()->put('isRussia', true);
         }
 
         return $next($request);

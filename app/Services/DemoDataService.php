@@ -116,7 +116,13 @@ class DemoDataService
      */
     public function isDemoMode(): bool
     {
-        // DEMO режим только на Replit и по умолчанию включен
-        return config('app.env') !== 'production' && session('demo_mode', true);
+        // На продакшене DEMO режим ВСЕГДА выключен
+        if (config('app.env') === 'production') {
+            return false;
+        }
+        
+        // На Replit: проверяем сессию, если есть
+        // По умолчанию TRUE (быстрая загрузка)
+        return session()->get('demo_mode', true);
     }
 }

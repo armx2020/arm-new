@@ -30,9 +30,10 @@ class ComposerServiceProvider extends ServiceProvider
             $regions = Cache::get('regions', []);
             $countries = Cache::get('countries', []);
 
-            if (empty($this->regions) || empty($this->countries)) {
-                Artisan::call('cache-regions');
-            }
+            // ОТКЛЮЧЕНО: Это вызывало MySQL запрос на каждой странице!
+            // if (empty($this->regions) || empty($this->countries)) {
+            //     Artisan::call('cache-regions');
+            // }
 
             $menuItems = collect(config('menu.main'))->map(function ($item) use ($region, $regionName, $request) {
                 $isRegional = ($regionName && $regionName !== 'Россия');

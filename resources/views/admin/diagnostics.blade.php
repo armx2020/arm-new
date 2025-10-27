@@ -9,13 +9,11 @@
         <p class="text-gray-600 mt-2">Информация о структуре проекта, состоянии систем и статистика</p>
     </div>
 
-    @if(!empty(getenv('REPLIT_DEV_DOMAIN')) || !empty(getenv('REPLIT_DOMAINS')))
-        @php
-            $currentMode = session('db_mode', 'demo');
-            $isDemoMode = $currentMode === 'demo';
-            $currentConnection = config('database.default');
-        @endphp
-        
+    @php
+        $currentMode = session('db_mode', 'demo');
+        $isDemoMode = $currentMode === 'demo';
+        $currentConnection = config('database.default');
+    @endphp
         <div class="bg-gradient-to-r {{ $isDemoMode ? 'from-green-500 to-blue-500' : 'from-red-600 to-orange-600' }} shadow-xl rounded-lg p-6 mb-6 text-white">
             <div class="flex flex-col lg:flex-row items-center justify-between gap-4">
                 <div class="flex-1">
@@ -76,7 +74,6 @@
                 </p>
             </div>
         </div>
-    @endif
 
     {{-- Информация о проекте --}}
     <div class="bg-white shadow rounded-lg p-6 mb-6">
